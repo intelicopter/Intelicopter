@@ -14,7 +14,7 @@ class Question(models.Model):
 class Option(models.Model):
     option_id = models.IntegerField(primary_key=True)
     option_text = models.CharField(max_length=500)
-    question_id = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     class Meta:
         db_table = "intelicopter_option"
@@ -23,7 +23,7 @@ class Option(models.Model):
 class Trigger(models.Model):
     trigger_id = models.IntegerField(primary_key=True)
     trigger_text = models.CharField(max_length=500)
-    question_id = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     class Meta:
         db_table = "intelicopter_trigger"
