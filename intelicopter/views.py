@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from intelicopter.models import Question, Option, Trigger
+import json
 
 # Create your views here.
 
@@ -12,29 +13,38 @@ def question(request):
 
 
 def process_answer(request):
-    # get JSON
-    data = request.POST['data']
+    # get data from templates
+    data_in_string = request.POST['data']  # will be in JSON format
+    answers_in_string = request.PORT['answers'] # will be in array format
+
+    #process JSON
+    data = json.loads(data_in_string)
+    answers = json.loads(answers_in_string.split())
+
+    highest_question_number = max(data.iterkeys(), key=(lambda key: data[key]))
 
     # if first time, initialise new rank and number as 1
     if data.len is None:
-        data = {
-            "rank":1,
-            "question":1,
-            "questions":{}
-        }
-
-    # parse JSON
-    rank = data["rank"]
-    question = data["question"]
-    questions = data["questions"]
+        data = {}
+    else:
+        data[highest_question_number] = answers # latest qn will be the highest question number previously answered
 
     # get latest question object
-    latest_question = Question.objects.filter(question_id=question+1)[0]
+    next_question_tracker = 1
+    latest_question = Question.objects.filter(question_id=highest_question_number + next_question_tracker)[0]
+    while not check_if_triggered(latest_question):
+        next_question_tracker += 1
+        latest_question = Question.objects.filter(question_id=highest_question_number + next_question_tracker)[0]
 
-    # check if triggered, if true, show options
+    latest_options = Question.objects.filter(question=latest_question)
+
+    # to handle going back to the previous page
+    previous_data = dict(data)
+    data[highest_question_number + next_question_tracker] = []
+
+    return render(request, 'question.html', {'previous_data':previous_data, 'data':data, 'options':latest_options})
+
+
+def check_if_triggered(question):
     #triggers = Trigger.objects.filter(question=latest_question)
-
-    # else, repeat with next question, if end of questions for rank, go to next rank
-    # bring to answering page
-
-    return render(request, 'question.html', {})
+    return True
