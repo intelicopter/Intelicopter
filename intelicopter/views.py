@@ -31,8 +31,10 @@ def process_answer(request):
 
     # get latest question object
     next_question_tracker = 1
+    # get max questions here
+    #if statement to check if last question
     latest_question = Question.objects.filter(question_id=highest_question_number + next_question_tracker)[0]
-    while not check_if_triggered(latest_question):
+    while not check_if_triggered(latest_question, data):
         next_question_tracker += 1
         latest_question = Question.objects.filter(question_id=highest_question_number + next_question_tracker)[0]
 
@@ -45,6 +47,14 @@ def process_answer(request):
     return render(request, 'question.html', {'previous_data':previous_data, 'data':data, 'options':latest_options})
 
 
-def check_if_triggered(question):
-    #triggers = Trigger.objects.filter(question=latest_question)
+def check_if_triggered(question, data):
+    triggers = Trigger.objects.filter(question=question)
+    trigger_list = {}
+    
+    # for every trigger, insert key value pair into list
     return True
+    
+    
+def get_relevant_items(request):
+    return True
+   

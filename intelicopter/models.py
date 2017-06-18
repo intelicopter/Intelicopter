@@ -22,6 +22,7 @@ class Option(models.Model):
 
 class Trigger(models.Model):
     trigger_id = models.IntegerField(primary_key=True)
+    trigger_question = models.ForeignKey(Question)
     trigger_text = models.CharField(max_length=500)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
