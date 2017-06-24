@@ -5,6 +5,7 @@ import json
 # Create your views here.
 
 def home(request):
+    create_example_data()
     return render(request, 'home.html', {})
 
 
@@ -57,4 +58,32 @@ def check_if_triggered(question, data):
     
 def get_relevant_items(request):
     return True
-   
+
+
+def create_example_data():
+    qn1 = Question(1, "What is your gender?", 1)
+    qn2 = Question(2, "Are you pregnant?", 1)
+    qn3 = Question(3, "Are you employed?", 1)
+
+    qn1.save()
+    qn2.save()
+    qn3.save()
+
+    option1 = Option(1, 1, "Male")
+    option2 = Option(2, 1, "Female")
+    option3 = Option(3, 2, "Yes")
+    option4 = Option(4, 2, "No")
+    option5 = Option(5, 2, "I am not sure")
+    option6 = Option(6, 3, "Yes")
+    option7 = Option(7, 3, "No")
+
+    option1.save()
+    option2.save()
+    option3.save()
+    option4.save()
+    option5.save()
+    option6.save()
+    option7.save()
+
+    trigger = Trigger(1, 2, 1, "Female")
+    trigger.save()
