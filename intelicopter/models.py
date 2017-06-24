@@ -21,8 +21,8 @@ class Option(models.Model):
 
 class Trigger(models.Model):
     trigger_id = models.IntegerField(primary_key=True)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    trigger_question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='main_question_set')
+    trigger_question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='trigger_question_set')
     trigger_text = models.CharField(max_length=500)
 
     class Meta:
