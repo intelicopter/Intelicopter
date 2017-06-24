@@ -4,7 +4,7 @@ from django.db import models
 class Question(models.Model):
     question_id = models.IntegerField(primary_key=True)
     text = models.CharField(max_length=500)
-    question_type = models.IntegerField # 1 radio, 2 checkbox, 3 textbox, 4 number
+    question_type = models.IntegerField  # 1 radio, 2 checkbox, 3 textbox, 4 number
 
     class Meta:
         db_table = "intelicopter_question"
