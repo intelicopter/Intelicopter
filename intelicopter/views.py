@@ -61,9 +61,9 @@ def get_relevant_items(request):
 
 
 def create_example_data():
-    qn1 = Question.objects.create(1, "What is your gender?", 1)
-    qn2 = Question.objects.create(2, "Are you pregnant?", 1)
-    qn3 = Question.objects.create(3, "Are you employed?", 1)
+    qn1 = Question.objects.create(id=1, text="What is your gender?", question_type=1)
+    qn2 = Question.objects.create(id=2, text="Are you pregnant?", question_type=1)
+    qn3 = Question.objects.create(id=3, text="Are you employed?", question_type=1)
 
     qn1.save()
     qn2.save()
