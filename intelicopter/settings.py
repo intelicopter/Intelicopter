@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     # Disable Django's own staticfiles handling in favour of WhiteNoise, for
     # greater consistency between gunicorn and `./manage.py runserver`. See:
     # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
@@ -41,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'intelicopter'
 ]
+
+SITE_ID = 1 # https://stackoverflow.com/questions/34709885/python-django-runtimeerror-model-class-django-contrib-sites-models-site-error
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
