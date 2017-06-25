@@ -1,6 +1,9 @@
-from django.shortcuts import render
-from intelicopter.models import Question, Option, Trigger
 import json
+
+from django.shortcuts import render
+
+from models import Question, Option, Trigger
+
 
 # Create your views here.
 
