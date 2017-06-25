@@ -9,6 +9,7 @@ class Question(models.Model):
     class Meta:
         app_label = 'intelicopter'
 
+#test
 
 class Option(models.Model):
     id = models.IntegerField(primary_key=True)
