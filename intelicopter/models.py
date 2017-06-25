@@ -21,6 +21,6 @@ class Trigger(models.Model):
 
 class Trigger2(models.Model):
     id = models.IntegerField(primary_key=True)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='main_question_set')
-    trigger_question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='trigger_question_set')
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='main_question_set2')
+    trigger_question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='trigger_question_set2')
     trigger_text = models.CharField(max_length=500)
