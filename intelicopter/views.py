@@ -60,7 +60,7 @@ def process_answer(request):
 
     # get the options for the latest question
     latest_options = []
-    for options in Question.objects.filter(question=latest_question):
+    for options in Option.objects.filter(question=latest_question):
         latest_options.append(options.option_text)
 
     return render(request, 'question.html', {'data':data, 'options':latest_options})
