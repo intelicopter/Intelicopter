@@ -8,8 +8,8 @@ from models import Question, Option, Trigger
 # Create your views here.
 
 def home(request):
-    create_example_data()
-    return render(request, 'home.html', {})
+    all_entries = Option.objects.all()
+    return render(request, 'home.html', {'all_entries':all_entries})
 
 
 def question(request):
@@ -64,16 +64,17 @@ def get_relevant_items(request):
 
 
 def create_example_data():
-    qn1 = Question.objects.create(id=1, text="What is your gender?", question_type=1)
-    qn2 = Question.objects.create(id=2, text="Are you pregnant?", question_type=1)
-    qn3 = Question.objects.create(id=3, text="Are you employed?", question_type=1)
-
-    option1 = Option.objects.create(id=1, question=qn1, option_text="Male")
-    option2 = Option.objects.create(id=2, question=qn1, option_text="Female")
-    option3 = Option.objects.create(id=3, question=qn2, option_text="Yes")
-    option4 = Option.objects.create(id=4, question=qn2, option_text="No")
-    option5 = Option.objects.create(id=5, question=qn2, option_text="I am not sure")
-    option6 = Option.objects.create(id=6, question=qn3, option_text="Yes")
-    option7 = Option.objects.create(id=7, question=qn3, option_text="No")
-
-    trigger = Trigger.objects.create(id=1, question=qn2, trigger_question=qn1, trigger_text="Female")
+    return True
+    # qn1 = Question.objects.create(id=1, text="What is your gender?", question_type=1)
+    # qn2 = Question.objects.create(id=2, text="Are you pregnant?", question_type=1)
+    # qn3 = Question.objects.create(id=3, text="Are you employed?", question_type=1)
+    #
+    # option1 = Option.objects.create(id=1, question=qn1, option_text="Male")
+    # option2 = Option.objects.create(id=2, question=qn1, option_text="Female")
+    # option3 = Option.objects.create(id=3, question=qn2, option_text="Yes")
+    # option4 = Option.objects.create(id=4, question=qn2, option_text="No")
+    # option5 = Option.objects.create(id=5, question=qn2, option_text="I am not sure")
+    # option6 = Option.objects.create(id=6, question=qn3, option_text="Yes")
+    # option7 = Option.objects.create(id=7, question=qn3, option_text="No")
+    #
+    # trigger = Trigger.objects.create(id=1, question=qn2, trigger_question=qn1, trigger_text="Female")
