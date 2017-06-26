@@ -42,7 +42,7 @@ def process_answer(request):
     data = json.loads(data_in_string)
     answers = answers_in_string.split()
 
-    highest_question_number = max(data.iterkeys(), key=(lambda key: data[key]))  # get the highest key number
+    highest_question_number = int(max(data.iterkeys(), key=(lambda key: data[key])))  # get the highest key number
     data[highest_question_number] = answers  # latest qn will be the highest question number previously answered
 
     # get latest question object
