@@ -10,7 +10,8 @@ from models import Question, Option, Trigger
 def home(request):
     one_entry = Option.objects.get(id=3)
     one_entry_thing = one_entry.option_text
-    return render(request, 'home.html', {'all_entries':one_entry_thing})
+    test = "hellloooo"
+    return render(request, 'home.html', {'one_entry_thing':one_entry_thing})
 
 
 def question(request):
