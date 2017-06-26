@@ -39,7 +39,7 @@ def process_answer(request):
 
     # process JSON
     data = json.loads(data_in_string)
-    answers = answers_in_string.split()
+    answers = answers_in_string.split(",")
 
     highest_question_number = 0
     if len(data) > 0:
