@@ -57,7 +57,8 @@ def process_answer(request):
     while not check_if_triggered(latest_question, data):
         next_question_tracker += 1
         latest_question = Question.objects.get(id=highest_question_number + next_question_tracker)[0]
-        latest_question_text = latest_question.text
+
+    latest_question_text = latest_question.text
 
     # get the options for the latest question
     latest_options = []
