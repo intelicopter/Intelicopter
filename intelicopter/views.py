@@ -42,9 +42,11 @@ def process_answer(request):
     answers = answers_in_string.split()
 
     highest_question_number = 0
-    if len(data) > 0 or len(answers) > 0:
-        highest_question_number = int(max(data.iterkeys(), key=(lambda key: data[key])))  # get the highest key number
+    if len(answers) > 0:
         data[highest_question_number] = answers  # latest qn will be the highest question number previously answered
+
+    if len(data) > 0:
+        highest_question_number = int(max(data.iterkeys(), key=(lambda key: data[key])))  # get the highest key number
 
     # get latest question object
     next_question_tracker = 1
