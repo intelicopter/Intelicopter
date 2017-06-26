@@ -46,7 +46,7 @@ def process_answer(request):
         highest_question_number = int(max(data.iterkeys(), key=(lambda key: data[key])))  # get the highest key number
 
     if len(answers) > 0:
-        data[highest_question_number] = answers  # latest qn will be the highest question number previously answered
+        data[highest_question_number+1] = answers  # latest qn will be the highest question number previously answered
 
     # get latest question object
     next_question_tracker = 1
