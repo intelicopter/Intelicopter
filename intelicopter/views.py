@@ -34,7 +34,7 @@ def process_answer(request):
         answers_in_string = request.POST['answers']  # will be in array format
     except:
         # if first time, initialise data, else, assign answer as value to question key
-        data_in_string = '{}'
+        data_in_string = '{"0":{}}'
         answers_in_string = ''
 
     # process JSON
@@ -42,11 +42,11 @@ def process_answer(request):
     answers = answers_in_string.split()
 
     highest_question_number = 0
-    if len(answers) > 0:
-        data[highest_question_number] = answers  # latest qn will be the highest question number previously answered
-
     if len(data) > 0:
         highest_question_number = int(max(data.iterkeys(), key=(lambda key: data[key])))  # get the highest key number
+
+    if len(answers) > 0:
+        data[highest_question_number] = answers  # latest qn will be the highest question number previously answered
 
     # get latest question object
     next_question_tracker = 1
