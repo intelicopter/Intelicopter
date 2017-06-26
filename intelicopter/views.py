@@ -30,8 +30,8 @@ def process_answer(request):
 
 
     # get data from templates
-    data_in_string = request.POST['data']  # will be in JSON format shown above
-    answers_in_string = request.PORT['answers'] # will be in array format
+    data_in_string = request.POST.get['data']  # will be in JSON format shown above
+    answers_in_string = request.PORT.get['answers'] # will be in array format
 
     #process JSON
     data = json.loads(data_in_string)
