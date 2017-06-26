@@ -8,10 +8,7 @@ from models import Question, Option, Trigger
 # Create your views here.
 
 def home(request):
-    one_entry = Option.objects.get(id=3)
-    one_entry_thing = one_entry.option_text
-    test = "hellloooo"
-    return render(request, 'home.html', {'one_entry_thing':one_entry_thing})
+    return render(request, 'home.html', {})
 
 
 def question(request):
@@ -19,38 +16,56 @@ def question(request):
 
 
 def process_answer(request):
+
+    # "data" will be stored in JSON format in this way:
+    # {
+    #     "1": {
+    #         "1": "yes"
+    #     },
+    #     "2": {
+    #         "1": "Leg",
+    #         "2": "Hand"
+    #     }
+    # }
+
+
     # get data from templates
-    data_in_string = request.POST['data']  # will be in JSON format
+    data_in_string = request.POST['data']  # will be in JSON format shown above
     answers_in_string = request.PORT['answers'] # will be in array format
 
     #process JSON
     data = json.loads(data_in_string)
     answers = json.loads(answers_in_string.split())
 
-    highest_question_number = max(data.iterkeys(), key=(lambda key: data[key]))
-
-    # if first time, initialise new rank and number as 1
+    # if first time, initialise data, else, assign answer as value to question key
+    highest_question_number = 0
     if data.len is None:
         data = {}
+        highest_question_number = 0
     else:
-        data[highest_question_number] = answers # latest qn will be the highest question number previously answered
+        data[highest_question_number] = answers  # latest qn will be the highest question number previously answered
+        highest_question_number = max(data.iterkeys(), key=(lambda key: data[key]))
 
     # get latest question object
     next_question_tracker = 1
-    # get max questions here
-    #if statement to check if last question
-    latest_question = Question.objects.filter(question_id=highest_question_number + next_question_tracker)[0]
+
+    # check if last question
+    try:
+        latest_question = Question.objects.get(id=next_question_tracker+highest_question_number)
+    except:
+        return True  # future development
+
+    # if not triggered, go to the next question
     while not check_if_triggered(latest_question, data):
         next_question_tracker += 1
-        latest_question = Question.objects.filter(question_id=highest_question_number + next_question_tracker)[0]
+        latest_question = Question.objects.get(id=highest_question_number + next_question_tracker)[0]
 
-    latest_options = Question.objects.filter(question=latest_question)
+    # get the options for the latest question
+    latest_options = []
+    for options in Question.objects.filter(question=latest_question):
+        latest_options.append(options.option_text)
 
-    # to handle going back to the previous page
-    previous_data = dict(data)
-    data[highest_question_number + next_question_tracker] = []
-
-    return render(request, 'question.html', {'previous_data':previous_data, 'data':data, 'options':latest_options})
+    return render(request, 'question.html', {'data':data, 'options':latest_options})
 
 
 def check_if_triggered(question, data):
