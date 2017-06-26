@@ -14,6 +14,8 @@
 
 <br>
 
+{{ data_in_string|safe }}
+<br>
 {{ question|safe }}
 <br>
 Choose one: <br>
@@ -24,7 +26,7 @@ Choose one: <br>
 <form action="/questions/" method="post">{% csrf_token %}
     <label for="answers">Choice</label>
     <input id="answers" type="text" name="answers" value="">
-    <input id="data" type="hidden" name="data" value={{ data }}>
+    <input id="data" type="hidden" name="data" value={{data}}>
     <input type="submit" value="Submit">
 </form>
 
