@@ -28,14 +28,15 @@ def process_answer(request):
     #     }
     # }
 
+
     try:
         # get data from templates
         data_in_string = request.POST.get['data']  # will be in JSON format shown above
         answers_in_string = request.PORT.get['answers']  # will be in array format
-
     except:
         # if first time, initialise data, else, assign answer as value to question key
-        data = {1:{}}
+        data_in_string = "{1:{}}"
+        answers_in_string = ""
 
     # process JSON
     data = json.loads(data_in_string)
