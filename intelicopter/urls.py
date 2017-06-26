@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
     url(r'^questions/', views.process_answer, name='questions'),
+    url('^$', views.home, name='home2')
 ]
