@@ -28,23 +28,21 @@ def process_answer(request):
     #     }
     # }
 
+    try:
+        # get data from templates
+        data_in_string = request.POST.get['data']  # will be in JSON format shown above
+        answers_in_string = request.PORT.get['answers']  # will be in array format
 
-    # get data from templates
-    data_in_string = request.POST.get['data']  # will be in JSON format shown above
-    answers_in_string = request.PORT.get['answers'] # will be in array format
+        # process JSON
+        data = json.loads(data_in_string)
+        answers = json.loads(answers_in_string.split())
 
-    #process JSON
-    data = json.loads(data_in_string)
-    answers = json.loads(answers_in_string.split())
-
-    # if first time, initialise data, else, assign answer as value to question key
-    highest_question_number = 0
-    if data.len is None:
+        highest_question_number = max(data.iterkeys(), key=(lambda key: data[key])) # get the highest key number
+        data[highest_question_number] = answers  # latest qn will be the highest question number previously answered
+    except:
+        # if first time, initialise data, else, assign answer as value to question key
         data = {}
         highest_question_number = 0
-    else:
-        data[highest_question_number] = answers  # latest qn will be the highest question number previously answered
-        highest_question_number = max(data.iterkeys(), key=(lambda key: data[key]))
 
     # get latest question object
     next_question_tracker = 1
