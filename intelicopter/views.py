@@ -44,12 +44,12 @@ def process_answer(request):
     answers = []
     if len(answers_in_string) > 0:
         answers = answers_in_string.split(",")
-        
+
     if len(answers) > 0:
         data[highest_question_number+1] = answers  # latest qn will be the highest question number previously answered
 
     if len(data) > 0:
-        highest_question_number = int(max(data.iterkeys(), key=(lambda key: data[key])))  # get the highest key number
+        highest_question_number = int(max(data.iterkeys(), key=(lambda key: data[key]))) + 1  # get the highest key number
 
 
     # get latest question object
