@@ -57,13 +57,14 @@ def process_answer(request):
     while not check_if_triggered(latest_question, data):
         next_question_tracker += 1
         latest_question = Question.objects.get(id=highest_question_number + next_question_tracker)[0]
+        latest_question_text = latest_question.text
 
     # get the options for the latest question
     latest_options = []
     for options in Option.objects.filter(question=latest_question):
         latest_options.append(options.option_text)
 
-    return render(request, 'question.html', {'data':data, 'options':latest_options})
+    return render(request, 'question.html', {'data':data, 'question':latest_question_text, 'options':latest_options})
 
 
 def check_if_triggered(question, data):
