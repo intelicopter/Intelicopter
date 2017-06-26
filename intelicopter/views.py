@@ -8,8 +8,9 @@ from models import Question, Option, Trigger
 # Create your views here.
 
 def home(request):
-    all_entries = Option.objects.all()
-    return render(request, 'home.html', {'all_entries':all_entries})
+    one_entry = Option.objects.get(id=3)
+    one_entry_thing = one_entry.option_text
+    return render(request, 'home.html', {'all_entries':one_entry_thing})
 
 
 def question(request):
