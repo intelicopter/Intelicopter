@@ -39,7 +39,10 @@ def process_answer(request):
 
     # process JSON
     data = json.loads(data_in_string)
-    answers = answers_in_string.split(",")
+
+    answers = []
+    if len(answers_in_string) > 0:
+        answers = answers_in_string.split(",")
 
     highest_question_number = 0
     if len(data) > 0:
@@ -71,8 +74,8 @@ def process_answer(request):
 
 
     # converting to string format to send to template
-    #if len(data) > 0:
-    #    data_in_string = json.dumps(data)
+    if len(data) > 0:
+        data_in_string = json.dumps(data)
 
     return render(request, 'question.html', {'data':data, 'question':latest_question_text, 'options':latest_options, "answers_in_string":answers_in_string, "data_in_string":data_in_string, "highest_question_number":highest_question_number})
 
