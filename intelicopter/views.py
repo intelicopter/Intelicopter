@@ -59,7 +59,7 @@ def process_answer(request):
 
     # check if last question
     # try:
-    latest_question = Question.objects.get(id=highest_question_number)
+    latest_question = Question.objects.get(id=highest_question_number+next_question_tracker)
     # except:
     #     return render(request, 'home.html', {})  # future development
 
