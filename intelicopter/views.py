@@ -34,7 +34,7 @@ def process_answer(request):
         answers_in_string = request.POST['answers']  # will be in array format
     except:
         # if first time, initialise data, else, assign answer as value to question key
-        data_in_string = '{"0":{}}'
+        data_in_string = '{"0":null}'
         answers_in_string = ''
 
     # process JSON
