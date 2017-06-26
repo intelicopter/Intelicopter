@@ -52,7 +52,7 @@ def process_answer(request):
     try:
         latest_question = Question.objects.get(id=next_question_tracker+highest_question_number)
     except:
-        return True  # future development
+        return render(request, 'home.html', {})  # future development
 
     # if not triggered, go to the next question
     while not check_if_triggered(latest_question, data):
