@@ -50,6 +50,7 @@ def process_answer(request):
 
     if len(answers) > 0:
         data[unicode(str(highest_question_number+1), "utf-8")] = answers  # latest qn will be the highest question number previously answered
+        highest_question_number = int(max(data.iterkeys(), key=(lambda key: data[key])))  # get the highest key number
 
 
 
