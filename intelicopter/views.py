@@ -46,7 +46,7 @@ def process_answer(request):
         answers = answers_in_string.split(",")
 
     if len(data) > 0:
-        highest_question_number = int(max(data.iterkeys(), key=(lambda key: data[key])))  # get the highest key number
+        highest_question_number = max(data.iterkeys(), key=(lambda key: int(data[key])))  # get the highest key number
 
     if len(answers) > 0:
         data[unicode(str(highest_question_number+1), "utf-8")] = answers  # latest qn will be the highest question number previously answered
@@ -56,10 +56,10 @@ def process_answer(request):
     next_question_tracker = 1
 
     # check if last question
-    #try:
-    latest_question = Question.objects.get(id=highest_question_number+next_question_tracker)
-    #except:
-        # return render(request, 'results.html', {})  # future development
+    try:
+        latest_question = Question.objects.get(id=highest_question_number+next_question_tracker)
+    except:
+        return render(request, 'results.html', {})  # future development
 
     # if not triggered, go to the next question
     while not check_if_triggered(latest_question, data):
