@@ -15,6 +15,11 @@ def question(request):
     return process_answer(request)
 
 
+def process_answer2(request):
+    data_in_string = request.POST['data']  # will be in JSON format shown above
+    answers_in_string = request.PORT['answers']  # will be in array format
+    return render(request, 'home.html', {})
+
 def process_answer(request):
 
     # "data" will be stored in JSON format in this way:
@@ -28,11 +33,10 @@ def process_answer(request):
     #     }
     # }
 
-
     try:
         # get data from templates
-        data_in_string = request.POST.get['data']  # will be in JSON format shown above
-        answers_in_string = request.PORT.get['answers']  # will be in array format
+        data_in_string = request.POST['data']  # will be in JSON format shown above
+        answers_in_string = request.PORT['answers']  # will be in array format
     except:
         # if first time, initialise data, else, assign answer as value to question key
         data_in_string = '{}'
