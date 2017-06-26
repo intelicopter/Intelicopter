@@ -67,7 +67,7 @@ def process_answer(request):
     for options in Option.objects.filter(question=latest_question):
         latest_options.append(options.option_text)
 
-    return render(request, 'question.html', {'data':data, 'question':latest_question_text, 'options':latest_options, "answers_in_string":answers_in_string})
+    return render(request, 'question.html', {'data':data, 'question':latest_question_text, 'options':latest_options, "answers_in_string":answers_in_string, "data_in_string":data_in_string})
 
 
 def check_if_triggered(question, data):
