@@ -7,9 +7,18 @@
 <body>
 
 {{ question|safe }}
+<br>
+Choose one: <br>
+{{ options|safe }} <br>
 
-Choose one:
-{{ options|safe }}
+<br>
+
+<form action="/your-name/" method="post">
+    <label for="choice">Choice</label>
+    <input id="answers" type="text" name="answers" value="">
+    <input id="data" type="hidden" name="data" value={{ data }}>
+    <input type="submit" value="Submit">
+</form>
 
 </body>
 </html>
