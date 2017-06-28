@@ -88,7 +88,7 @@ def check_if_triggered(question, data):
     trigger_list = {}
     for trigger in triggers:
         trigger_question_id = trigger.trigger_question.id
-        if trigger_question_id in data:
+        if trigger_question_id.encode('UTF-8') in data:
             if trigger.trigger_text.encode('UTF-8') not in data[trigger_question_id]:
                 return False
     
