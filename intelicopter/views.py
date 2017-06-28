@@ -63,7 +63,7 @@ def process_answer(request):
 
     # if not triggered, go to the next question
     while not check_if_triggered(latest_question, data):
-        data[highest_question_number] = ""
+        data[highest_question_number+next_question_tracker] = ""
         next_question_tracker += 1
         latest_question = Question.objects.get(id=highest_question_number + next_question_tracker)
 
