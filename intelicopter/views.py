@@ -89,7 +89,7 @@ def check_if_triggered(question, data):
     for trigger in triggers:
         trigger_question_id = trigger.trigger_question.id
         if trigger_question_id in data:
-            if trigger.trigger_text not in data[trigger_question_id]:
+            if trigger.trigger_text.encode('UTF-8') not in data[trigger_question_id]:
                 return False
     
     # for every trigger, find if key exist in data, if not found, break loop and return false
