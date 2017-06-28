@@ -90,7 +90,7 @@ def check_if_triggered(question, data):
         trigger_question_id = trigger.trigger_question.id
         if trigger_question_id in data:
             if not trigger.trigger_text in data[trigger_question_id]:
-                break
+                return False
     
     # for every trigger, find if key exist in data, if not found, break loop and return false
     # if found, compare if lists are the same, if not same, return false
