@@ -83,9 +83,18 @@ def process_answer(request):
 
 def check_if_triggered(question, data):
     triggers = Trigger.objects.filter(question=question)
+
+    # for every trigger, insert key value pair into list k:[,,,]
     trigger_list = {}
+    for trigger in triggers:
+        trigger_question_id = trigger.trigger_question.id
+        if trigger_question_id in data:
+            if not trigger.trigger_text in data[trigger_question_id]:
+                break
     
-    # for every trigger, insert key value pair into list
+    # for every trigger, find if key exist in data, if not found, break loop and return false
+    # if found, compare if lists are the same, if not same, return false
+    # return true at the end of loop
     return True
     
     
