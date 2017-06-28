@@ -87,8 +87,8 @@ def check_if_triggered(question, data):
     # for every trigger, insert key value pair into list k:[,,,]
     trigger_list = {}
     for trigger in triggers:
-        trigger_question_id = trigger.trigger_question.id
-        if str(trigger_question_id).encode('UTF-8') in data:
+        trigger_question_id = str(trigger.trigger_question.id).encode('UTF-8')
+        if trigger_question_id in data:
             if trigger.trigger_text.encode('UTF-8') not in data[trigger_question_id]:
                 return False
     
