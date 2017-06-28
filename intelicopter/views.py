@@ -62,9 +62,9 @@ def process_answer(request):
         # return render(request, 'results.html', {})  # future development
 
     # if not triggered, go to the next question
-    while check_if_triggered(latest_question, data):
+    while not check_if_triggered(latest_question, data):
         next_question_tracker += 1
-        latest_question = Question.objects.get(id=highest_question_number + next_question_tracker)[0]
+        latest_question = Question.objects.get(id=highest_question_number + next_question_tracker)
 
     latest_question_text = latest_question.text
 
