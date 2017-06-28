@@ -62,7 +62,7 @@ def process_answer(request):
         # return render(request, 'results.html', {})  # future development
 
     # if not triggered, go to the next question
-    while not check_if_triggered(latest_question, data):
+    while check_if_triggered(latest_question, data):
         next_question_tracker += 1
         latest_question = Question.objects.get(id=highest_question_number + next_question_tracker)[0]
 
@@ -89,7 +89,7 @@ def check_if_triggered(question, data):
     for trigger in triggers:
         trigger_question_id = trigger.trigger_question.id
         if trigger_question_id in data:
-            if not trigger.trigger_text in data[trigger_question_id]:
+            if trigger.trigger_text not in data[trigger_question_id]:
                 return False
     
     # for every trigger, find if key exist in data, if not found, break loop and return false
