@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'intelicopter'
 ]
 
 MIDDLEWARE = [
@@ -71,9 +72,9 @@ TEMPLATES = [
     },
 ]
 
-TEMPLATE_DIRS = (
-    os.path.join(PROJECT_ROOT, 'templates'),
-)
+#TEMPLATE_DIRS = (
+#    os.path.join(PROJECT_ROOT, 'templates'),
+#)
 
 WSGI_APPLICATION = 'intelicopter.wsgi.application'
 
