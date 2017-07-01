@@ -33,11 +33,11 @@ def process_answer(request):
         data_in_string = request.POST['data']  # will be in JSON format shown above
         answers_in_string = request.POST['answers']  # will be in array format
     except:
-        # if first time, initialise data, else, assign answer as value to question key
+        # if first time, initialise data
         data_in_string = '{"0":null}'
         answers_in_string = ''
 
-    # process JSON
+    # convert JSON to dictionary
     data = json.loads(data_in_string)
 
     highest_question_number = 0
@@ -46,10 +46,12 @@ def process_answer(request):
         answers = answers_in_string.split(",")
 
     if len(data) > 0:
-        highest_question_number = len(data) - 1 # get the highest key number
+        # get the highest key number. Length works because unanswered questions are also in the data dictionary as blank
+        highest_question_number = len(data) - 1
 
     if len(answers) > 0:
-        data[unicode(str(highest_question_number+1), "utf-8")] = answers  # latest qn will be the highest question number previously answered
+        # latest qn will be the highest question number previously answered
+        data[unicode(str(highest_question_number+1), "utf-8")] = answers
         highest_question_number = len(data) - 1  # get the highest key number
 
     # get latest question object
@@ -65,7 +67,10 @@ def process_answer(request):
     while not check_if_triggered(latest_question, data):
         data[unicode(str(highest_question_number+next_question_tracker), "utf-8")] = "skip"
         next_question_tracker += 1
-        latest_question = Question.objects.get(id=highest_question_number + next_question_tracker)
+        try:
+            latest_question = Question.objects.get(id=highest_question_number + next_question_tracker)
+        except:
+            return render(request, 'results.html', {})  # future development
 
     latest_question_text = latest_question.text
 
