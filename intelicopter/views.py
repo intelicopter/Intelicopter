@@ -79,7 +79,16 @@ def process_answer(request):
     if len(data) > 0:
         data_in_string = json.dumps(data)
 
-    return render(request, 'question.html', {'data':data, 'question':latest_question_text, 'options':latest_options, "answers_in_string":answers_in_string, "data_in_string":data_in_string, "highest_question_number":highest_question_number})
+    # get number of questions answered at the moment for question number feature
+    questions_left = Question.objects.count() - (highest_question_number + next_question_tracker)
+
+    return render(request, 'question.html', {'data':data,
+                                             'question':latest_question_text,
+                                             'options':latest_options,
+                                             "answers_in_string":answers_in_string,
+                                             "data_in_string":data_in_string,
+                                             "highest_question_number":highest_question_number,
+                                             "questions_left":questions_left})
 
 
 def check_if_triggered(question, data):
