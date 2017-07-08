@@ -96,6 +96,20 @@ def process_answer(request):
                                              "questions_left":questions_left})
 
 
+def process_search(request):
+    # should be in simple string format
+    data_in_string = request.POST['data']
+
+    # search by activity
+    activities = []
+
+    # search by group
+    groups = []
+
+    return render(request, 'results.html', {"activities":activities,
+                                            "groups":groups})  # future development
+
+
 def check_if_triggered(question, data):
     triggers = Trigger.objects.filter(question=question)
 
@@ -110,10 +124,6 @@ def check_if_triggered(question, data):
     # for every trigger, find if key exist in data, if not found, break loop and return false
     # if found, compare if lists are the same, if not same, return false
     # return true at the end of loop
-    return True
-    
-    
-def get_relevant_items(request):
     return True
 
 
