@@ -1,0 +1,8 @@
+.text-center{
+    font-size: 30px;
+}
+@media (max-width: 768px) {
+    .text-center{
+        font-size: 17px;
+    }
+}
