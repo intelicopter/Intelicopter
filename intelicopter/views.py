@@ -2,7 +2,7 @@ import json
 
 from django.shortcuts import render
 
-from models import Question, Option, Trigger
+from models import Question, Option, Trigger, Group, Activity, Criterion
 
 
 # Create your views here.
@@ -114,6 +114,26 @@ def check_if_triggered(question, data):
     
     
 def get_relevant_items(request):
+    data_in_string = request.POST['data']  # will be in JSON format shown above
+
+    #to store relevant activities
+    relevant_activities = []
+
+    # convert JSON to dictionary
+    data = json.loads(data_in_string)
+
+    # get all activity objects
+    activities = Activity.objects.all()
+
+    for activity in activities:
+        criteria = Criterion.objects.filter(activity=activity)
+        number_of_criteria = Criterion.objects.count(activity=activity)
+        for criterion in criteria:
+            question_number = criterion.question.id
+            question_text = criterion.question_text
+            question_range = criterion.range
+            radio_group_id = criterion.radio_group_id
+
     return True
 
 
