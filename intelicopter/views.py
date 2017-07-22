@@ -126,16 +126,45 @@ def get_relevant_items(request):
     activities = Activity.objects.all()
 
     for activity in activities:
-        criteria = Criterion.objects.filter(activity=activity)
-        number_of_criteria = Criterion.objects.count(activity=activity)
-        for criterion in criteria:
-            question_number = criterion.question.id
-            question_text = criterion.question_text
-            question_range = criterion.range
-            radio_group_id = criterion.radio_group_id
+        if(check_activity_relevance(data, activity)):
+            relevant_activities.append(activity)
 
-    return True
+    return relevant_activities
 
+
+def check_activity_relevance(data, activity):
+    criteria = Criterion.objects.filter(activity=activity, radio_group_id__isnull=True)
+    number_of_criteria = Criterion.objects.count(activity=activity, radio_group_id__isnull=True)
+    pass_counter = 0
+    for criterion in criteria:
+        question_number = criterion.question.id
+        question_text = criterion.question_text
+        question_range = criterion.range
+        radio_group_id = criterion.radio_group_id
+        for answers in data[question_number]:
+            for answer in answers:
+                if answer=="skip":
+                    return False
+                elif question_range is None:
+                    if float(question_text) == float(answer):
+                        pass_counter += 1
+                elif question_range == -2:
+                    if float(question_text) < float(answer):
+                        pass_counter += 1
+                elif question_range == -1:
+                    if float(question_text) <= float(answer):
+                        pass_counter += 1
+                elif question_range == 1:
+                    if float(question_text) > float(answer):
+                        pass_counter += 1
+                elif question_range == 2:
+                    if float(question_text) <= float(answer):
+                        pass_counter += 1
+
+    if pass_counter == number_of_criteria:
+        return True
+    else:
+        return False
 
 def create_example_data():
     return True
