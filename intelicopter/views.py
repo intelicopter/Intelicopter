@@ -71,7 +71,7 @@ def process_answer(request):
         try:
             latest_question = Question.objects.get(id=highest_question_number + next_question_tracker)
         except:
-            return render(request, 'results.html', {})  # future development
+            get_relevant_activities(request, data)  # future development
 
     latest_question_text = latest_question.text
 
@@ -114,23 +114,18 @@ def check_if_triggered(question, data):
     return True
     
     
-def get_relevant_items(request):
-    data_in_string = request.POST['data']  # will be in JSON format shown above
-
+def get_relevant_activities(request, data):
     #to store relevant activities
     relevant_activities = []
-
-    # convert JSON to dictionary
-    data = json.loads(data_in_string)
 
     # get all activity objects
     activities = Activity.objects.all()
 
     for activity in activities:
-        if(check_activity_relevance(data, activity)):
+        if check_activity_relevance(data, activity):
             relevant_activities.append(activity)
 
-    return relevant_activities
+    return render(request, 'results.html', {"relevant_activities":relevant_activities})
 
 
 def check_activity_relevance(data, activity):
