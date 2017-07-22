@@ -1,6 +1,6 @@
 import json
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 from models import Question, Option, Trigger, Group, Activity, Criterion
 
@@ -129,7 +129,7 @@ def get_relevant_activities(request, data):
             relevant_activities.append(activity)
             activities_checked += 1
 
-    return redirect(request, 'results.html', {"activities_checked": activities_checked,
+    return render(request, 'results.html', {"activities_checked": activities_checked,
                                             "relevant_activities": relevant_activities})
 
 
