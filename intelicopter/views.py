@@ -133,7 +133,7 @@ def get_relevant_activities(request, data):
 
 def check_activity_relevance(data, activity):
     criteria = Criterion.objects.filter(activity=activity, radio_group_id__isnull=True)
-    number_of_criteria = Criterion.objects.count(activity=activity, radio_group_id__isnull=True)
+    number_of_criteria = Criterion.objects.filter(activity=activity, radio_group_id__isnull=True).count()
     pass_counter = 0
     for criterion in criteria:
         question_number = criterion.question.id
