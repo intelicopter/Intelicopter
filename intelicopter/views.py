@@ -126,13 +126,15 @@ def get_relevant_activities(request, data):
 
     # get all activity objects
     activities = Activity.objects.all()
+    activities_number = Activity.objects.all().count()
 
     for activity in activities:
         if check_activity_relevance(data, activity):
             relevant_activities.append(activity)
             activities_checked += 1
 
-    return render(request, 'results.html', {"activities_checked": activities_checked,
+    return render(request, 'results.html', {"activities_number": activities_number,
+                                            "activities_checked": activities_checked,
                                             "relevant_activities": relevant_activities})
 
 
