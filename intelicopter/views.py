@@ -117,6 +117,7 @@ def check_if_triggered(question, data):
 def get_relevant_activities(request, data):
     #to store relevant activities
     relevant_activities = []
+    activities_checked = 0
 
     # get all activity objects
     activities = Activity.objects.all()
@@ -124,8 +125,10 @@ def get_relevant_activities(request, data):
     for activity in activities:
         if check_activity_relevance(data, activity):
             relevant_activities.append(activity)
+            activities_checked += 1
 
-    return render(request, 'results.html', {"relevant_activities":relevant_activities})
+    return render(request, 'results.html', {"activities_checked":activities_checked,
+                                            "relevant_activities":relevant_activities})
 
 
 def check_activity_relevance(data, activity):
@@ -139,7 +142,7 @@ def check_activity_relevance(data, activity):
         radio_group_id = criterion.radio_group_id
         for answers in data[question_number]:
             for answer in answers:
-                if answer=="skip":
+                if answer == "skip":
                     return False
                 elif question_range is None:
                     if float(question_text) == float(answer):
