@@ -8,6 +8,7 @@ from models import Question, Option, Trigger, Group, Activity, Criterion
 # Create your views here.
 
 def home(request):
+    create_example_data()
     return render(request, 'home.html', {})
 
 
@@ -166,8 +167,45 @@ def check_activity_relevance(data, activity):
     else:
         return False
 
+
 def create_example_data():
-    return True
+    group1 = Group.objects.create(id=1,
+                                  name="Example Group 1",
+                                  description="This is an example Group",
+                                  postal_code="640547")
+
+    activity1 = Activity.objects.create(id=1,
+                                        group=group1,
+                                        name="Males Only Activity")
+    activity2 = Activity.objects.create(id=2,
+                                        group=group1,
+                                        name="Pregnant Only Activity")
+    activity3 = Activity.objects.create(id=3,
+                                        group=group1,
+                                        name="Everyone's Activity")
+    activity4 = Activity.objects.create(id=4,
+                                        group=group1,
+                                        name="EmployedYesNo Activity")
+
+    criterion1 = Criterion.objects.create(id=1,
+                                          activity=activity1,
+                                          question__id__equals=1,
+                                          question_text="Male")
+    criterion2 = Criterion.objects.create(id=2,
+                                          activity=activity2,
+                                          question__id__equals=2,
+                                          question_text="Yes")
+    criterion3 = Criterion.objects.create(id=3,
+                                          activity=activity4,
+                                          question__id__equals=3,
+                                          question_text="Yes")
+    criterion4 = Criterion.objects.create(id=4,
+                                          activity=activity4,
+                                          question__id__equals=3,
+                                          question_text="No")
+
+    #return True
+
     # qn1 = Question.objects.create(id=1, text="What is your gender?", question_type=1)
     # qn2 = Question.objects.create(id=2, text="Are you pregnant?", question_type=1)
     # qn3 = Question.objects.create(id=3, text="Are you employed?", question_type=1)
