@@ -58,7 +58,6 @@ def process_answer(request):
     # get latest question object
     next_question_tracker = 1
 
-    latest_question = 1
 
     # check if last question
     try:
@@ -66,6 +65,7 @@ def process_answer(request):
     except:
         #return render(request, 'results.html', {})
         get_relevant_activities(request, data)  # future development
+        return True
 
     # if not triggered, go to the next question
     while not check_if_triggered(latest_question, data):
@@ -76,6 +76,7 @@ def process_answer(request):
         except:
             #return render(request, 'results.html', {})
             get_relevant_activities(request, data)  # future development
+            return True
 
     latest_question_text = latest_question.text
 
