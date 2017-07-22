@@ -1,6 +1,6 @@
 import json
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from models import Question, Option, Trigger, Group, Activity, Criterion
 
@@ -8,7 +8,7 @@ from models import Question, Option, Trigger, Group, Activity, Criterion
 # Create your views here.
 
 def home(request):
-    create_example_data()
+    #create_example_data()
     return render(request, 'home.html', {})
 
 
@@ -62,8 +62,8 @@ def process_answer(request):
     try:
         latest_question = Question.objects.get(id=highest_question_number+next_question_tracker)
     except:
-        return render(request, 'results.html', {})
-        #get_relevant_activities(request, data)  # future development
+        #return render(request, 'results.html', {})
+        get_relevant_activities(request, data)  # future development
 
     # if not triggered, go to the next question
     while not check_if_triggered(latest_question, data):
@@ -72,8 +72,8 @@ def process_answer(request):
         try:
             latest_question = Question.objects.get(id=highest_question_number + next_question_tracker)
         except:
-            return render(request, 'results.html', {})
-            # get_relevant_activities(request, data)  # future development
+            #return render(request, 'results.html', {})
+            get_relevant_activities(request, data)  # future development
 
     latest_question_text = latest_question.text
 
@@ -129,7 +129,7 @@ def get_relevant_activities(request, data):
             relevant_activities.append(activity)
             activities_checked += 1
 
-    return render(request, 'results.html', {"activities_checked": activities_checked,
+    return redirect(request, 'results.html', {"activities_checked": activities_checked,
                                             "relevant_activities": relevant_activities})
 
 
