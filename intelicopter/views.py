@@ -145,7 +145,7 @@ def check_activity_relevance(data, activity):
                 if answer == "skip":
                     return False
                 elif question_range is None:
-                    if float(question_text) == float(answer):
+                    if question_text == answer:
                         pass_counter += 1
                 elif question_range == -2:
                     if float(question_text) < float(answer):
