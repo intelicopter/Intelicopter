@@ -203,20 +203,20 @@ def create_example_data():
     #                                     name="EmployedYesNo Activity")
 
     criterion1 = Criterion.objects.create(id=1,
-                                          activity__id=1,
-                                          question__id=1,
+                                          activity__id=Activity.object.filter(id__exact=1),
+                                          question__id=Question.object.filter(id__exact=1),
                                           question_text="Male")
     criterion2 = Criterion.objects.create(id=2,
-                                          activity__id=2,
-                                          question__id=2,
+                                          activity__id=Activity.object.filter(id__exact=2),
+                                          question__id=Question.object.filter(id__exact=2),
                                           question_text="Yes")
     criterion3 = Criterion.objects.create(id=3,
-                                          activity__id=4,
-                                          question__id=3,
+                                          activity__id=Activity.object.filter(id__exact=4),
+                                          question__id=Question.object.filter(id__exact=3),
                                           question_text="Yes")
     criterion4 = Criterion.objects.create(id=4,
-                                          activity__id=4,
-                                          question__id=3,
+                                          activity__id=Activity.object.filter(id__exact=4),
+                                          question__id=Question.object.filter(id__exact=3),
                                           question_text="No")
 
     #return True
