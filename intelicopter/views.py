@@ -63,10 +63,9 @@ def process_answer(request):
     try:
         latest_question = Question.objects.get(id=highest_question_number+next_question_tracker)
     except:
-        #return render(request, 'results.html', {})
-        return redirect(get_relevant_activities, request=request, data=data)
-        #get_relevant_activities(request, data)  # future development
-        #return True
+        # return render(request, 'results.html', {})
+        # return redirect(get_relevant_activities, request=request, data=data)
+        return get_relevant_activities(request, data)  # future development
 
     # if not triggered, go to the next question
     while not check_if_triggered(latest_question, data):
@@ -76,8 +75,8 @@ def process_answer(request):
             latest_question = Question.objects.get(id=highest_question_number + next_question_tracker)
         except:
             #return render(request, 'results.html', {})
-            return redirect(get_relevant_activities, request=request, data=data)
-            #get_relevant_activities(request, data)  # future development
+            #return redirect(get_relevant_activities, request=request, data=data)
+            return get_relevant_activities(request, data)  # future development
 
     latest_question_text = latest_question.text
 
