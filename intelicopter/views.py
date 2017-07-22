@@ -157,7 +157,7 @@ def check_activity_relevance(data, activity):
                     if float(question_text) <= float(answer):
                         pass_counter += 1
 
-    if pass_counter == number_of_criteria:
+    if pass_counter == number_of_criteria or criteria is None:
         return True
     else:
         return False
