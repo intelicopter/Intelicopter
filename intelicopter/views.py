@@ -58,6 +58,8 @@ def process_answer(request):
     # get latest question object
     next_question_tracker = 1
 
+    latest_question = 1
+
     # check if last question
     try:
         latest_question = Question.objects.get(id=highest_question_number+next_question_tracker)
