@@ -131,7 +131,7 @@ def get_relevant_activities(request, data):
     for activity in activities:
         if check_activity_relevance(data, activity):
             relevant_activities.append(activity)
-            activities_checked += 1
+        activities_checked += 1
 
     return render(request, 'results.html', {"activities_number": activities_number,
                                             "activities_checked": activities_checked,
@@ -139,8 +139,8 @@ def get_relevant_activities(request, data):
 
 
 def check_activity_relevance(data, activity):
-    criteria = Criterion.objects.filter(activity=activity, radio_group_id__isnull=True)
-    number_of_criteria = Criterion.objects.filter(activity=activity, radio_group_id__isnull=True).count()
+    criteria = Criterion.objects.filter(activity=activity)
+    number_of_criteria = Criterion.objects.filter(activity=activity).count()
     pass_counter = 0
     for criterion in criteria:
         question_number = criterion.question.id
