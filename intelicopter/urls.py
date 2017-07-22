@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
     url(r'^questions/', views.process_answer, name='questions'),
-    url(r'^results/', views.get_relevant_activities, name='questions')
+    url(r'^results/', views.get_relevant_activities, name='results')
 ]

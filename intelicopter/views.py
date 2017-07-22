@@ -64,7 +64,7 @@ def process_answer(request):
         latest_question = Question.objects.get(id=highest_question_number+next_question_tracker)
     except:
         #return render(request, 'results.html', {})
-        return redirect('get_relevant_activities', request=request, data=data)
+        return redirect(get_relevant_activities, request=request, data=data)
         #get_relevant_activities(request, data)  # future development
         #return True
 
@@ -76,7 +76,7 @@ def process_answer(request):
             latest_question = Question.objects.get(id=highest_question_number + next_question_tracker)
         except:
             #return render(request, 'results.html', {})
-            return redirect('get_relevant_activities', request=request, data=data)
+            return redirect(get_relevant_activities, request=request, data=data)
             #get_relevant_activities(request, data)  # future development
 
     latest_question_text = latest_question.text
