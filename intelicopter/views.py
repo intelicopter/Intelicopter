@@ -69,7 +69,7 @@ def process_answer(request):
 
     # if not triggered, go to the next question
     while not check_if_triggered(latest_question, data):
-        data[unicode(str(highest_question_number+next_question_tracker), "utf-8")] = "skip"
+        data[unicode(str(highest_question_number+next_question_tracker), "utf-8")] = "skip".split()
         next_question_tracker += 1
         try:
             latest_question = Question.objects.get(id=highest_question_number + next_question_tracker)
