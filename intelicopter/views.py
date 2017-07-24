@@ -155,7 +155,7 @@ def check_activity_relevance(data, activity):
             for answer in answers:
                 pass_counter = answers
                 if answer == "skip":
-                    return False
+                    return pass_counter
                 elif question_range is None:
                     if question_text == answer:
                         pass_counter += 1
@@ -173,9 +173,9 @@ def check_activity_relevance(data, activity):
                         pass_counter += 1
 
     if pass_counter == number_of_criteria or number_of_criteria == 0:
-        return True
+        return pass_counter
     else:
-        return False
+        return pass_counter
 
 
 def create_example_data():
