@@ -146,7 +146,7 @@ def get_relevant_activities(request, data):
 def check_activity_relevance(data, activity):
     criteria = Criterion.objects.filter(activity=activity)
     number_of_criteria = Criterion.objects.filter(activity=activity).count()
-    pass_counter = 0
+    pass_counter = []
     for criterion in criteria:
         question_number = criterion.question.id
         question_text = criterion.question_text
@@ -154,7 +154,7 @@ def check_activity_relevance(data, activity):
         radio_group_id = criterion.radio_group_id
         for answer in data[unicode(str(question_number), "utf-8")]:
             if answer == unicode(str("skip"), "utf-8"):
-                return False
+                return pass_counter
             elif question_range is None:
                 if question_text == answer:
                     pass_counter += 1
@@ -164,6 +164,9 @@ def check_activity_relevance(data, activity):
             elif question_range == -1:
                 if float(question_text) <= unicodedata.numeric(answer):
                     pass_counter += 1
+                    pass_counter = []
+                    pass_counter.append(float(question_text))
+                    pass_counter.append(unicodedata.numeric(answer))
             elif question_range == 1:
                 if float(question_text) > unicodedata.numeric(answer):
                     pass_counter += 1
@@ -172,9 +175,9 @@ def check_activity_relevance(data, activity):
                     pass_counter += 1
 
     if pass_counter == number_of_criteria or number_of_criteria == 0:
-        return True
+        return pass_counter
     else:
-        return False
+        return pass_counter
 
 
 def create_example_data():
