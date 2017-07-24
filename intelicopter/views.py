@@ -145,7 +145,7 @@ def get_relevant_activities(request, data):
 def check_activity_relevance(data, activity):
     criteria = Criterion.objects.filter(activity=activity)
     number_of_criteria = Criterion.objects.filter(activity=activity).count()
-    pass_counter = number_of_criteria
+    pass_counter = ""
     for criterion in criteria:
         question_number = criterion.question.id
         question_text = criterion.question_text
@@ -153,6 +153,7 @@ def check_activity_relevance(data, activity):
         radio_group_id = criterion.radio_group_id
         for answers in data[unicode(str(question_number), "utf-8")]:
             for answer in answers:
+                pass_counter = answer
                 if answer == "skip":
                     return pass_counter
                     #return False
