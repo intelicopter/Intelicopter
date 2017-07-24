@@ -159,16 +159,16 @@ def check_activity_relevance(data, activity):
                 if question_text == answer:
                     pass_counter += 1
             elif question_range == -2:
-                if unicodedata.numeric(question_text) < unicodedata.numeric(answer):
+                if float(question_text) < unicodedata.numeric(answer):
                     pass_counter += 1
             elif question_range == -1:
-                if unicodedata.numeric(question_text) <= unicodedata.numeric(answer):
+                if float(question_text) <= unicodedata.numeric(answer):
                     pass_counter += 1
             elif question_range == 1:
-                if unicodedata.numeric(question_text) > unicodedata.numeric(answer):
+                if float(question_text) > unicodedata.numeric(answer):
                     pass_counter += 1
             elif question_range == 2:
-                if unicodedata.numeric(question_text) <= unicodedata.numeric(answer):
+                if float(question_text) <= unicodedata.numeric(answer):
                     pass_counter += 1
 
     if pass_counter == number_of_criteria or number_of_criteria == 0:
