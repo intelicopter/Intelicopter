@@ -134,7 +134,7 @@ def get_relevant_activities(request, data):
     for activity in activities:
         #numpass.append(check_activity_relevance(data, activity))
         if check_activity_relevance(data, activity):
-            relevant_activities.append(activity)
+            relevant_activities.append(activity.name)
         activities_checked += 1
 
     return render(request, 'results.html', {"activities_number": activities_number,
@@ -173,7 +173,7 @@ def check_activity_relevance(data, activity):
     if pass_counter == number_of_criteria or number_of_criteria == 0:
         return True
     else:
-        return True
+        return False
 
 
 def create_example_data():
