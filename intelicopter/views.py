@@ -152,7 +152,7 @@ def check_activity_relevance(data, activity):
         question_range = criterion.range
         radio_group_id = criterion.radio_group_id
         for answer in data[unicode(str(question_number), "utf-8")]:
-            if answer == "skip":
+            if answer == unicode(str("skip"), "utf-8"):
                 return pass_counter
             elif question_range is None:
                 if question_text == answer:
