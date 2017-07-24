@@ -145,32 +145,30 @@ def get_relevant_activities(request, data):
 def check_activity_relevance(data, activity):
     criteria = Criterion.objects.filter(activity=activity)
     number_of_criteria = Criterion.objects.filter(activity=activity).count()
-    pass_counter = ""
+    pass_counter = 0
     for criterion in criteria:
         question_number = criterion.question.id
         question_text = criterion.question_text
         question_range = criterion.range
         radio_group_id = criterion.radio_group_id
-        for answers in data[unicode(str(question_number), "utf-8")]:
-            pass_counter = answers
-            for answer in answers:
-                if answer == "skip":
-                    return pass_counter
-                elif question_range is None:
-                    if question_text == answer:
-                        pass_counter += 1
-                elif question_range == -2:
-                    if float(question_text) < float(answer):
-                        pass_counter += 1
-                elif question_range == -1:
-                    if float(question_text) <= float(answer):
-                        pass_counter += 1
-                elif question_range == 1:
-                    if float(question_text) > float(answer):
-                        pass_counter += 1
-                elif question_range == 2:
-                    if float(question_text) <= float(answer):
-                        pass_counter += 1
+        for answer in data[unicode(str(question_number), "utf-8")]:
+            if answer == "skip":
+                return pass_counter
+            elif question_range is None:
+                if question_text == answer:
+                    pass_counter += 1
+            elif question_range == -2:
+                if float(question_text) < float(answer):
+                    pass_counter += 1
+            elif question_range == -1:
+                if float(question_text) <= float(answer):
+                    pass_counter += 1
+            elif question_range == 1:
+                if float(question_text) > float(answer):
+                    pass_counter += 1
+            elif question_range == 2:
+                if float(question_text) <= float(answer):
+                    pass_counter += 1
 
     if pass_counter == number_of_criteria or number_of_criteria == 0:
         return pass_counter
