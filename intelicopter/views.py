@@ -145,7 +145,7 @@ def get_relevant_activities(request, data):
 def check_activity_relevance(data, activity):
     criteria = Criterion.objects.filter(activity=activity)
     number_of_criteria = Criterion.objects.filter(activity=activity).count()
-    pass_counter = ""
+    pass_counter = 0
     for criterion in criteria:
         question_number = criterion.question.id
         question_text = criterion.question_text
