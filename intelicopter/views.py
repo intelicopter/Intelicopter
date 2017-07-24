@@ -133,13 +133,13 @@ def get_relevant_activities(request, data):
     numpass = []
 
     for activity in activities:
-        #numpass.append(check_activity_relevance(data, activity))
+        numpass.append(check_activity_relevance(data, activity))
         if check_activity_relevance(data, activity):
             relevant_activities.append(activity.name)
         activities_checked += 1
 
     return render(request, 'results.html', {"activities_number": activities_number,
-                                            "activities_checked": activities_checked,
+                                            "activities_checked": numpass,
                                             "relevant_activities": relevant_activities})
 
 
