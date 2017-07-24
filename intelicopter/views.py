@@ -132,13 +132,13 @@ def get_relevant_activities(request, data):
     numpass = []
 
     for activity in activities:
-        numpass.append(check_activity_relevance(data, activity))
-        #if check_activity_relevance(data, activity):
-        #    relevant_activities.append(activity)
+        #numpass.append(check_activity_relevance(data, activity))
+        if check_activity_relevance(data, activity):
+            relevant_activities.append(activity)
         activities_checked += 1
 
     return render(request, 'results.html', {"activities_number": activities_number,
-                                            "activities_checked": numpass,
+                                            "activities_checked": activities_checked,
                                             "relevant_activities": relevant_activities})
 
 
@@ -155,8 +155,7 @@ def check_activity_relevance(data, activity):
             for answer in answers:
                 pass_counter = answers
                 if answer == "skip":
-                    return pass_counter
-                    #return False
+                    return False
                 elif question_range is None:
                     if question_text == answer:
                         pass_counter += 1
@@ -174,11 +173,9 @@ def check_activity_relevance(data, activity):
                         pass_counter += 1
 
     if pass_counter == number_of_criteria or number_of_criteria == 0:
-        return pass_counter
-        #return True
+        return True
     else:
-        return pass_counter
-        #return False
+        return False
 
 
 def create_example_data():
