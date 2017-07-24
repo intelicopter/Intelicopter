@@ -139,7 +139,7 @@ def get_relevant_activities(request, data):
 
     return render(request, 'results.html', {"activities_number": activities_number,
                                             "activities_checked": numpass,
-                                            "relevant_activities": relevant_activities})
+                                            "relevant_activities": data})
 
 
 def check_activity_relevance(data, activity):
