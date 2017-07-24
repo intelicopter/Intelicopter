@@ -1,4 +1,5 @@
 import json
+import unicodedata
 
 from django.shortcuts import render, redirect
 
@@ -158,16 +159,16 @@ def check_activity_relevance(data, activity):
                 if question_text == answer:
                     pass_counter += 1
             elif question_range == -2:
-                if float(question_text) < float(answer):
+                if unicodedata.numeric(question_text) < unicodedata.numeric(answer):
                     pass_counter += 1
             elif question_range == -1:
-                if float(question_text) <= float(answer):
+                if unicodedata.numeric(question_text) <= unicodedata.numeric(answer):
                     pass_counter += 1
             elif question_range == 1:
-                if float(question_text) > float(answer):
+                if unicodedata.numeric(question_text) > unicodedata.numeric(answer):
                     pass_counter += 1
             elif question_range == 2:
-                if float(question_text) <= float(answer):
+                if unicodedata.numeric(question_text) <= unicodedata.numeric(answer):
                     pass_counter += 1
 
     if pass_counter == number_of_criteria or number_of_criteria == 0:
