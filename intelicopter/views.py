@@ -165,7 +165,6 @@ def check_activity_relevance(data, activity):
             elif question_range == -1:
                 if float(question_text) <= unicodedata.numeric(answer):
                     pass_counter += 1
-                    pass_counter2 = []
                     pass_counter2.append(float(question_text))
                     pass_counter2.append(unicodedata.numeric(answer))
             elif question_range == 1:
