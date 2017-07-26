@@ -44,7 +44,7 @@ Choose one: <br>
 
 <script>
 
-var theoptions = ["BMW", "Volvo", "Saab", "Ford", "Fiat", "Audi"];
+var theoptions = "{{ options|safe }}";
 var text = "";
 var i;
 text += "<div class='btn-group-vertical' data-toggle='buttons'>"
