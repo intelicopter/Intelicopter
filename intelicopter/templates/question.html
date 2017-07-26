@@ -6,6 +6,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+<style>
+.btn-group-vertical{
+  height:100px;
+  width:50%;
+    position: absolute;
+    margin: auto;
+    left: 25%;
+}
+</style>
+
 
 <html lang="en">
 <head>
@@ -26,17 +36,21 @@
 Choose one: <br>
 {{ options|safe }} <br>
 
-<div class="btn-group" data-toggle="buttons">
-  <label class="btn btn-primary active">
-    <input type="radio" name="options" id="option1" autocomplete="off"> Radio 1
+
+
+
+<div class="btn-group-vertical" data-toggle="buttons">
+  <label class="btn btn-default btn-sm btn-responsive">
+    <input align="center" type="radio" autocomplete="off" style="height:100px; width:50%;background-color: white;" ><span style="font-size:40px;">Radio 3</span>
   </label>
-  <label class="btn btn-primary">
-    <input type="radio" name="options" id="option2" autocomplete="off"> Radio 2
-  </label>
-  <label class="btn btn-primary">
-    <input type="radio" name="options" id="option3" autocomplete="off"> Radio 3
+    <label class="btn btn-default btn-sm btn-responsive">
+    <input align="center" type="radio" autocomplete="off" style="height:100px; width:50%;background-color: white;" ><span style="font-size:40px;">Radio 3</span>
+  </label>  <label class="btn btn-default btn-sm btn-responsive">
+    <input align="center" type="radio" autocomplete="off" style="height:100px; width:50%;background-color: white;" ><span style="font-size:40px;">Radio 3</span>
   </label>
 </div>
+
+
 
 <br>
 
