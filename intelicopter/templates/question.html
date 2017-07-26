@@ -44,7 +44,7 @@ Choose one: <br>
 
 <script>
 
-var theoptions = "{{ options|safe }}";
+var theoptions = JSON.parse("{{ options|safe }}");
 var text = "";
 var i;
 text += "<div class='btn-group-vertical' data-toggle='buttons'>"
