@@ -37,11 +37,14 @@ Choose one: <br>
 {{ options|safe }} <br>
 
 
+
+
 <div class="btn-group-vertical" data-toggle="buttons">
 <p id="demo"></p>
 </div>
 <script>
-var theoptions = {{ options|safe }};
+    
+var theoptions = ["BMW", "Volvo", "Saab", "Ford", "Fiat", "Audi"];
 var text = "";
 var i;
 for (i = 0; i < theoptions.length; i++) {
