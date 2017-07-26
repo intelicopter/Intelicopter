@@ -37,6 +37,21 @@ Choose one: <br>
 {{ options|safe }} <br>
 
 
+<div class="btn-group-vertical" data-toggle="buttons">
+<p id="demo"></p>
+</div>
+<script>
+var theoptions = {{ options|safe }};
+var text = "";
+var i;
+for (i = 0; i < theoptions.length; i++) {
+    text += "<label class='btn btn-default btn-sm btn-responsive'><input align='center' type='radio' autocomplete='off' style='height:100px; width:50%;background-color: white;' > <span style='font-size:40px;'>"+ theoptions[i]+ "</span></label>"
+}
+document.getElementById("demo").innerHTML = text;
+</script>
+
+
+
 
 
 <div class="btn-group-vertical" data-toggle="buttons">
