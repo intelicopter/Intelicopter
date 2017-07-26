@@ -91,7 +91,7 @@ def process_answer(request):
     if len(data) > 0:
         data_in_string = json.dumps(data)
 
-    # get number of questions answered at the moment for question number feature
+    # get number of questions answered at the moment for question number feature.
     questions_left = Question.objects.count() - (highest_question_number + next_question_tracker) + 1
 
     return render(request, 'question.html', {'data':data,
