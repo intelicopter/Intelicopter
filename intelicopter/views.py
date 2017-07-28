@@ -85,11 +85,12 @@ def process_answer(request):
     latest_options = []
     for options in Option.objects.filter(question=latest_question):
         latest_options.append(options.option_text)
+    latest_options = json.dumps(latest_options) # to be able to use in template Javascript
 
 
     # converting to string format to send to template
     if len(data) > 0:
-        data_in_string = json.dumps(data)
+        data_in_string = data
 
     # get number of questions answered at the moment for question number feature.
     questions_left = Question.objects.count() - (highest_question_number + next_question_tracker) + 1
