@@ -41,6 +41,7 @@
       <h2 align="center">Intelicopter</h2>
 </div>
 <form>
+{% csrf_token %}
 <p id="demo"></p>
 <script>
 var theoptions = {{ options|safe }};
@@ -56,7 +57,9 @@ document.getElementById("demo").innerHTML = text;
 
 <br>
 
-<button class='btn btn-default btn-sm btn-responsive btn-submit' name="submit" type='submit'> <span style='font-size:40px;'>Next</span></button>
+<input id="data" type="hidden" name="data" value="{{data_in_string}}">
+
+<button class='btn btn-default btn-sm btn-responsive btn-submit' name="submit" type='submit' action="/question/" method="post"> <span style='font-size:40px;'>Next</span></button>
 </form>
 
 
