@@ -40,6 +40,7 @@
 <div class="page-header">
       <h2 align="center">Intelicopter</h2>
 </div>
+<form>
 <p id="demo"></p>
 <script>
 var theoptions = {{ options|safe }};
@@ -55,9 +56,8 @@ document.getElementById("demo").innerHTML = text;
 
 <br>
 
-<button class='btn btn-default btn-sm btn-responsive btn-submit' type='submit'> <span style='font-size:40px;'>Next</span></button>
-
-
+<button class='btn btn-default btn-sm btn-responsive btn-submit' name="submit" type='submit'> <span style='font-size:40px;'>Next</span></button>
+</form>
 
 
 
