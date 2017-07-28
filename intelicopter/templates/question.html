@@ -47,11 +47,15 @@ var text = "";
 var i;
 text += "<div class='btn-group-vertical' data-toggle='buttons'>";
 for (i = 0; i < theoptions.length; i++) {
-    text += "<label class='btn btn-default btn-sm btn-responsive'><input align='center' type='radio' autocomplete='off'> <span style='font-size:40px;'>"+ theoptions[i]+ "</span></label>"
+    text += "<label class='btn btn-default btn-sm btn-responsive'><input align='center' type='radio' autocomplete='off' name='"&theoptions[i]&"'> <span style='font-size:40px;'>"+ theoptions[i]+ "</span></label>"
 }
 text += "<div>";
 document.getElementById("demo").innerHTML = text;
 </script>
+
+<br>
+
+<button class='btn btn-default btn-sm btn-responsive btn-submit' type='submit' autocomplete='off'> <span style='font-size:40px;'>Next</span></button>
 
 
 
