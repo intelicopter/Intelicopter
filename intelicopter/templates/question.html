@@ -14,6 +14,16 @@
     margin: auto;
     left: 25%;
 }
+.btn{
+   border: solid #2e9aff 1.5px;
+   height: 70px;
+   width: 50%;
+   background-color: white;
+}
+.btn:hover{
+   border: solid #2e9aff 1px;
+   background-color: #b5dcff;
+}
 </style>
 
 
@@ -23,37 +33,30 @@
     <title>Question</title>
 </head>
 <body>
-{{ data_in_string| safe }}
-<br>
-{{ data| safe }}
-<br>
-{{ answers_in_string|safe }}
-<br>
-{{ highest_question_number|safe }}
-<br>
-{{ question|safe }}
-<br>
-Choose one: <br>
-{{ options|safe }} <br>
-
-
-
-
-
+<div class="page-header">
+      <h2 align="center">Intelicopter</h2>
+</div>
 <p id="demo"></p>
-
 <script>
-
 var theoptions = {{ options|safe }};
 var text = "";
 var i;
 text += "<div class='btn-group-vertical' data-toggle='buttons'>";
 for (i = 0; i < theoptions.length; i++) {
-    text += "<label class='btn btn-default btn-sm btn-responsive'><input align='center' type='radio' autocomplete='off' style='height:100px; width:50%;background-color: white;' > <span style='font-size:40px;'>"+ theoptions[i]+ "</span></label>"
+    text += "<label class='btn btn-default btn-sm btn-responsive'><input align='center' type='radio' autocomplete='off'> <span style='font-size:40px;'>"+ theoptions[i]+ "</span></label>"
 }
 text += "<div>";
 document.getElementById("demo").innerHTML = text;
 </script>
+
+
+
+
+
+
+
+
+
 
 <br>
 
@@ -66,7 +69,25 @@ document.getElementById("demo").innerHTML = text;
 
 <br>
 
-Questions left: {{ questions_left| safe }}
+<div>
+    {{ data_in_string| safe }}
+<br>
+{{ data| safe }}
+<br>
+{{ answers_in_string|safe }}
+<br>
+{{ highest_question_number|safe }}
+<br>
+{{ question|safe }}
+<br>
+Choose one: <br>
+{{ options|safe }} <br>
+
+    Questions left: {{ questions_left| safe }}
+
+</div>
+
+
 
 </body>
 </html>
