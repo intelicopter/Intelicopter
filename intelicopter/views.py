@@ -149,31 +149,48 @@ def get_relevant_activities(request, data):
 
 def check_activity_relevance(data, activity):
     criteria = Criterion.objects.filter(activity=activity)
-    number_of_criteria = Criterion.objects.filter(activity=activity).count()
+    number_of_criteria_without_radio_group = Criterion.objects.filter(activity=activity).filter(radio_group_id=None).count()
+    number_of_radio_groups = Criterion.objects.filter(activity=activity).aggregate(Max('radio_group_id'))['radio_group_id__max']
+    if number_of_radio_groups is not None:
+        number_of_criteria = number_of_criteria_without_radio_group + number_of_radio_groups
+    else:
+        number_of_criteria = number_of_criteria_without_radio_group
+    radio_groups_passed = []
     pass_counter = 0
     for criterion in criteria:
-        question_number = criterion.question.id
-        question_text = criterion.question_text
-        question_range = criterion.range
-        radio_group_id = criterion.radio_group_id
-        for answer in data[unicode(str(question_number), "utf-8")]:
-            if answer == unicode(str("skip"), "utf-8"):
-                return False
-            elif question_range is None:
-                if question_text == answer:
-                    pass_counter += 1
-            elif question_range == -2:
-                if float(question_text) > float(answer):
-                    pass_counter += 1
-            elif question_range == -1:
-                if float(question_text) >= float(answer):
-                    pass_counter += 1
-            elif question_range == 1:
-                if float(question_text) <= float(answer):
-                    pass_counter += 1
-            elif question_range == 2:
-                if float(question_text) < float(answer):
-                    pass_counter += 1
+        if criterion.radio_group_id is not None and criterion.radio_group_id not in []:
+            question_number = criterion.question.id
+            question_text = criterion.question_text
+            question_range = criterion.range
+            radio_group_id = criterion.radio_group_id
+            for answer in data[unicode(str(question_number), "utf-8")]:
+                if answer == unicode(str("skip"), "utf-8"):
+                    return False
+                elif question_range is None:
+                    if question_text == answer:
+                        pass_counter += 1
+                        if criterion.radio_group_id is not None:
+                            radio_groups_passed.append(radio_group_id)
+                elif question_range == -2:
+                    if float(question_text) > float(answer):
+                        pass_counter += 1
+                        if criterion.radio_group_id is not None:
+                            radio_groups_passed.append(radio_group_id)
+                elif question_range == -1:
+                    if float(question_text) >= float(answer):
+                        pass_counter += 1
+                        if criterion.radio_group_id is not None:
+                            radio_groups_passed.append(radio_group_id)
+                elif question_range == 1:
+                    if float(question_text) <= float(answer):
+                        pass_counter += 1
+                        if criterion.radio_group_id is not None:
+                            radio_groups_passed.append(radio_group_id)
+                elif question_range == 2:
+                    if float(question_text) < float(answer):
+                        pass_counter += 1
+                        if criterion.radio_group_id is not None:
+                            radio_groups_passed.append(radio_group_id)
 
     if pass_counter == number_of_criteria or number_of_criteria == 0:
         return True
@@ -182,68 +199,83 @@ def check_activity_relevance(data, activity):
 
 
 def create_example_data():
-    return True
-    # Question.objects.all().delete()
-    # Option.objects.all().delete()
-    # Trigger.objects.all().delete()
-    # Group.objects.all().delete()
-    # Activity.objects.all().delete()
-    # Criterion.objects.all().delete()
-    #
-    # qn1 = Question.objects.create(id=1, text="What is your gender?", question_type=1)
-    # qn2 = Question.objects.create(id=2, text="Are you pregnant?", question_type=1)
-    # qn3 = Question.objects.create(id=3, text="Are you employed?", question_type=1)
-    # qn4 = Question.objects.create(id=4, text="Are you rich?", question_type=4)
-    #
-    # option1 = Option.objects.create(id=1, question=qn1, option_text="Male")
-    # option2 = Option.objects.create(id=2, question=qn1, option_text="Female")
-    # option3 = Option.objects.create(id=3, question=qn2, option_text="Yes")
-    # option4 = Option.objects.create(id=4, question=qn2, option_text="No")
-    # option5 = Option.objects.create(id=5, question=qn2, option_text="I am not sure")
-    # option6 = Option.objects.create(id=6, question=qn3, option_text="Yes")
-    # option7 = Option.objects.create(id=7, question=qn3, option_text="No")
-    #
-    # trigger = Trigger.objects.create(id=1, question=qn2, trigger_question=qn1, trigger_text="Female")
-    #
-    # group1 = Group.objects.create(id=1,
-    #                               name="Example Group 1",
-    #                               description="This is an example Group",
-    #                               postal_code="640547")
-    #
-    # activity1 = Activity.objects.create(id=1,
-    #                                     group=group1,
-    #                                     name="Males Only Activity")
-    # activity2 = Activity.objects.create(id=2,
-    #                                     group=group1,
-    #                                     name="Pregnant Only Activity")
-    # activity3 = Activity.objects.create(id=3,
-    #                                     group=group1,
-    #                                     name="Everyone's Activity")
-    # activity4 = Activity.objects.create(id=4,
-    #                                     group=group1,
-    #                                     name="EmployedYesNo Activity")
-    # activity5 = Activity.objects.create(id=5,
-    #                                     group=group1,
-    #                                     name="PoorerThan10 Activity")
-    #
-    # criterion1 = Criterion.objects.create(id=1,
-    #                                       activity=Activity.objects.get(id=1),
-    #                                       question=Question.objects.get(id=1),
-    #                                       question_text="Male")
-    # criterion2 = Criterion.objects.create(id=2,
-    #                                       activity=Activity.objects.get(id=2),
-    #                                       question=Question.objects.get(id=2),
-    #                                       question_text="Yes")
-    # criterion3 = Criterion.objects.create(id=3,
-    #                                       activity=Activity.objects.get(id=4),
-    #                                       question=Question.objects.get(id=3),
-    #                                       question_text="Yes")
-    # criterion4 = Criterion.objects.create(id=4,
-    #                                       activity=Activity.objects.get(id=4),
-    #                                       question=Question.objects.get(id=3),
-    #                                       question_text="No")
-    # criterion5 = Criterion.objects.create(id=5,
-    #                                       activity=Activity.objects.get(id=5),
-    #                                       question=Question.objects.get(id=4),
-    #                                       question_text="10",
-    #                                       range=-1)
+    Question.objects.all().delete()
+    Option.objects.all().delete()
+    Trigger.objects.all().delete()
+    Group.objects.all().delete()
+    Activity.objects.all().delete()
+    Criterion.objects.all().delete()
+
+    qn1 = Question.objects.create(id=1, text="What is your gender?", question_type=1)
+    qn2 = Question.objects.create(id=2, text="Are you pregnant?", question_type=1)
+    qn3 = Question.objects.create(id=3, text="Are you employed?", question_type=1)
+    qn4 = Question.objects.create(id=4, text="What is your income?", question_type=4)
+    qn5 = Question.objects.create(id=5, text="How many kids do you have?", question_type=4)
+
+    option1 = Option.objects.create(id=1, question=qn1, option_text="Male")
+    option2 = Option.objects.create(id=2, question=qn1, option_text="Female")
+    option3 = Option.objects.create(id=3, question=qn2, option_text="Yes")
+    option4 = Option.objects.create(id=4, question=qn2, option_text="No")
+    option5 = Option.objects.create(id=5, question=qn2, option_text="I am not sure")
+    option6 = Option.objects.create(id=6, question=qn3, option_text="Yes")
+    option7 = Option.objects.create(id=7, question=qn3, option_text="No")
+
+    trigger = Trigger.objects.create(id=1, question=qn2, trigger_question=qn1, trigger_text="Female")
+
+    group1 = Group.objects.create(id=1,
+                                  name="Example Group 1",
+                                  description="This is an example Group",
+                                  postal_code="640547")
+
+    activity1 = Activity.objects.create(id=1,
+                                        group=group1,
+                                        name="Males Only Activity")
+    activity2 = Activity.objects.create(id=2,
+                                        group=group1,
+                                        name="Pregnant Only Activity")
+    activity3 = Activity.objects.create(id=3,
+                                        group=group1,
+                                        name="Everyone's Activity")
+    activity4 = Activity.objects.create(id=4,
+                                        group=group1,
+                                        name="EmployedYesNo Activity")
+    activity5 = Activity.objects.create(id=5,
+                                        group=group1,
+                                        name="PoorerThan10 Activity")
+    activity6 = Activity.objects.create(id=6,
+                                        group=group1,
+                                        name="PoorerThan10ORMoreThan5kids Activity")
+
+    criterion1 = Criterion.objects.create(id=1,
+                                          activity=Activity.objects.get(id=1),
+                                          question=Question.objects.get(id=1),
+                                          question_text="Male")
+    criterion2 = Criterion.objects.create(id=2,
+                                          activity=Activity.objects.get(id=2),
+                                          question=Question.objects.get(id=2),
+                                          question_text="Yes")
+    criterion3 = Criterion.objects.create(id=3,
+                                          activity=Activity.objects.get(id=4),
+                                          question=Question.objects.get(id=3),
+                                          question_text="Yes")
+    criterion4 = Criterion.objects.create(id=4,
+                                          activity=Activity.objects.get(id=4),
+                                          question=Question.objects.get(id=3),
+                                          question_text="No")
+    criterion5 = Criterion.objects.create(id=5,
+                                          activity=Activity.objects.get(id=5),
+                                          question=Question.objects.get(id=4),
+                                          question_text="10",
+                                          range=-1)
+    criterion6 = Criterion.objects.create(id=6,
+                                          activity=Activity.objects.get(id=6),
+                                          question=Question.objects.get(id=4),
+                                          question_text="10",
+                                          range=-2,
+                                          radio_group_id=1)
+    criterion7 = Criterion.objects.create(id=7,
+                                          activity=Activity.objects.get(id=6),
+                                          question=Question.objects.get(id=5),
+                                          question_text="5",
+                                          range=2,
+                                          radio_group_id=1)
