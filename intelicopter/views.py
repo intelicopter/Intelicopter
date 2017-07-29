@@ -38,7 +38,7 @@ def process_answer(request):
         answers_in_string = request.POST['answers']  # will be in array format
     except:
         # if first time, initialise data
-        if data_in_string.len == 0:
+        if len(data_in_string) == 0:
             data_in_string = '{"0":null}'
             answers_in_string = ''
         else:
