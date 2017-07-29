@@ -89,34 +89,34 @@ document.getElementById("demo").innerHTML = text;
 
 
 
-<br>
-
-<form action="/questions/" method="post">{% csrf_token %}
-    <label for="answers">Choice</label>
-    <input id="answers2" type="text" name="answers" value="">
-    <input id="data" type="hidden" name="data" value="{{data_in_string}}">
-    <input type="submit" value="Submit">
-</form>
-
-<br>
-
-<div>
-    {{ data_in_string| safe }}
-<br>
-{{ data| safe }}
-<br>
-{{ answers_in_string|safe }}
-<br>
-{{ highest_question_number|safe }}
-<br>
-{{ question|safe }}
-<br>
-Choose one: <br>
-{{ options|safe }} <br>
-
-    Questions left: {{ questions_left| safe }}
-
-</div>
+{#<br>#}
+{##}
+{#<form action="/questions/" method="post">{% csrf_token %}#}
+{#    <label for="answers">Choice</label>#}
+{#    <input id="answers2" type="text" name="answers" value="">#}
+{#    <input id="data" type="hidden" name="data" value="{{data_in_string}}">#}
+{#    <input type="submit" value="Submit">#}
+{#</form>#}
+{##}
+{#<br>#}
+{##}
+{#<div>#}
+{#    {{ data_in_string| safe }}#}
+{#<br>#}
+{#{{ data| safe }}#}
+{#<br>#}
+{#{{ answers_in_string|safe }}#}
+{#<br>#}
+{#{{ highest_question_number|safe }}#}
+{#<br>#}
+{#{{ question|safe }}#}
+{#<br>#}
+{#Choose one: <br>#}
+{#{{ options|safe }} <br>#}
+{##}
+{#    Questions left: {{ questions_left| safe }}#}
+{##}
+{#</div>#}
 
 
 
