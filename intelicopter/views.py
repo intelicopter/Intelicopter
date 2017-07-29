@@ -151,7 +151,10 @@ def check_activity_relevance(data, activity):
     criteria = Criterion.objects.filter(activity=activity)
     number_of_criteria_without_radio_group = Criterion.objects.filter(activity=activity).filter(radio_group_id=None).count()
     number_of_radio_groups = Criterion.objects.filter(activity=activity).aggregate(Max('radio_group_id'))['radio_group_id__max']
-    number_of_criteria = number_of_criteria_without_radio_group + number_of_radio_groups
+    if number_of_radio_groups is not None:
+        number_of_criteria = number_of_criteria_without_radio_group + number_of_radio_groups
+    else:
+        number_of_criteria = number_of_criteria_without_radio_group
     radio_groups_passed = []
     pass_counter = 0
     for criterion in criteria:
