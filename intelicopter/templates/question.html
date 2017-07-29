@@ -23,10 +23,15 @@ label {
 .btn-group-vertical{
 }
 .btn{
-   border: solid #2e9aff 1.5px;
+      border-radius: 0 !important;
    height: 140px;
     width: 100%;
    background-color: white;
+    line-height:127px;
+    padding-left:40px;
+    text-align: left;
+    border-top: #2e9aff 1px solid;
+    border-bottom: #2e9aff 1px solid
 }
 .btn:hover{
    border: solid #2e9aff 1px;
@@ -50,7 +55,7 @@ label {
       <h1 align="center">Intelicopter</h1>
 </div>
 
-    <div class="row" style="padding-left:15%">
+    <div class="row" style="padding-left:20px">
         <span style='font-size:60px;'>{{ question|safe }}</span><br>
     </div>
 
@@ -73,7 +78,7 @@ var text = "";
 var i;
 text += "<div class='row' data-toggle='buttons'>";
 for (i = 0; i < theoptions.length; i++) {
-    text += "<button class='btn btn-default btn-sm btn-responsive' style='line-height:127px; padding-left:10px; text-align: left'><input type='radio' autocomplete='off' name = 'answers' value='"+theoptions[i]+"'> <span style='font-size:40px;'>"+ theoptions[i]+ "</span></button>"
+    text += "<button class='btn btn-default btn-sm btn-responsive'><input type='radio' autocomplete='off' name = 'answers' value='"+theoptions[i]+"'> <span style='font-size:50px;'>"+ theoptions[i]+ "</span></button>"
 }
 text += "<div>";
 document.getElementById("demo").innerHTML = text;
