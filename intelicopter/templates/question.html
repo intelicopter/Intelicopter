@@ -91,7 +91,7 @@
 
 <script>
 
-    var type = {{type|safe}};
+    var type = Number({{type|safe}});
     var text = "";
 
     if (type < 3) {
@@ -99,12 +99,13 @@
         var i;
         text += "<div class='row' data-toggle='buttons'>";
         for (i = 0; i < options.length; i++) {
-            text += "<button class='btn btn-default btn-sm btn-responsive'><input type='radio' autocomplete='off' name = 'answers' value='" + options[i] + "'> <span style='font-size:50px;'>" + options[i] + "</span></button>"
+            text += "<button class='btn btn-default btn-sm btn-responsive'><input type='radio' autocomplete='off' name = 'answers' value='" + options[i] + "'> <span style='font-size:50px;'>" + options[i] + "</span></button>";
         }
-    } else if (type == 3){
-        text += "<input class='btn btn-default btn-sm btn-responsive' type='text' autocomplete='off' name = 'answers' value='Type Here'></input>"
-    } else (type == 4){
-        text += "<input class='btn btn-default btn-sm btn-responsive' type='number' autocomplete='off' name = 'answers' value='Type Here'></input>"
+    } else if (type == 3) {
+        text += "<input class='btn btn-default btn-sm btn-responsive' type='text' autocomplete='off' name = 'answers' value='Type Here'></input>";
+    } else (type == 4)
+    {
+        text += "<input class='btn btn-default btn-sm btn-responsive' type='number' autocomplete='off' name = 'answers' value='Type Here'></input>";
     }
 
     text += "<div>";
