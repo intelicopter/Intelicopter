@@ -30,6 +30,7 @@ def process_answer(request):
     #     }
     # }
 
+    data_in_string = None
     try:
         # get data from templates
         data_in_string = request.POST['data']  # will be in JSON format shown above
@@ -40,6 +41,7 @@ def process_answer(request):
             data_in_string = '{"0":null}'
             answers_in_string = ''
         else:
+            data_in_string = request.POST['data']
             error_message = "Please select the option(s) below."
 
     # convert JSON to dictionary
