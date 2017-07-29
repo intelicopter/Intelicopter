@@ -90,19 +90,15 @@
 
 </div>
 
-{{type|safe}}
-{{type|safe}}
-{{type|safe}}
-
 <script>
 
-    var type = Number({{type|safe}});
+    var type = {{type|safe}};
     var text = "";
 
     if (type < 3) {
-        var radiocheckbox = "radio"
+        var radiocheckbox = "radio";
         if (type == 2){
-            radiocheckbox = "checkbox"
+            radiocheckbox = "checkbox";
         }
         var options = {{options|safe}};
         var i;
