@@ -7,122 +7,120 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <style>
-html, body {
+  html,
+  body {
     height: 100%;
-}
-label {
+  }
+
+  label {
     display: block;
     text-align: left;
-}
-    .container{
-        background-color: white;
-        height: 100%;
-    }
-.page-header{
-}
-.btn-group-vertical{
-}
-.btn{
-      border-radius: 0 !important;
-   height: 140px;
+  }
+
+  .container {
+    background-color: white;
+    height: 100%;
+  }
+
+  .page-header {}
+
+  .btn-group-vertical {}
+
+  .btn {
+    border-radius: 0 !important;
+    height: 140px;
     width: 100%;
-   background-color: white;
-    line-height:127px;
-    padding-left:40px;
+    background-color: white;
+    line-height: 127px;
+    padding-left: 40px;
     text-align: left;
     border-top: #2e9aff 1px solid;
     border-bottom: #2e9aff 1px solid
-}
-.btn:hover{
-   border: solid #2e9aff 1px;
-   background-color: #b5dcff;
-}
-.btn:active{
-   border: solid #2e9aff 1px;
-   background-color: #478eff;
-}
+  }
+
+  .btn:hover {
+    border: solid #2e9aff 1px;
+    background-color: #b5dcff;
+  }
+
+  .btn:active {
+    border: solid #2e9aff 1px;
+    background-color: #478eff;
+  }
+
 </style>
 
 
 <html lang="en">
-<head>
+
+  <head>
     <meta charset="UTF-8">
     <title>Question</title>
-</head>
-<body style='background-color: #e5e5e5;'>
-<div class="container">
-<div class="row">
-      <h1 align="center">Intelicopter</h1>
-</div>
+  </head>
 
-    <div class="row" style="padding-left:20px">
-        <span style='font-size:60px;'>{{ question|safe }}</span><br>
+  <body style='background-color: #e5e5e5;'>
+    <div class="container">
+
+
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="/">Intelicopter</a>
+        </div>
+      </nav>
+
+      <div class="row" style="padding-left:20px">
+        <span style='font-size:60px;'>{{ question|safe }}</span>
+        <br>
+      </div>
+
+      <form action="/questions/" method="post">
+        {% csrf_token %}
+        <p id="demo"></p>
+        <input id="data" type="hidden" name="data" value="{{data_in_string}}">
+
+        <div class="row text-center">
+          <button type='submit' class='btn btn-default btn-sm btn-responsive' name='submit'> <span style='font-size:40px;'>Next</span></button>
+        </div>
+
+      </form>
+
     </div>
 
-<form action="/questions/" method="post">
-{% csrf_token %}
-<p id="demo"></p>
-<input id="data" type="hidden" name="data" value="{{data_in_string}}">
+    <script>
+      var theoptions = {{options|safe}};
+      var text = "";
+      var i;
+      text += "<div class='row' data-toggle='buttons'>";
+      for (i = 0; i < theoptions.length; i++) {
+        text += "<button class='btn btn-default btn-sm btn-responsive'><input type='radio' autocomplete='off' name = 'answers' value='" + theoptions[i] + "'> <span style='font-size:50px;'>" + theoptions[i] + "</span></button>"
+      }
+      text += "<div>";
+      document.getElementById("demo").innerHTML = text;
 
-    <div class="row text-center">
-        <button type='submit' class='btn btn-default btn-sm btn-responsive' name='submit'> <span style='font-size:40px;'>Next</span></button>
-</div>
+    </script>
 
-</form>
+    <br> {#
 
-</div>
-
-<script>
-var theoptions = {{ options|safe }};
-var text = "";
-var i;
-text += "<div class='row' data-toggle='buttons'>";
-for (i = 0; i < theoptions.length; i++) {
-    text += "<button class='btn btn-default btn-sm btn-responsive'><input type='radio' autocomplete='off' name = 'answers' value='"+theoptions[i]+"'> <span style='font-size:50px;'>"+ theoptions[i]+ "</span></button>"
-}
-text += "<div>";
-document.getElementById("demo").innerHTML = text;
-</script>
-
-<br>
-
-
-
-
-
-
-
-
-{#<br>#}
-{##}
-{#<form action="/questions/" method="post">{% csrf_token %}#}
-{#    <label for="answers">Choice</label>#}
-{#    <input id="answers2" type="text" name="answers" value="">#}
-{#    <input id="data" type="hidden" name="data" value="{{data_in_string}}">#}
-{#    <input type="submit" value="Submit">#}
-{#</form>#}
-{##}
-{#<br>#}
-{##}
-{#<div>#}
-{#    {{ data_in_string| safe }}#}
-{#<br>#}
-{#{{ data| safe }}#}
-{#<br>#}
-{#{{ answers_in_string|safe }}#}
-{#<br>#}
-{#{{ highest_question_number|safe }}#}
-{#<br>#}
-{#{{ question|safe }}#}
-{#<br>#}
-{#Choose one: <br>#}
-{#{{ options|safe }} <br>#}
-{##}
-{#    Questions left: {{ questions_left| safe }}#}
-{##}
-{#</div>#}
+    <br>#} {##} {#
+    <form action="/questions/" method="post">{% csrf_token %}#} {#
+      <label for="answers">Choice</label>#} {#
+      <input id="answers2" type="text" name="answers" value="">#} {#
+      <input id="data" type="hidden" name="data" value="{{data_in_string}}">#} {#
+      <input type="submit" value="Submit">#} {#
+    </form>#} {##} {#
+    <br>#} {##} {#
+    <div>#} {# {{ data_in_string| safe }}#} {#
+      <br>#} {#{{ data| safe }}#} {#
+      <br>#} {#{{ answers_in_string|safe }}#} {#
+      <br>#} {#{{ highest_question_number|safe }}#} {#
+      <br>#} {#{{ question|safe }}#} {#
+      <br>#} {#Choose one:
+      <br>#} {#{{ options|safe }}
+      <br>#} {##} {# Questions left: {{ questions_left| safe }}#} {##} {#
+    </div>#}
 
 
 
-</body>
+  </body>
+
 </html>
