@@ -49,8 +49,9 @@ var text = "";
 var i;
 text += "<div class='btn-group-vertical' data-toggle='buttons'>";
 for (i = 0; i < theoptions.length; i++) {
-    text += "<label class='btn btn-default btn-sm btn-responsive'><input align='center' type='radio' autocomplete='off' name='"+theoptions[i]+"'> <span style='font-size:40px;'>"+ theoptions[i]+ "</span></label>"
+    text += "<label class='btn btn-default btn-sm btn-responsive'><input align='center' type='radio' autocomplete='off' name = 'answers' value='"+theoptions[i]+"'> <span style='font-size:40px;'>"+ theoptions[i]+ "</span></label>"
 }
+text += "<button class='btn btn-default btn-sm btn-responsive btn-submit' name='submit' type='submit' action='/question/' method='post'> <span style='font-size:40px;'>Next</span></button>"
 text += "<div>";
 document.getElementById("demo").innerHTML = text;
 </script>
@@ -59,7 +60,6 @@ document.getElementById("demo").innerHTML = text;
 
 <input id="data" type="hidden" name="data" value="{{data_in_string}}">
 
-<button class='btn btn-default btn-sm btn-responsive btn-submit' name="submit" type='submit' action="/question/" method="post"> <span style='font-size:40px;'>Next</span></button>
 </form>
 
 
@@ -73,7 +73,7 @@ document.getElementById("demo").innerHTML = text;
 
 <form action="/questions/" method="post">{% csrf_token %}
     <label for="answers">Choice</label>
-    <input id="answers" type="text" name="answers" value="">
+    <input id="answers2" type="text" name="answers" value="">
     <input id="data" type="hidden" name="data" value="{{data_in_string}}">
     <input type="submit" value="Submit">
 </form>

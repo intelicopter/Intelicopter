@@ -45,7 +45,8 @@ def process_answer(request):
     highest_question_number = 0
     answers = []
     if len(answers_in_string) > 0:
-        answers = answers_in_string.split(",")
+        #answers = answers_in_string.split(",")
+        answers = request.POST.getlist('answers')
 
     if len(data) > 0:
         # get the highest key number. Length works because unanswered questions are also in the data dictionary as blank
