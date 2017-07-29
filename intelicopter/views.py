@@ -2,7 +2,7 @@ import json
 import unicodedata
 
 from django.shortcuts import render, redirect
-
+from django.db.models import Max
 from models import Question, Option, Trigger, Group, Activity, Criterion
 
 
