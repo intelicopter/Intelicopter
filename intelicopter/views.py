@@ -91,7 +91,7 @@ def process_answer(request):
 
     # converting to string format to send to template
     if len(data) > 0:
-        data_in_string = data
+        data_in_string = json.dumps(data)
 
     # get number of questions answered at the moment for question number feature.
     questions_left = Question.objects.count() - (highest_question_number + next_question_tracker) + 1
