@@ -30,20 +30,14 @@ def process_answer(request):
     #     }
     # }
 
-    data_in_string = ""
-    error_message = ""
     try:
         # get data from templates
         data_in_string = request.POST['data']  # will be in JSON format shown above
         answers_in_string = request.POST['answers']  # will be in array format
     except:
         # if first time, initialise data
-        if len(data_in_string) == 0:
-            data_in_string = '{"0":null}'
-            answers_in_string = ''
-        else:
-            data_in_string = request.POST['data']
-            error_message = "Please select the option(s) below."
+        data_in_string = '{"0":null}'
+        answers_in_string = ''
 
     # convert JSON to dictionary
     data = json.loads(data_in_string)
@@ -107,7 +101,7 @@ def process_answer(request):
                                              'type':latest_question_type,
                                              'question':latest_question_text,
                                              'options':latest_options,
-                                             "error_message":error_message,
+                                             # "error_message":error_message,
                                              "highest_question_number":highest_question_number,
                                              "questions_left":questions_left})
 
