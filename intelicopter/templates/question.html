@@ -133,7 +133,7 @@
 
 <script>
     var errorMesssage = {{error_message|safe}};
-    if (errorMesssage){
+    if (errorMesssage.length > 0){
         text += "<div class='row'>";
         text += "<div class='alert alert-warning' style='font-size:30px'> <strong>Warning!</strong>"+errorMesssage+"</div>";
         text += "<div>";

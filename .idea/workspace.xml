@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef00ca30-af2e-4e70-8464-72371a2ad00a" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intelicopter/templates/question.html" afterPath="$PROJECT_DIR$/intelicopter/templates/question.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intelicopter/views.py" afterPath="$PROJECT_DIR$/intelicopter/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,11 +18,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="question.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="question.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/intelicopter/templates/question.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="121" column="70" lean-forward="false" selection-start-line="121" selection-start-column="70" selection-end-line="121" selection-end-column="70" />
+            <state relative-caret-position="286">
+              <caret line="122" column="24" lean-forward="true" selection-start-line="122" selection-start-column="24" selection-end-line="122" selection-end-column="24" />
               <folding>
                 <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -38,7 +39,7 @@
         <entry file="file://$PROJECT_DIR$/intelicopter/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="42">
-              <caret line="2" column="98" lean-forward="false" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="98" />
+              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="98" />
               <folding>
                 <element signature="n#style#0;n#button#0;n#a#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#button#0;n#a#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -47,20 +48,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/intelicopter/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="32" column="22" lean-forward="false" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+            <state relative-caret-position="-231">
+              <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
                 <element signature="e#236#301#0" expanded="false" />
                 <element signature="e#331#361#0" expanded="false" />
-                <element signature="e#4111#4739#0" expanded="false" />
-                <element signature="e#4798#5530#0" expanded="false" />
-                <element signature="e#5326#5529#0" expanded="false" />
-                <element signature="e#5583#8163#0" expanded="false" />
-                <element signature="e#8197#12893#0" expanded="false" />
+                <element signature="e#4134#4762#0" expanded="false" />
+                <element signature="e#4821#5553#0" expanded="false" />
+                <element signature="e#5349#5552#0" expanded="false" />
+                <element signature="e#5606#8186#0" expanded="false" />
+                <element signature="e#8220#12916#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -110,8 +111,8 @@
         <option value="$PROJECT_DIR$/models.py" />
         <option value="$PROJECT_DIR$/intelicopter/urls.py" />
         <option value="$PROJECT_DIR$/intelicopter/templates/results.html" />
-        <option value="$PROJECT_DIR$/intelicopter/templates/question.html" />
         <option value="$PROJECT_DIR$/intelicopter/views.py" />
+        <option value="$PROJECT_DIR$/intelicopter/templates/question.html" />
       </list>
     </option>
   </component>
@@ -562,11 +563,11 @@
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#236#301#0" expanded="false" />
             <element signature="e#331#361#0" expanded="false" />
-            <element signature="e#4111#4739#0" expanded="false" />
-            <element signature="e#4798#5530#0" expanded="false" />
-            <element signature="e#5326#5529#0" expanded="false" />
-            <element signature="e#5583#8163#0" expanded="false" />
-            <element signature="e#8197#12893#0" expanded="false" />
+            <element signature="e#4134#4762#0" expanded="false" />
+            <element signature="e#4821#5553#0" expanded="false" />
+            <element signature="e#5349#5552#0" expanded="false" />
+            <element signature="e#5606#8186#0" expanded="false" />
+            <element signature="e#8220#12916#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -639,11 +640,11 @@
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#236#301#0" expanded="false" />
             <element signature="e#331#361#0" expanded="false" />
-            <element signature="e#4111#4739#0" expanded="false" />
-            <element signature="e#4798#5530#0" expanded="false" />
-            <element signature="e#5326#5529#0" expanded="false" />
-            <element signature="e#5583#8163#0" expanded="false" />
-            <element signature="e#8197#12893#0" expanded="false" />
+            <element signature="e#4134#4762#0" expanded="false" />
+            <element signature="e#4821#5553#0" expanded="false" />
+            <element signature="e#5349#5552#0" expanded="false" />
+            <element signature="e#5606#8186#0" expanded="false" />
+            <element signature="e#8220#12916#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -683,11 +684,11 @@
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#236#301#0" expanded="false" />
             <element signature="e#331#361#0" expanded="false" />
-            <element signature="e#4111#4739#0" expanded="false" />
-            <element signature="e#4798#5530#0" expanded="false" />
-            <element signature="e#5326#5529#0" expanded="false" />
-            <element signature="e#5583#8163#0" expanded="false" />
-            <element signature="e#8197#12893#0" expanded="false" />
+            <element signature="e#4134#4762#0" expanded="false" />
+            <element signature="e#4821#5553#0" expanded="false" />
+            <element signature="e#5349#5552#0" expanded="false" />
+            <element signature="e#5606#8186#0" expanded="false" />
+            <element signature="e#8220#12916#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -750,11 +751,11 @@
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#236#301#0" expanded="false" />
             <element signature="e#331#361#0" expanded="false" />
-            <element signature="e#4111#4739#0" expanded="false" />
-            <element signature="e#4798#5530#0" expanded="false" />
-            <element signature="e#5326#5529#0" expanded="false" />
-            <element signature="e#5583#8163#0" expanded="false" />
-            <element signature="e#8197#12893#0" expanded="false" />
+            <element signature="e#4134#4762#0" expanded="false" />
+            <element signature="e#4821#5553#0" expanded="false" />
+            <element signature="e#5349#5552#0" expanded="false" />
+            <element signature="e#5606#8186#0" expanded="false" />
+            <element signature="e#8220#12916#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -802,11 +803,11 @@
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#236#301#0" expanded="false" />
             <element signature="e#331#361#0" expanded="false" />
-            <element signature="e#4111#4739#0" expanded="false" />
-            <element signature="e#4798#5530#0" expanded="false" />
-            <element signature="e#5326#5529#0" expanded="false" />
-            <element signature="e#5583#8163#0" expanded="false" />
-            <element signature="e#8197#12893#0" expanded="false" />
+            <element signature="e#4134#4762#0" expanded="false" />
+            <element signature="e#4821#5553#0" expanded="false" />
+            <element signature="e#5349#5552#0" expanded="false" />
+            <element signature="e#5606#8186#0" expanded="false" />
+            <element signature="e#8220#12916#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -846,11 +847,11 @@
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#236#301#0" expanded="false" />
             <element signature="e#331#361#0" expanded="false" />
-            <element signature="e#4111#4739#0" expanded="false" />
-            <element signature="e#4798#5530#0" expanded="false" />
-            <element signature="e#5326#5529#0" expanded="false" />
-            <element signature="e#5583#8163#0" expanded="false" />
-            <element signature="e#8197#12893#0" expanded="false" />
+            <element signature="e#4134#4762#0" expanded="false" />
+            <element signature="e#4821#5553#0" expanded="false" />
+            <element signature="e#5349#5552#0" expanded="false" />
+            <element signature="e#5606#8186#0" expanded="false" />
+            <element signature="e#8220#12916#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -898,11 +899,11 @@
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#236#301#0" expanded="false" />
             <element signature="e#331#361#0" expanded="false" />
-            <element signature="e#4111#4739#0" expanded="false" />
-            <element signature="e#4798#5530#0" expanded="false" />
-            <element signature="e#5326#5529#0" expanded="false" />
-            <element signature="e#5583#8163#0" expanded="false" />
-            <element signature="e#8197#12893#0" expanded="false" />
+            <element signature="e#4134#4762#0" expanded="false" />
+            <element signature="e#4821#5553#0" expanded="false" />
+            <element signature="e#5349#5552#0" expanded="false" />
+            <element signature="e#5606#8186#0" expanded="false" />
+            <element signature="e#8220#12916#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -980,6 +981,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/intelicopter/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-231">
+          <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#236#301#0" expanded="false" />
+            <element signature="e#331#361#0" expanded="false" />
+            <element signature="e#4134#4762#0" expanded="false" />
+            <element signature="e#4821#5553#0" expanded="false" />
+            <element signature="e#5349#5552#0" expanded="false" />
+            <element signature="e#5606#8186#0" expanded="false" />
+            <element signature="e#8220#12916#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="670">
@@ -991,7 +1009,7 @@
     <entry file="file://$PROJECT_DIR$/intelicopter/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
-          <caret line="2" column="98" lean-forward="false" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="98" />
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="98" />
           <folding>
             <element signature="n#style#0;n#button#0;n#a#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#button#0;n#a#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1001,8 +1019,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/intelicopter/templates/question.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="121" column="70" lean-forward="false" selection-start-line="121" selection-start-column="70" selection-end-line="121" selection-end-column="70" />
+        <state relative-caret-position="286">
+          <caret line="122" column="24" lean-forward="true" selection-start-line="122" selection-start-column="24" selection-end-line="122" selection-end-column="24" />
           <folding>
             <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1010,23 +1028,6 @@
             <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#button#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/intelicopter/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="32" column="22" lean-forward="false" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#236#301#0" expanded="false" />
-            <element signature="e#331#361#0" expanded="false" />
-            <element signature="e#4111#4739#0" expanded="false" />
-            <element signature="e#4798#5530#0" expanded="false" />
-            <element signature="e#5326#5529#0" expanded="false" />
-            <element signature="e#5583#8163#0" expanded="false" />
-            <element signature="e#8197#12893#0" expanded="false" />
           </folding>
         </state>
       </provider>

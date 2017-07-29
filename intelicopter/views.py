@@ -30,14 +30,15 @@ def process_answer(request):
     #     }
     # }
 
-    data_in_string = None
+    data_in_string = ""
+    error_message = ""
     try:
         # get data from templates
         data_in_string = request.POST['data']  # will be in JSON format shown above
         answers_in_string = request.POST['answers']  # will be in array format
     except:
         # if first time, initialise data
-        if data_in_string is None:
+        if data_in_string.len == 0:
             data_in_string = '{"0":null}'
             answers_in_string = ''
         else:
