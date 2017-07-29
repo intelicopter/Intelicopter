@@ -7,26 +7,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <style>
-.site{
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: auto auto auto;
-  grid-template-areas:
-  "space header space"
-  "space main space"
-  "space bottom space"
-}
 .page-header{
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 1;
-    grid-row-end: 2;
 }
 .btn-group-vertical{
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-    grid-row-end: 3;
 }
 .btn{
    border: solid #2e9aff 1.5px;
@@ -45,10 +28,6 @@
 .btn-submit{
     position: absolute;
    float: bottom;
-    grid-column-start: 2;
-  grid-column-end: 2;
-  grid-row-start: 3;
-    grid-row-end: 4;
 }
 </style>
 
@@ -59,7 +38,7 @@
     <title>Question</title>
 </head>
 <body>
-<div class="site">
+<div class="container">
 <div class="page-header">
       <h2 align="center">Intelicopter</h2>
 </div>
