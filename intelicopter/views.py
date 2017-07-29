@@ -88,6 +88,7 @@ def process_answer(request):
         latest_options.append(options.option_text)
     latest_options = json.dumps(latest_options) # to be able to use in template Javascript
 
+    latest_question_type = latest_options.question_type
 
     # converting to string format to send to template
     if len(data) > 0:
@@ -97,6 +98,7 @@ def process_answer(request):
     questions_left = Question.objects.count() - (highest_question_number + next_question_tracker) + 1
 
     return render(request, 'question.html', {'data':data,
+                                             'type':latest_question_type,
                                              'question':latest_question_text,
                                              'options':latest_options,
                                              "answers_in_string":answers_in_string,

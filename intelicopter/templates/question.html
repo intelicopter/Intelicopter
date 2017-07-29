@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!— Import bootstrap and Latest compiled and minified CSS —>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <!-- Import jquery-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
@@ -8,97 +9,108 @@
 
 <style>
 
-  html,
-  body {
-    height: 100%;
-  }
+    html,
+    body {
+        height: 100%;
+    }
 
-  body {
-      padding-top: 100px;
-  }
+    body {
+        padding-top: 70px;
+    }
 
-  label {
-    display: block;
-    text-align: left;
-  }
+    label {
+        display: block;
+        text-align: left;
+    }
 
-  .container {
-    background-color: white;
-    height: 100%;
-  }
+    .container {
+        background-color: white;
+        height: 100%;
+    }
 
-  .btn {
-    border-radius: 0 !important;
-    height: 140px;
-    width: 100%;
-    background-color: white;
-    line-height: 127px;
-    padding-left: 40px;
-    text-align: left;
-    border-top: #2e9aff 1px solid;
-    border-bottom: #2e9aff 1px solid
-  }
+    .btn {
+        border-radius: 0 !important;
+        height: 140px;
+        width: 100%;
+        background-color: white;
+        line-height: 127px;
+        padding-left: 40px;
+        text-align: left;
+        border-top: #2e9aff 1px solid;
+        border-bottom: #2e9aff 1px solid
+    }
 
-  .btn:hover {
-    border: solid #2e9aff 1px;
-    background-color: #b5dcff;
-  }
+    .btn:hover {
+        border: solid #2e9aff 1px;
+        background-color: #b5dcff;
+    }
 
-  .btn:active {
-    border: solid #2e9aff 1px;
-    background-color: #478eff;
-  }
+    .btn:active {
+        border: solid #2e9aff 1px;
+        background-color: #478eff;
+    }
 
 </style>
 
 
 <html lang="en">
 
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>Question</title>
-  </head>
+</head>
 
-  <body style='background-color: #e5e5e5;'>
-    <div class="container">
+<body style='background-color: #e5e5e5;'>
+<div class="container">
 
 
     <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="/" style='font-size:40px; padding-top: 25px; padding-bottom: 40px;'>Intelicopter</a>
-      </div>
+        <div class="container">
+            <a class="navbar-brand" href="/" style='font-size:40px; padding-top: 25px; padding-bottom: 40px;'>Intelicopter</a>
+        </div>
     </nav>
 
-      <div class="row" style="padding-left:20px">
+    <div class="row" style="padding-left:20px">
         <span style='font-size:60px;'>{{ question|safe }}</span>
         <br>
-      </div>
-
-      <form action="/questions/" method="post">
-        {% csrf_token %}
-        <p id="demo"></p>
-        <input id="data" type="hidden" name="data" value="{{data_in_string}}">
-
-        <div class="row text-center">
-          <button type='submit' class='btn btn-default btn-sm btn-responsive' name='submit'> <span style='font-size:40px;'>Next</span></button>
-        </div>
-
-      </form>
-
     </div>
 
-    <script>
-      var theoptions = {{options|safe}};
-      var text = "";
-      var i;
-      text += "<div class='row' data-toggle='buttons'>";
-      for (i = 0; i < theoptions.length; i++) {
-        text += "<button class='btn btn-default btn-sm btn-responsive'><input type='radio' autocomplete='off' name = 'answers' value='" + theoptions[i] + "'> <span style='font-size:50px;'>" + theoptions[i] + "</span></button>"
-      }
-      text += "<div>";
-      document.getElementById("demo").innerHTML = text;
+    <form action="/questions/" method="post">
+        {% csrf_token %}
+        <p id="demo"></p>
+        <input id="data" type="hidden" name="data" value="{{ data_in_string }}">
 
-    </script>
+        <div class="row text-center">
+            <button type='submit' class='btn btn-default btn-sm btn-responsive' name='submit'><span
+                    style='font-size:40px;'>Next</span></button>
+        </div>
+
+    </form>
+
+</div>
+
+<script>
+
+    var type = {{type|safe}};
+    var text = "";
+
+    if (type < 3) {
+        var options = {{options|safe}};
+        var i;
+        text += "<div class='row' data-toggle='buttons'>";
+        for (i = 0; i < options.length; i++) {
+            text += "<button class='btn btn-default btn-sm btn-responsive'><input type='radio' autocomplete='off' name = 'answers' value='" + options[i] + "'> <span style='font-size:50px;'>" + options[i] + "</span></button>"
+        }
+    } else if (type == 3){
+        text += "<input class='btn btn-default btn-sm btn-responsive' type='text' autocomplete='off' name = 'answers' value='Type Here'></input>"
+    } else (type == 4){
+        text += "<input class='btn btn-default btn-sm btn-responsive' type='number' autocomplete='off' name = 'answers' value='Type Here'></input>"
+    }
+
+    text += "<div>";
+    document.getElementById("demo").innerHTML = text;
+
+</script>
 
 {#    <br> {##}
 {##}
@@ -121,7 +133,6 @@
 {#    </div>#}
 
 
-
-  </body>
+</body>
 
 </html>
