@@ -95,20 +95,28 @@
     var text = "";
 
     if (type < 3) {
+        var radiocheckbox = "radio"
+        if (type == 2){
+            radiocheckbox = "checkbox"
+        }
         var options = {{options|safe}};
         var i;
         text += "<div class='row' data-toggle='buttons'>";
         for (i = 0; i < options.length; i++) {
-            text += "<button class='btn btn-default btn-sm btn-responsive'><input type='radio' autocomplete='off' name = 'answers' value='" + options[i] + "'> <span style='font-size:50px;'>" + options[i] + "</span></button>";
+            text += "<button class='btn btn-default btn-sm btn-responsive'><input type='"&radiocheckbox&"' autocomplete='off' name = 'answers' value='" + options[i] + "'> <span style='font-size:50px;'>" + options[i] + "</span></button>";
+            text += "<div>";
         }
     } else if (type == 3) {
+        text += "<div class='row'>";
         text += "<input class='btn btn-default btn-sm btn-responsive' type='text' autocomplete='off' name = 'answers' value='Type Here'></input>";
+        text += "<div>";
     } else (type == 4)
     {
+        text += "<div class='row'>";
         text += "<input class='btn btn-default btn-sm btn-responsive' type='number' autocomplete='off' name = 'answers' value='Type Here'></input>";
+        text += "<div>";
     }
 
-    text += "<div>";
     document.getElementById("demo").innerHTML = text;
 
 </script>
