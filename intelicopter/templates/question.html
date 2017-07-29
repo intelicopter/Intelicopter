@@ -1,73 +1,156 @@
 <!DOCTYPE html>
 <!— Import bootstrap and Latest compiled and minified CSS —>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <!-- Import jquery-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <style>
-.btn-group-vertical{
-  height:100px;
-  width:50%;
-    position: absolute;
-    margin: auto;
-    left: 25%;
-}
+
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        padding-top: 65px;
+    }
+
+    label {
+        display: block;
+        text-align: left;
+    }
+
+    .container {
+        background-color: white;
+        height: 100%;
+        width: 100%;
+    }
+
+    .btn {
+        border-radius: 0 !important;
+        height: 140px;
+        width: 100%;
+        background-color: white;
+        line-height: 127px;
+        padding-left: 40px;
+        text-align: left;
+        border-top: #2e9aff 1px solid;
+        border-bottom: #2e9aff 1px solid;
+        font-size:40px;
+    }
+
+    .btn:hover {
+        border: solid #2e9aff 1px;
+        background-color: #b5dcff;
+    }
+
+    .btn:active {
+        border: solid #2e9aff 1px;
+        background-color: #478eff;
+    }
+
+    .submit {
+        width: 35%;
+        border: #2e9aff 1px solid;
+        margin-right: 20px;
+        padding-left: 0px;
+    }
+
 </style>
 
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Question</title>
 </head>
-<body>
-{{ data_in_string| safe }}
-<br>
-{{ data| safe }}
-<br>
-{{ answers_in_string|safe }}
-<br>
-{{ highest_question_number|safe }}
-<br>
-{{ question|safe }}
-<br>
-Choose one: <br>
-{{ options|safe }} <br>
+
+<body style='background-color: #e5e5e5;'>
+<div class="container">
 
 
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/" style='font-size:40px; padding-top: 25px; padding-bottom: 40px;'>Intelicopter</a>
+        </div>
+    </nav>
 
+    <div class="row" style="padding-left:45px">
+        <span style='font-size:60px;'>{{ question|safe }}</span>
+        <br><br>
+    </div>
 
+    <form action="/questions/" method="post">
+        {% csrf_token %}
+        <p id="demo"></p>
+        <input id="data" type="hidden" name="data" value="{{ data_in_string }}">
 
-<p id="demo"></p>
+        <br>
+        <div class="row">
+            <button type='submit' class='btn btn-default btn-sm btn-responsive pull-right submit' style="text-align: center" name='submit'><span
+                    style='font-size:40px;'>Next</span></button>
+        </div>
+
+    </form>
+
+</div>
 
 <script>
 
-var theoptions = "{{options|safe}}".split(",");
+    var type = {{type|safe}};
+    var text = "";
 
-var text = "";
-var i;
-text += "<div class='btn-group-vertical' data-toggle='buttons'>"
-for (i = 0; i < theoptions.length; i++) {
-    text += "<label class='btn btn-default btn-sm btn-responsive'><input align='center' type='radio' autocomplete='off' style='height:100px; width:50%;background-color: white;' > <span style='font-size:40px;'>"+ theoptions[i]+ "</span></label>"
-}
-text += "<div>"
-document.getElementById("demo").innerHTML = text;
+    if (type < 3) {
+        var radiocheckbox = "radio";
+        if (type == 2){
+            radiocheckbox = "checkbox";
+        }
+        var options = {{options|safe}};
+        var i;
+        text += "<div class='row' data-toggle='buttons'>";
+        for (i = 0; i < options.length; i++) {
+            text += "<button class='btn btn-default btn-sm btn-responsive'><input type='"+radiocheckbox+"' autocomplete='off' name = 'answers' value='" + options[i] + "'> <span style='font-size:50px;'>" + options[i] + "</span></button>";
+        }
+        text += "<div>";
+    } else if (type == 3) {
+        text += "<div class='row'>";
+        text += "<input class='btn btn-default btn-sm btn-responsive' type='text' autocomplete='off' name = 'answers' placeholder='Type/Click Here' value=''></input>";
+        text += "<div>";
+    } else if (type == 4) {
+        text += "<div class='row'>";
+        text += "<input class='btn btn-default btn-sm btn-responsive' type='number' autocomplete='off' name = 'answers' placeholder='Type/Click Here' value=''></input>";
+        text += "<div>";
+    }
+
+    document.getElementById("demo").innerHTML = text;
+
 </script>
 
-<br>
+{#    <br> {##}
+{##}
+{#    <br>#} {##} {##}
+{#    <form action="/questions/" method="post">{% csrf_token %}#} {##}
+{#      <label for="answers">Choice</label>#} {##}
+{#      <input id="answers2" type="text" name="answers" value="">#} {##}
+{#      <input id="data" type="hidden" name="data" value="{{data_in_string}}">#} {##}
+{#      <input type="submit" value="Submit">#} {##}
+{#    </form>#} {##} {##}
+{#    <br>#} {##} {##}
+{#    <div>#} {# {{ data_in_string| safe }}#} {##}
+{#      <br>#} {#{{ data| safe }}#} {##}
+{#      <br>#} {#{{ answers_in_string|safe }}#} {##}
+{#      <br>#} {#{{ highest_question_number|safe }}#} {##}
+{#      <br>#} {#{{ question|safe }}#} {##}
+{#      <br>#} {#Choose one:#}
+{#      <br>#} {#{{ options|safe }}#}
+{#      <br>#} {##} {# Questions left: {{ questions_left| safe }}#} {##} {##}
+{#    </div>#}
 
-<form action="/questions/" method="post">{% csrf_token %}
-    <label for="answers">Choice</label>
-    <input id="answers" type="text" name="answers" value="">
-    <input id="data" type="hidden" name="data" value="{{data_in_string}}">
-    <input type="submit" value="Submit">
-</form>
-
-<br>
-
-Questions left: {{ questions_left| safe }}
 
 </body>
+
 </html>
