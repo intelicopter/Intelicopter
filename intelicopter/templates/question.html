@@ -15,7 +15,7 @@
     }
 
     body {
-        padding-top: 70px;
+        padding-top: 65px;
     }
 
     label {
@@ -105,8 +105,8 @@
         text += "<div class='row' data-toggle='buttons'>";
         for (i = 0; i < options.length; i++) {
             text += "<button class='btn btn-default btn-sm btn-responsive'><input type='"+radiocheckbox+"' autocomplete='off' name = 'answers' value='" + options[i] + "'> <span style='font-size:50px;'>" + options[i] + "</span></button>";
-            text += "<div>";
         }
+        text += "<div>";
     } else if (type == 3) {
         text += "<div class='row'>";
         text += "<input class='btn btn-default btn-sm btn-responsive' type='text' autocomplete='off' name = 'answers' value='Type Here'></input>";
