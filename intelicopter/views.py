@@ -2,7 +2,7 @@ import json
 import unicodedata
 
 from django.shortcuts import render, redirect
-
+from django.db.models import Max
 from models import Question, Option, Trigger, Group, Activity, Criterion
 
 
@@ -149,31 +149,45 @@ def get_relevant_activities(request, data):
 
 def check_activity_relevance(data, activity):
     criteria = Criterion.objects.filter(activity=activity)
-    number_of_criteria = Criterion.objects.filter(activity=activity).count()
+    number_of_criteria_without_radio_group = Criterion.objects.filter(activity=activity).filter(radio_group_id=None).count()
+    number_of_radio_groups = Criterion.objects.all().aggregate(Max('radio_group_id'))
+    number_of_criteria = number_of_criteria_without_radio_group + number_of_radio_groups
+    radio_groups_passed = []
     pass_counter = 0
     for criterion in criteria:
-        question_number = criterion.question.id
-        question_text = criterion.question_text
-        question_range = criterion.range
-        radio_group_id = criterion.radio_group_id
-        for answer in data[unicode(str(question_number), "utf-8")]:
-            if answer == unicode(str("skip"), "utf-8"):
-                return False
-            elif question_range is None:
-                if question_text == answer:
-                    pass_counter += 1
-            elif question_range == -2:
-                if float(question_text) > float(answer):
-                    pass_counter += 1
-            elif question_range == -1:
-                if float(question_text) >= float(answer):
-                    pass_counter += 1
-            elif question_range == 1:
-                if float(question_text) <= float(answer):
-                    pass_counter += 1
-            elif question_range == 2:
-                if float(question_text) < float(answer):
-                    pass_counter += 1
+        if criterion.radio_group_id is not None and criterion.radio_group_id not in []:
+            question_number = criterion.question.id
+            question_text = criterion.question_text
+            question_range = criterion.range
+            radio_group_id = criterion.radio_group_id
+            for answer in data[unicode(str(question_number), "utf-8")]:
+                if answer == unicode(str("skip"), "utf-8"):
+                    return False
+                elif question_range is None:
+                    if question_text == answer:
+                        pass_counter += 1
+                        if criterion.radio_group_id is not None:
+                            radio_groups_passed.append(criterion.radio_group_id)
+                elif question_range == -2:
+                    if float(question_text) > float(answer):
+                        pass_counter += 1
+                        if criterion.radio_group_id is not None:
+                            radio_groups_passed.append(criterion.radio_group_id)
+                elif question_range == -1:
+                    if float(question_text) >= float(answer):
+                        pass_counter += 1
+                        if criterion.radio_group_id is not None:
+                            radio_groups_passed.append(criterion.radio_group_id)
+                elif question_range == 1:
+                    if float(question_text) <= float(answer):
+                        pass_counter += 1
+                        if criterion.radio_group_id is not None:
+                            radio_groups_passed.append(criterion.radio_group_id)
+                elif question_range == 2:
+                    if float(question_text) < float(answer):
+                        pass_counter += 1
+                        if criterion.radio_group_id is not None:
+                            radio_groups_passed.append(criterion.radio_group_id)
 
     if pass_counter == number_of_criteria or number_of_criteria == 0:
         return True
@@ -255,9 +269,11 @@ def create_example_data():
                                           activity=Activity.objects.get(id=6),
                                           question=Question.objects.get(id=4),
                                           question_text="10",
-                                          range=-2)
+                                          range=-2,
+                                          radio_group_id=1)
     criterion7 = Criterion.objects.create(id=7,
                                           activity=Activity.objects.get(id=6),
                                           question=Question.objects.get(id=5),
                                           question_text="5",
-                                          range=2)
+                                          range=2,
+                                          radio_group_id=1)
