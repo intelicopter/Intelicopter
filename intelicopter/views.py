@@ -36,8 +36,11 @@ def process_answer(request):
         answers_in_string = request.POST['answers']  # will be in array format
     except:
         # if first time, initialise data
-        data_in_string = '{"0":null}'
-        answers_in_string = ''
+        if data_in_string is None:
+            data_in_string = '{"0":null}'
+            answers_in_string = ''
+        else:
+            error_message = "Please select the option(s) below."
 
     # convert JSON to dictionary
     data = json.loads(data_in_string)
@@ -101,8 +104,7 @@ def process_answer(request):
                                              'type':latest_question_type,
                                              'question':latest_question_text,
                                              'options':latest_options,
-                                             "answers_in_string":answers_in_string,
-                                             "data_in_string":data_in_string,
+                                             "error_message":error_message,
                                              "highest_question_number":highest_question_number,
                                              "questions_left":questions_left})
 
