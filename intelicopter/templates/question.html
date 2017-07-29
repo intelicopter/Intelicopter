@@ -40,9 +40,15 @@
 <div class="page-header">
       <h2 align="center">Intelicopter</h2>
 </div>
+
+<div>
 <form>
 {% csrf_token %}
 <p id="demo"></p>
+<input id="data" type="hidden" name="data" value="{{data_in_string}}">
+</form>
+</div>
+
 <script>
 var theoptions = {{ options|safe }};
 var text = "";
@@ -51,16 +57,14 @@ text += "<div class='btn-group-vertical' data-toggle='buttons'>";
 for (i = 0; i < theoptions.length; i++) {
     text += "<label class='btn btn-default btn-sm btn-responsive'><input align='center' type='radio' autocomplete='off' name = 'answers' value='"+theoptions[i]+"'> <span style='font-size:40px;'>"+ theoptions[i]+ "</span></label>"
 }
-text += "<button class='btn btn-default btn-sm btn-responsive btn-submit' name='submit' type='submit' action='/question/' method='post'> <span style='font-size:40px;'>Next</span></button>"
 text += "<div>";
+text += "<button class='btn btn-default btn-sm btn-responsive btn-submit' name='submit' type='submit' action='/question/' method='post'> <span style='font-size:40px;'>Next</span></button>"
 document.getElementById("demo").innerHTML = text;
 </script>
 
 <br>
 
-<input id="data" type="hidden" name="data" value="{{data_in_string}}">
 
-</form>
 
 
 
