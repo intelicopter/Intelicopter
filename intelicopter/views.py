@@ -88,7 +88,7 @@ def process_answer(request):
         latest_options.append(options.option_text)
     latest_options = json.dumps(latest_options) # to be able to use in template Javascript
 
-    latest_question_type = latest_options.question_type
+    latest_question_type = latest_question.question_type
 
     # converting to string format to send to template
     if len(data) > 0:
