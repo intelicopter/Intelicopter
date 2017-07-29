@@ -87,7 +87,6 @@
     <form action="/questions/" method="post">
         {% csrf_token %}
         <p id="errorMessage"></p>
-{#        <p id="options"></p>#}
         <input id="data" type="hidden" name="data" value="{{ data_in_string }}">
 
         <br>
