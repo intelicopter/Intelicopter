@@ -150,7 +150,7 @@ def get_relevant_activities(request, data):
 def check_activity_relevance(data, activity):
     criteria = Criterion.objects.filter(activity=activity)
     number_of_criteria_without_radio_group = Criterion.objects.filter(activity=activity).filter(radio_group_id=None).count()
-    number_of_radio_groups = Criterion.objects.all().aggregate(Max('radio_group_id'))['radio_group_id__max']
+    number_of_radio_groups = Criterion.objects.filter(activity=activity).aggregate(Max('radio_group_id'))['radio_group_id__max']
     number_of_criteria = number_of_criteria_without_radio_group + number_of_radio_groups
     radio_groups_passed = []
     pass_counter = 0
@@ -167,27 +167,27 @@ def check_activity_relevance(data, activity):
                     if question_text == answer:
                         pass_counter += 1
                         if criterion.radio_group_id is not None:
-                            radio_groups_passed.append(criterion.radio_group_id)
+                            radio_groups_passed.append(radio_group_id)
                 elif question_range == -2:
                     if float(question_text) > float(answer):
                         pass_counter += 1
                         if criterion.radio_group_id is not None:
-                            radio_groups_passed.append(criterion.radio_group_id)
+                            radio_groups_passed.append(radio_group_id)
                 elif question_range == -1:
                     if float(question_text) >= float(answer):
                         pass_counter += 1
                         if criterion.radio_group_id is not None:
-                            radio_groups_passed.append(criterion.radio_group_id)
+                            radio_groups_passed.append(radio_group_id)
                 elif question_range == 1:
                     if float(question_text) <= float(answer):
                         pass_counter += 1
                         if criterion.radio_group_id is not None:
-                            radio_groups_passed.append(criterion.radio_group_id)
+                            radio_groups_passed.append(radio_group_id)
                 elif question_range == 2:
                     if float(question_text) < float(answer):
                         pass_counter += 1
                         if criterion.radio_group_id is not None:
-                            radio_groups_passed.append(criterion.radio_group_id)
+                            radio_groups_passed.append(radio_group_id)
 
     if pass_counter == number_of_criteria or number_of_criteria == 0:
         return True
