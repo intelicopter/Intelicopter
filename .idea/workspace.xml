@@ -66,8 +66,8 @@
       <file leaf-file-name="question.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/intelicopter/templates/question.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="672">
-              <caret line="64" column="188" lean-forward="false" selection-start-line="64" selection-start-column="188" selection-end-line="64" selection-end-column="188" />
+            <state relative-caret-position="504">
+              <caret line="48" column="6" lean-forward="true" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#button#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -78,8 +78,8 @@
       <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/intelicopter/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="23" column="145" lean-forward="false" selection-start-line="23" selection-start-column="97" selection-end-line="23" selection-end-column="145" />
+            <state relative-caret-position="504">
+              <caret line="24" column="59" lean-forward="true" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
               <folding>
                 <element signature="n#style#0;n#button#0;n#a#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#button#0;n#a#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -942,23 +942,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/intelicopter/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="24" column="59" lean-forward="true" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#a#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#button#0;n#a#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/intelicopter/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="840">
           <caret line="96" column="39" lean-forward="true" selection-start-line="96" selection-start-column="39" selection-end-line="96" selection-end-column="39" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/intelicopter/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="23" column="145" lean-forward="false" selection-start-line="23" selection-start-column="97" selection-end-line="23" selection-end-column="145" />
-          <folding>
-            <element signature="n#style#0;n#button#0;n#a#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#button#0;n#a#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -973,8 +973,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/intelicopter/templates/question.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="64" column="188" lean-forward="false" selection-start-line="64" selection-start-column="188" selection-end-line="64" selection-end-column="188" />
+        <state relative-caret-position="504">
+          <caret line="48" column="6" lean-forward="true" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
           <folding>
             <element signature="n#style#0;n#span#0;n#button#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
