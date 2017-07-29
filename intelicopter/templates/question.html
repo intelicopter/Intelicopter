@@ -48,7 +48,7 @@
 <p id="demo"></p>
 <input id="data" type="hidden" name="data" value="{{data_in_string}}">
 
-    <div class="row">
+    <div class="row text-center">
         <button type='submit' class='btn btn-default btn-sm btn-responsive' name='submit'> <span style='font-size:40px;'>Next</span></button>
 </div>
 
@@ -60,7 +60,7 @@
 var theoptions = {{ options|safe }};
 var text = "";
 var i;
-text += "<div class='row' data-toggle='buttons'>";
+text += "<div class='row text-center' data-toggle='buttons'>";
 for (i = 0; i < theoptions.length; i++) {
     text += "<label class='btn btn-default btn-sm btn-responsive'><input align='center' type='radio' autocomplete='off' name = 'answers' value='"+theoptions[i]+"'> <span style='font-size:40px;'>"+ theoptions[i]+ "</span></label>"
 }
