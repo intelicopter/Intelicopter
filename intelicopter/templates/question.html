@@ -87,7 +87,7 @@
     <form action="/questions/" method="post">
         {% csrf_token %}
         <p id="errorMessage"></p>
-        <p id="options"></p>
+{#        <p id="options"></p>#}
         <input id="data" type="hidden" name="data" value="{{ data_in_string }}">
 
         <br>
@@ -131,15 +131,15 @@
 
 </script>
 
-<script>
-    var errorMesssage = {{error_message|safe}};
-    if (errorMesssage.length > 0){
-        text += "<div class='row'>";
-        text += "<div class='alert alert-warning' style='font-size:30px'> <strong>Warning!</strong>"+errorMesssage+"</div>";
-        text += "<div>";
-    }
-    document.getElementById("errorMessage").innerHTML = text;
-</script>
+{#<script>#}
+{#    var errorMesssage = {{error_message|safe}};#}
+{#    if (errorMesssage.length > 0){#}
+{#        text += "<div class='row'>";#}
+{#        text += "<div class='alert alert-warning' style='font-size:30px'> <strong>Warning!</strong>"+errorMesssage+"</div>";#}
+{#        text += "<div>";#}
+{#    }#}
+{#    document.getElementById("errorMessage").innerHTML = text;#}
+{#</script>#}
 
 {#    <br> {##}
 {##}
