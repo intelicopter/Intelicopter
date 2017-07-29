@@ -26,6 +26,7 @@
     .container {
         background-color: white;
         height: 100%;
+        width: 100%;
     }
 
     .btn {
@@ -71,9 +72,9 @@
         </div>
     </nav>
 
-    <div class="row" style="padding-left:20px">
+    <div class="row" style="padding-left:45px">
         <span style='font-size:60px;'>{{ question|safe }}</span>
-        <br>
+        <br><br>
     </div>
 
     <form action="/questions/" method="post">
@@ -81,9 +82,10 @@
         <p id="demo"></p>
         <input id="data" type="hidden" name="data" value="{{ data_in_string }}">
 
-        <div class="row text-center">
+        <br>
+        <div class="row text-right">
             <button type='submit' class='btn btn-default btn-sm btn-responsive' name='submit'><span
-                    style='font-size:40px;'>Next</span></button>
+                    style='font-size:40px;padding-right:20px'>Next</span></button>
         </div>
 
     </form>
@@ -109,11 +111,11 @@
         text += "<div>";
     } else if (type == 3) {
         text += "<div class='row'>";
-        text += "<input class='btn btn-default btn-sm btn-responsive' type='text' autocomplete='off' name = 'answers' value='Type Here'></input>";
+        text += "<input class='btn btn-default btn-sm btn-responsive' type='text' autocomplete='off' name = 'answers' placeholder='Type/Click Here' value=''></input>";
         text += "<div>";
     } else if (type == 4) {
         text += "<div class='row'>";
-        text += "<input class='btn btn-default btn-sm btn-responsive' type='number' autocomplete='off' name = 'answers' value='Type Here'></input>";
+        text += "<input class='btn btn-default btn-sm btn-responsive' type='number' autocomplete='off' name = 'answers' placeholder='Type/Click Here' value=''></input>";
         text += "<div>";
     }
 
