@@ -16,13 +16,6 @@
   "space main space"
   "space bottom space"
 }
-.main-column{
-    position: relative;
-    height: 200px;
-    width: 400px;
-    margin: -100px 0 0 -200px;
-    left: 50%;
-}
 .btn-group-vertical{
   grid-column-start: 2;
   grid-column-end: 2;
@@ -60,7 +53,6 @@
       <h2 align="center">Intelicopter</h2>
 </div>
 
-<div class='main-column'>
 <form action="/questions/" method="post">
 {% csrf_token %}
 <p id="demo"></p>
@@ -69,7 +61,6 @@
 <button type='submit' class='btn btn-default btn-sm btn-responsive btn-submit' name='submit'> <span style='font-size:40px;'>Next</span></button>
 
 </form>
-</div>
 
 </div>
 
