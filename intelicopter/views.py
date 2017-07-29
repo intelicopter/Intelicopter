@@ -207,7 +207,7 @@ def create_example_data():
     qn2 = Question.objects.create(id=2, text="Are you pregnant?", question_type=1)
     qn3 = Question.objects.create(id=3, text="Are you employed?", question_type=1)
     qn4 = Question.objects.create(id=4, text="What is your income?", question_type=4)
-    qn5 = Question.objects.create(id=4, text="How many kids do you have?", question_type=4)
+    qn5 = Question.objects.create(id=5, text="How many kids do you have?", question_type=4)
 
     option1 = Option.objects.create(id=1, question=qn1, option_text="Male")
     option2 = Option.objects.create(id=2, question=qn1, option_text="Female")
