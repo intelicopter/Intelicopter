@@ -7,9 +7,14 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <style>
+
   html,
   body {
     height: 100%;
+  }
+
+  body {
+      padding-top: 100px;
   }
 
   label {
@@ -21,10 +26,6 @@
     background-color: white;
     height: 100%;
   }
-
-  .page-header {}
-
-  .btn-group-vertical {}
 
   .btn {
     border-radius: 0 !important;
@@ -62,11 +63,11 @@
     <div class="container">
 
 
-      <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-          <a class="navbar-brand" href="/">Intelicopter</a>
-        </div>
-      </nav>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/" style='font-size:40px; padding-top: 25px; padding-bottom: 40px;'>Intelicopter</a>
+      </div>
+    </nav>
 
       <div class="row" style="padding-left:20px">
         <span style='font-size:60px;'>{{ question|safe }}</span>
@@ -99,25 +100,25 @@
 
     </script>
 
-    <br> {#
-
-    <br>#} {##} {#
-    <form action="/questions/" method="post">{% csrf_token %}#} {#
-      <label for="answers">Choice</label>#} {#
-      <input id="answers2" type="text" name="answers" value="">#} {#
-      <input id="data" type="hidden" name="data" value="{{data_in_string}}">#} {#
-      <input type="submit" value="Submit">#} {#
-    </form>#} {##} {#
-    <br>#} {##} {#
-    <div>#} {# {{ data_in_string| safe }}#} {#
-      <br>#} {#{{ data| safe }}#} {#
-      <br>#} {#{{ answers_in_string|safe }}#} {#
-      <br>#} {#{{ highest_question_number|safe }}#} {#
-      <br>#} {#{{ question|safe }}#} {#
-      <br>#} {#Choose one:
-      <br>#} {#{{ options|safe }}
-      <br>#} {##} {# Questions left: {{ questions_left| safe }}#} {##} {#
-    </div>#}
+{#    <br> {##}
+{##}
+{#    <br>#} {##} {##}
+{#    <form action="/questions/" method="post">{% csrf_token %}#} {##}
+{#      <label for="answers">Choice</label>#} {##}
+{#      <input id="answers2" type="text" name="answers" value="">#} {##}
+{#      <input id="data" type="hidden" name="data" value="{{data_in_string}}">#} {##}
+{#      <input type="submit" value="Submit">#} {##}
+{#    </form>#} {##} {##}
+{#    <br>#} {##} {##}
+{#    <div>#} {# {{ data_in_string| safe }}#} {##}
+{#      <br>#} {#{{ data| safe }}#} {##}
+{#      <br>#} {#{{ answers_in_string|safe }}#} {##}
+{#      <br>#} {#{{ highest_question_number|safe }}#} {##}
+{#      <br>#} {#{{ question|safe }}#} {##}
+{#      <br>#} {#Choose one:#}
+{#      <br>#} {#{{ options|safe }}#}
+{#      <br>#} {##} {# Questions left: {{ questions_left| safe }}#} {##} {##}
+{#    </div>#}
 
 
 
