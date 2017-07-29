@@ -196,7 +196,6 @@ def check_activity_relevance(data, activity):
 
 
 def create_example_data():
-    return True
     Question.objects.all().delete()
     Option.objects.all().delete()
     Trigger.objects.all().delete()
