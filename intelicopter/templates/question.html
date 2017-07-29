@@ -8,22 +8,27 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <style>
+
     html,
     body {
         height: 100%;
     }
+
     body {
         padding-top: 65px;
     }
+
     label {
         display: block;
         text-align: left;
     }
+
     .container {
         background-color: white;
         height: 100%;
         width: 100%;
     }
+
     .btn {
         border-radius: 0 !important;
         height: 140px;
@@ -36,20 +41,24 @@
         border-bottom: #2e9aff 1px solid;
         font-size:40px;
     }
+
     .btn:hover {
         border: solid #2e9aff 1px;
         background-color: #b5dcff;
     }
+
     .btn:active {
         border: solid #2e9aff 1px;
         background-color: #478eff;
     }
+
     .submit {
         width: 35%;
         border: #2e9aff 1px solid;
         margin-right: 20px;
         padding-left: 0px;
     }
+
 </style>
 
 
@@ -77,7 +86,7 @@
 
     <form action="/questions/" method="post">
         {% csrf_token %}
-        <p id="errorMessage"></p>
+        <p id="demo"></p>
         <input id="data" type="hidden" name="data" value="{{ data_in_string }}">
 
         <br>
@@ -91,8 +100,10 @@
 </div>
 
 <script>
+
     var type = {{type|safe}};
     var text = "";
+
     if (type < 3) {
         var radiocheckbox = "radio";
         if (type == 2){
@@ -114,18 +125,11 @@
         text += "<input class='btn btn-default btn-sm btn-responsive' type='number' autocomplete='off' name = 'answers' placeholder='Type/Click Here' value=''></input>";
         text += "<div>";
     }
-    document.getElementById("options").innerHTML = text;
+
+    document.getElementById("demo").innerHTML = text;
+
 </script>
 
-{#<script>#}
-{#    var errorMesssage = {{error_message|safe}};#}
-{#    if (errorMesssage.length > 0){#}
-{#        text += "<div class='row'>";#}
-{#        text += "<div class='alert alert-warning' style='font-size:30px'> <strong>Warning!</strong>"+errorMesssage+"</div>";#}
-{#        text += "<div>";#}
-{#    }#}
-{#    document.getElementById("errorMessage").innerHTML = text;#}
-{#</script>#}
 {#    <br> {##}
 {##}
 {#    <br>#} {##} {##}
@@ -145,5 +149,8 @@
 {#      <br>#} {#{{ options|safe }}#}
 {#      <br>#} {##} {# Questions left: {{ questions_left| safe }}#} {##} {##}
 {#    </div>#}
+
+
 </body>
+
 </html>
