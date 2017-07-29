@@ -19,12 +19,12 @@
 .btn-group-vertical{
   grid-column-start: 2;
   grid-column-end: 2;
-  grid-row-start: 2;
+  grid-row-start: 1;
+    grid-row-end: 2;
 }
 .btn{
    border: solid #2e9aff 1.5px;
    height: 70px;
-   width: 50%;
    background-color: white;
 }
 .btn:hover{
@@ -38,6 +38,10 @@
 .btn-submit{
     position: absolute;
    float: bottom;
+    grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 2;
+    grid-row-end: 3;
 }
 </style>
 
@@ -58,7 +62,7 @@
 <p id="demo"></p>
 <input id="data" type="hidden" name="data" value="{{data_in_string}}">
 
-<button type='submit' class='btn btn-default btn-sm btn-responsive btn-submit' name='submit'> <span style='font-size:40px;'>Next</span></button>
+<button type='submit' class='btn-submit btn btn-default btn-sm btn-responsive' name='submit'> <span style='font-size:40px;'>Next</span></button>
 
 </form>
 
