@@ -1,4 +1,5 @@
 import json
+import os
 import csv
 from django.shortcuts import render
 from django.db.models import Max
@@ -198,7 +199,8 @@ def check_activity_relevance(data, activity):
 
 def get_csv_data(filename):
     data = []
-    with open(filename + '.csv', 'rb') as f:
+    workpath = os.path.dirname(os.path.abspath(__file__))
+    with open(os.path.join(workpath, filename + '.csv'), 'rb') as f:
         reader = csv.reader(f)
         for row in reader:
             data.append(row)
