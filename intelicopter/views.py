@@ -1,12 +1,9 @@
 import json
-import unicodedata
-
-from django.shortcuts import render, redirect
+import csv
+from django.shortcuts import render
 from django.db.models import Max
 from models import Question, Option, Trigger, Group, Activity, Criterion
 
-
-# Create your views here.
 
 def home(request):
     create_example_data()
@@ -196,6 +193,90 @@ def check_activity_relevance(data, activity):
         return True
     else:
         return False
+
+
+def get_csv_data(filename):
+    data = []
+    with open('filename' + '.csv', 'rb') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            data.append(row)
+    data.pop(0)  # to remove the first row, which is the heading
+    return data
+
+
+def refresh_database():
+    # clear database
+    Question.objects.all().delete()
+    Option.objects.all().delete()
+    Trigger.objects.all().delete()
+    Group.objects.all().delete()
+    Activity.objects.all().delete()
+    Criterion.objects.all().delete()
+
+    # question
+    data = get_csv_data("question")
+    for row in data:
+        Question.objects.create(id=int(row[0]),
+                                text=row[1],
+                                question_type=int(row[2]))
+
+    # option
+    data = get_csv_data("option")
+    for row in data:
+        Option.objects.create(id=int(row[0]),
+                              question=Question.objects.get(id=int(row[1])),
+                              option_text=row[2])
+
+    # trigger
+    data = get_csv_data("trigger")
+    for row in data:
+        Trigger.objects.create(id=int(row[0]),
+                               question=Question.objects.get(id=int(row[1])),
+                               trigger_question=Question.objects.get(id=int(row[2])),
+                               trigger_text=row[3])
+
+    # group
+    data = get_csv_data("group")
+    for row in data:
+        Group.objects.create(id=int(row[0]),
+                             name=row[1],
+                             description=row[2],
+                             address=row[3],
+                             postal_code=row[4],
+                             contact_name=row[5],
+                             contact_number=row[6],
+                             contact_email=row[7])
+
+    # activity
+    data = get_csv_data("activity")
+    for row in data:
+        Group.objects.create(id=int(row[0]),
+                             group=Group.objects.get(id=int(row[1])),
+                             name=row[2],
+                             description=row[3],
+                             address=row[4],
+                             postal_code=row[5],
+                             contact_name=row[6],
+                             contact_number=row[7],
+                             contact_email=row[8])
+
+    # criterion
+    data = get_csv_data("criterion")
+    for row in data:
+        range_value = row[4]
+        radio_group_id_value = row[5]
+        if range_value is "":
+            range_value = None
+        if radio_group_id_value is "":
+            radio_group_id_value = None
+
+        Criterion.objects.create(id=int(row[0]),
+                                 activity=Activity.objects.get(id=int(row[1])),
+                                 question=Question.objects.get(id=int(row[2])),
+                                 question_text=row[3],
+                                 range=range_value,
+                                 radio_group_id=radio_group_id_value)
 
 
 def create_example_data():
