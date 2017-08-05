@@ -198,7 +198,7 @@ def check_activity_relevance(data, activity):
 
 def get_csv_data(filename):
     data = []
-    with open('filename' + '.csv', 'rb') as f:
+    with open(filename + '.csv', 'rb') as f:
         reader = csv.reader(f)
         for row in reader:
             data.append(row)
