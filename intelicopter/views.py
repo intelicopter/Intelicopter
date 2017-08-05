@@ -263,9 +263,6 @@ def refresh_database():
                              contact_number=row[7],
                              contact_email=row[8])
 
-
-    time.sleep(3)
-
     # criterion
     data = get_csv_data("criterion")
     for row in data:
