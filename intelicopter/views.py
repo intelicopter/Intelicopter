@@ -254,7 +254,7 @@ def refresh_database():
     # activity
     data = get_csv_data("activity")
     for row in data:
-        Group.objects.create(id=int(row[0]),
+        Activity.objects.create(id=int(row[0]),
                              group=Group.objects.get(id=int(row[1])),
                              name=row[2],
                              description=row[3],
