@@ -6,7 +6,8 @@ from models import Question, Option, Trigger, Group, Activity, Criterion
 
 
 def home(request):
-    create_example_data()
+    #create_example_data()
+    refresh_database()
     return render(request, 'home.html', {})
 
 
