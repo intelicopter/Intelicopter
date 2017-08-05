@@ -158,7 +158,7 @@ def check_activity_relevance(data, activity):
     radio_groups_passed = []
     pass_counter = 0
     for criterion in criteria:
-        if (criterion.radio_group_id is None) or (criterion.radio_group_id is not None and criterion.radio_group_id not in []):
+        if (criterion.radio_group_id is None) or (criterion.radio_group_id is not None and criterion.radio_group_id not in radio_groups_passed):
             question_number = criterion.question.id
             question_text = criterion.question_text
             question_range = criterion.range
