@@ -1,5 +1,4 @@
-import json
-import os
+import json, time, os
 import csv
 from django.shortcuts import render
 from django.db.models import Max
@@ -263,6 +262,9 @@ def refresh_database():
                              contact_name=row[6],
                              contact_number=row[7],
                              contact_email=row[8])
+
+
+    time.sleep(3)
 
     # criterion
     data = get_csv_data("criterion")
