@@ -1,6 +1,6 @@
 id,group,name,description,address,postal code,contact name,contact number,contact email
-1,1,Males Only Activity,,,,,,
-2,1,Pregnant Only Activity,,,,,,
-3,1,Everyone's Activity,,,,,,
-4,1,PoorerThan10 Activity,,,,,,
-5,1,PoorerThan10ORMoreThan5kids Activity,,,,,,
+1,1,Males Only Activity,,,,,,,
+2,1,Pregnant Only Activity,,,,,,,
+3,1,Everyone's Activity,,,,,,,
+4,1,PoorerThan10 Activity,,,,,,,
+5,1,PoorerThan10ORMoreThan5kids Activity,,,,,,,
