@@ -82,12 +82,25 @@ WSGI_APPLICATION = 'intelicopter.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd26dhdn2if2083',
+        'USER': 'emkmkloholyuvp',
+        'PASSWORD': '63ec9874e4aaf5931d0501f7bdee36d49edc0584cf1a5715b95fd85ab7281f2d',
+        'HOST': 'ec2-54-163-246-154.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
