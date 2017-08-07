@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ef00ca30-af2e-4e70-8464-72371a2ad00a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/intelicopter/migrations/0001_initial.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intelicopter/settings.py" afterPath="$PROJECT_DIR$/intelicopter/settings.py" />
-    </list>
+    <list default="true" id="ef00ca30-af2e-4e70-8464-72371a2ad00a" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -462,7 +459,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="29" width="1938" height="1060" extended-state="6" />
+    <frame x="-9" y="29" width="1938" height="1060" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1921875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
