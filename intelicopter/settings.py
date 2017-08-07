@@ -93,10 +93,10 @@ WSGI_APPLICATION = 'intelicopter.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd26dhdn2if2083',
-        'USER': 'emkmkloholyuvp',
-        'PASSWORD': '63ec9874e4aaf5931d0501f7bdee36d49edc0584cf1a5715b95fd85ab7281f2d',
-        'HOST': 'ec2-54-163-246-154.compute-1.amazonaws.com',
+        'NAME': 'davkbftpdt8hvn',
+        'USER': 'abnzfppeqlpunq',
+        'PASSWORD': '0660f886c100c786a4cfbe8af5425543aa8e50f60e81f87c65a2fb49d1bf5998',
+        'HOST': 'ec2-54-221-220-82.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
