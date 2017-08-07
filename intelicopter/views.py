@@ -7,7 +7,7 @@ from models import Question, Option, Trigger, Group, Activity, Criterion
 
 def home(request):
     #create_example_data()
-    refresh_database()
+    #refresh_database()
     return render(request, 'home.html', {})
 
 
@@ -93,7 +93,8 @@ def process_answer(request):
         data_in_string = json.dumps(data)
 
     # get number of questions answered at the moment for question number feature.
-    questions_left = Question.objects.count() - (highest_question_number + next_question_tracker) + 1
+    total_number_of_questions = Question.objects.count()
+    percentage_completed = (highest_question_number/total_number_of_questions)*100
 
     return render(request, 'question.html', {'data':data,
                                              'type':latest_question_type,
@@ -102,7 +103,7 @@ def process_answer(request):
                                              "answers_in_string":answers_in_string,
                                              "data_in_string":data_in_string,
                                              "highest_question_number":highest_question_number,
-                                             "questions_left":questions_left})
+                                             "percentage_completed":percentage_completed})
 
 
 def check_if_triggered(question, data):
