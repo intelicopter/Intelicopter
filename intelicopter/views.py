@@ -94,7 +94,7 @@ def process_answer(request):
 
     # get number of questions answered at the moment for question number feature.
     total_number_of_questions = Question.objects.count()
-    percentage_completed = (highest_question_number/total_number_of_questions)*100
+    percentage_completed = int((highest_question_number*1.0/total_number_of_questions)*100)
 
     return render(request, 'question.html', {'data':data,
                                              'type':latest_question_type,
@@ -103,7 +103,7 @@ def process_answer(request):
                                              "answers_in_string":answers_in_string,
                                              "data_in_string":data_in_string,
                                              "highest_question_number":highest_question_number,
-                                             "percentage_completed":8})
+                                             "percentage_completed":percentage_completed})
 
 
 def check_if_triggered(question, data):
