@@ -103,7 +103,7 @@ def process_answer(request):
                                              "answers_in_string":answers_in_string,
                                              "data_in_string":data_in_string,
                                              "highest_question_number":highest_question_number,
-                                             "percentage_completed":percentage_completed})
+                                             "percentage_completed":8})
 
 
 def check_if_triggered(question, data):
