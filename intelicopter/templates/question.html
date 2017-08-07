@@ -83,6 +83,14 @@
         </div>
     </nav>
 
+    <div class="row progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="{{ percentage_completed|safe }}" aria-valuemin="0" aria-valuemax="100"
+             style="min-width: 2em; width: {{ percentage_completed|safe }}%;">
+            {{ percentage_completed|safe }}%
+        </div>
+    </div>
+
+
     <div class="row" style="padding-left:45px">
         <span style='font-size:60px;'>{{ question|safe }}</span>
         <br><br>
@@ -100,13 +108,6 @@
         </div>
 
     </form>
-
-    <div class="row progress">
-        <div class="progress-bar" role="progressbar" aria-valuenow="{{ percentage_completed|safe }}" aria-valuemin="0" aria-valuemax="100"
-             style="min-width: 2em; width: {{ percentage_completed|safe }}%;">
-            {{ percentage_completed|safe }}%
-        </div>
-    </div>
 
 
 </div>
