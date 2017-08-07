@@ -33,9 +33,13 @@ def process_answer(request):
         data_in_string = request.POST['data']  # will be in JSON format shown above
         answers_in_string = request.POST['answers']  # will be in array format
     except:
-        # if first time, initialise data
-        data_in_string = '{"0":null}'
-        answers_in_string = ''
+        try:
+            data_in_string = request.POST['data']  # will be in JSON format shown above
+            answers_in_string = ''
+        except:
+            # if first time, initialise data
+            data_in_string = '{"0":null}'
+            answers_in_string = ''
 
     # convert JSON to dictionary
     data = json.loads(data_in_string)
