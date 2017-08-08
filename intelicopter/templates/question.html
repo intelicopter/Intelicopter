@@ -136,6 +136,7 @@
             radiocheckbox = "checkbox";
             noneOfTheAboveButton += "<form action='/questions/' method='post'>" +
                 "{% csrf_token %}" +
+                "<input id='data' type='hidden' name='data' value='{{ data_in_string }}'>" +
                 "<input id='data' type='hidden' name='answers' value='None of the above'>" +
                 "<div class='row'><button type='submit' class='btn btn-default btn-sm btn-responsive pull-right submit' style='text-align: center' name='submit'><spanstyle='font-size:40px;'>None of the above</span></button></div>" +
                 "</form>"
