@@ -33,9 +33,14 @@ def process_answer(request):
         data_in_string = request.POST['data']  # will be in JSON format shown above
         answers_in_string = request.POST['answers']  # will be in array format
     except:
-        # if first time, initialise data
-        data_in_string = '{"0":null}'
-        answers_in_string = ''
+        try:
+            # this is for non-answers
+            data_in_string = request.POST['data']  # will be in JSON format shown above
+            answers_in_string = ''
+        except:
+            # if first time, initialise data
+            data_in_string = '{"0":null}'
+            answers_in_string = ''
 
     # convert JSON to dictionary
     data = json.loads(data_in_string)
@@ -43,7 +48,6 @@ def process_answer(request):
     highest_question_number = 0
     answers = []
     if len(answers_in_string) > 0:
-        #answers = answers_in_string.split(",")
         answers = request.POST.getlist('answers')
 
     if len(data) > 0:
@@ -58,27 +62,26 @@ def process_answer(request):
     # get latest question object
     next_question_tracker = 1
 
-
     # check if last question
     try:
         latest_question = Question.objects.get(id=highest_question_number+next_question_tracker)
     except:
-        # return render(request, 'results.html', {})
-        # return redirect(get_relevant_activities, request=request, data=data)
-        return get_relevant_activities(request, data)  # future development
+        # means there are no more questions
+        return get_relevant_activities(request, data)
 
     # if not triggered, go to the next question
     while not check_if_triggered(latest_question, data):
+        # to insert a "skip" entry into the data
         data[unicode(str(highest_question_number+next_question_tracker), "utf-8")] = "skip".split()
         next_question_tracker += 1
         try:
             latest_question = Question.objects.get(id=highest_question_number + next_question_tracker)
         except:
-            #return render(request, 'results.html', {})
-            #return redirect(get_relevant_activities, request=request, data=data)
-            return get_relevant_activities(request, data)  # future development
+            # means there are no more questions
+            return get_relevant_activities(request, data)
 
     latest_question_text = latest_question.text
+    latest_question_type = latest_question.question_type
 
     # get the options for the latest question
     latest_options = []
@@ -86,14 +89,13 @@ def process_answer(request):
         latest_options.append(options.option_text)
     latest_options = json.dumps(latest_options) # to be able to use in template Javascript
 
-    latest_question_type = latest_question.question_type
-
     # converting to string format to send to template
     if len(data) > 0:
         data_in_string = json.dumps(data)
 
-    # get number of questions answered at the moment for question number feature.
-    questions_left = Question.objects.count() - (highest_question_number + next_question_tracker) + 1
+    # get percentage completed for progress bar feature
+    total_number_of_questions = Question.objects.count()
+    percentage_completed = int((highest_question_number*1.0/total_number_of_questions)*100)
 
     return render(request, 'question.html', {'data':data,
                                              'type':latest_question_type,
@@ -102,7 +104,7 @@ def process_answer(request):
                                              "answers_in_string":answers_in_string,
                                              "data_in_string":data_in_string,
                                              "highest_question_number":highest_question_number,
-                                             "questions_left":questions_left})
+                                             "percentage_completed":percentage_completed})
 
 
 def check_if_triggered(question, data):
@@ -115,10 +117,7 @@ def check_if_triggered(question, data):
         if trigger_question_id in data:
             if trigger.trigger_text.encode('UTF-8') not in data[trigger_question_id]:
                 return False
-    
-    # for every trigger, find if key exist in data, if not found, break loop and return false
-    # if found, compare if lists are the same, if not same, return false
-    # return true at the end of loop
+
     return True
     
     
@@ -131,29 +130,27 @@ def get_relevant_activities(request, data):
     activities = Activity.objects.all()
     activities_number = Activity.objects.all().count()
 
-    # debugging
-    numpass = []
-
     for activity in activities:
-        numpass.append(check_activity_relevance(data, activity))
         if check_activity_relevance(data, activity):
             relevant_activities.append(activity.name)
         activities_checked += 1
 
     return render(request, 'results.html', {"activities_number": activities_number,
-                                            "activities_checked": numpass,
                                             "relevant_activities": relevant_activities})
 
 
 def check_activity_relevance(data, activity):
     criteria = Criterion.objects.filter(activity=activity)
+
+    # add the number of criteria without radio group to the number of radio groups to get the total number of "passes" needed
     number_of_criteria_without_radio_group = Criterion.objects.filter(activity=activity).filter(radio_group_id=None).count()
     number_of_radio_groups = Criterion.objects.filter(activity=activity).aggregate(Max('radio_group_id'))['radio_group_id__max']
     if number_of_radio_groups is not None:
         number_of_criteria = number_of_criteria_without_radio_group + number_of_radio_groups
     else:
         number_of_criteria = number_of_criteria_without_radio_group
-    radio_groups_passed = []
+
+    radio_groups_passed = [] # to insert radio group numbers to check so that there is no double counting of "passes" from the same radio group
     pass_counter = 0
     for criterion in criteria:
         if (criterion.radio_group_id is None) or (criterion.radio_group_id is not None and criterion.radio_group_id not in radio_groups_passed):
@@ -163,7 +160,7 @@ def check_activity_relevance(data, activity):
             radio_group_id = criterion.radio_group_id
             for answer in data[unicode(str(question_number), "utf-8")]:
                 if answer == unicode(str("skip"), "utf-8"):
-                    return False
+                    return False # returns false because if a qn is not answered, then the activity that requires it does not pass
                 elif question_range is None:
                     if question_text == answer:
                         pass_counter += 1
