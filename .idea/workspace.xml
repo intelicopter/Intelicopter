@@ -52,8 +52,8 @@
       <file leaf-file-name="admin.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/intelicopter/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+            <state relative-caret-position="168">
+              <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -825,8 +825,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/intelicopter/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+        <state relative-caret-position="168">
+          <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
