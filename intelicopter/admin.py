@@ -11,4 +11,4 @@ class QuestionAdmin(admin.ModelAdmin):
         OptionInline,
     ]
 
-admin.site.register(Question, OptionInline, QuestionAdmin)
+admin.site.register(Question, Option, OptionInline, QuestionAdmin)
