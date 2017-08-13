@@ -12,4 +12,4 @@ class QuestionAdmin(admin.ModelAdmin):
     ]
 
 admin.site.register(Question)
-admin.site.register(Option, OptionInline, QuestionAdmin)
+admin.site.register(Option, QuestionAdmin)
