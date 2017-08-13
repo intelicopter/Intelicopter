@@ -11,13 +11,8 @@ class MyInline(models.BaseInlineFormSet):
 class OptionAdminInline(admin.TabularInline):
     model = Option
     exclude = ['id']
+    readonly_fields = ('option_text',)
     formset = MyInline
-
-    def has_add_permission(self, request):
-        return False
-
-    def has_change_permission(self, request, obj=None):
-        return False
 
 class QuestionAdmin(admin.ModelAdmin):
     fields = ('text', 'question_type')
