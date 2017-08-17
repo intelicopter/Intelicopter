@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef00ca30-af2e-4e70-8464-72371a2ad00a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intelicopter/views.py" afterPath="$PROJECT_DIR$/intelicopter/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intelicopter/criterion.csv" afterPath="$PROJECT_DIR$/intelicopter/criterion.csv" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
