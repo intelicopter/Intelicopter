@@ -6,6 +6,8 @@ class Question(models.Model):
     text = models.CharField(max_length=500)
     question_type = models.IntegerField()  # 1 radio, 2 checkbox, 3 textbox, 4 number
 
+    def __str__(self):
+        return str(self.id) + ") " + self.text
     class Meta:
         app_label = 'intelicopter'
 
