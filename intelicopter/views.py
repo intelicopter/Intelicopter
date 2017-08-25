@@ -245,11 +245,15 @@ def refresh_database():
     # trigger
     data = get_csv_data("trigger")
     for row in data:
+        trigger_range_value = row[4]
+        if trigger_range_value is "":
+            trigger_range_value = None
+
         Trigger.objects.create(id=int(row[0]),
                                question=Question.objects.get(id=int(row[1])),
                                trigger_question=Question.objects.get(id=int(row[2])),
                                trigger_text=row[3],
-                               trigger_range=row[4])
+                               trigger_range=trigger_range_value)
 
     # group
     data = get_csv_data("group")
