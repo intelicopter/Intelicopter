@@ -127,6 +127,9 @@ def check_if_triggered(question, data):
                 elif range_type is -1:
                     if not answer <= trigger_value:
                         return False
+                elif range_type is 0:
+                    if not answer == trigger_value:
+                        return False
                 elif range_type is 1:
                     if not answer >= trigger_value:
                         return False
