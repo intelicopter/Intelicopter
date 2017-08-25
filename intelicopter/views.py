@@ -120,7 +120,7 @@ def check_if_triggered(question, data):
             if trigger_question_id in data:
                 range_type = int(trigger.trigger_range)
                 trigger_value = float(str(trigger.trigger_text))
-                answer = float(str((data[trigger_question_id]).encode('utf-8')))
+                answer = float(str((data[trigger_question_id][0]).encode('utf-8')))
                 if range_type is -2:
                     if not answer < trigger_value:
                         return False
