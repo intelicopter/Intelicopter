@@ -206,7 +206,7 @@ def check_activity_relevance(data, activity):
                         if criterion.radio_group_id is not None:
                             radio_groups_passed.append(radio_group_id)
                 elif question_range > 2:
-                    answer_date = datetime.datetime.strptime(answer, "%d/%m/%Y")
+                    answer_date = datetime.datetime.strptime(answer, "%Y/%m/%d")
                     today_date = datetime.datetime.now()
                     difference_in_years = relativedelta(today_date, answer_date).years
                     if question_range == 3:
