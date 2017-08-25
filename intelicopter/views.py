@@ -121,14 +121,19 @@ def check_if_triggered(question, data):
                 range_type = int(trigger.trigger_range)
                 trigger_value = float(trigger.trigger_text)
                 answer = float(data[trigger_question_id])
-                if range_type is -2 and not answer < trigger_value:
-                    return False
-                elif range_type is -1 and not answer <= trigger_value:
-                    return False
-                elif range_type is 1 and not answer >= trigger_value:
-                    return True
-                elif range_type is 2 and not answer > trigger_value:
-                    return False
+                raise ValueError(str(trigger_value)+" "+str(answer))
+                if range_type is -2:
+                    if not answer < trigger_value:
+                        return False
+                elif range_type is -1:
+                    if not answer <= trigger_value:
+                        return False
+                elif range_type is 1:
+                    if not answer >= trigger_value:
+                        return False
+                elif range_type is 2:
+                    if not answer > trigger_value:
+                        return False
     return True
     
     
