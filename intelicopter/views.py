@@ -3,7 +3,7 @@ import csv
 from django.shortcuts import render
 from django.db.models import Max
 from models import Question, Option, Trigger, Group, Activity, Criterion
-from datetime import *
+import datetime
 from dateutil.relativedelta import relativedelta
 
 def home(request):
