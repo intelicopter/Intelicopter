@@ -112,7 +112,7 @@ def check_if_triggered(question, data):
 
     for trigger in triggers:
         trigger_question_id = str(trigger.trigger_question.id).encode('UTF-8')
-        if trigger.trigger_range is not None:
+        if trigger.trigger_range is None:
             if trigger_question_id in data:
                 if trigger.trigger_text.encode('UTF-8') not in data[trigger_question_id]:
                     return False
