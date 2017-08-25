@@ -7,6 +7,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/af.js"></script>
 
 
 <style>
@@ -162,6 +163,10 @@
     } else if (type == 4) {
         text += "<div class='row'>";
         text += "<input class='btn btn-default btn-sm btn-responsive' type='number' autocomplete='off' name = 'answers' placeholder='Type/Click Here' value=''></input>";
+        text += "<div>";
+    } else if (type == 5) {
+        text += "<div class='row'>";
+        text += "<input class='btn btn-default btn-sm btn-responsive' type='date' autocomplete='off' name = 'answers' placeholder='Type/Click Here' value=''></input>";
         text += "<div>";
     }
 
