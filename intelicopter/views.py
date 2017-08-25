@@ -3,7 +3,8 @@ import csv
 from django.shortcuts import render
 from django.db.models import Max
 from models import Question, Option, Trigger, Group, Activity, Criterion
-
+from datetime import *
+from dateutil.relativedelta import relativedelta
 
 def home(request):
     #create_example_data()
@@ -204,6 +205,26 @@ def check_activity_relevance(data, activity):
                         pass_counter += 1
                         if criterion.radio_group_id is not None:
                             radio_groups_passed.append(radio_group_id)
+                elif question_range > 2:
+                    answer_date = datetime.datetime.strptime(answer, "%d/%m/%Y")
+                    today_date = datetime.datetime.now()
+                    difference_in_years = relativedelta(today_date, answer_date).years
+                    if question_range == 3:
+                        if float(question_text) > difference_in_years:
+                            pass_counter += 1
+                            if criterion.radio_group_id is not None:
+                                radio_groups_passed.append(radio_group_id)
+                    elif question_range == 4:
+                        if float(question_text) == difference_in_years:
+                            pass_counter += 1
+                            if criterion.radio_group_id is not None:
+                                radio_groups_passed.append(radio_group_id)
+                    elif question_range == 5:
+                        if float(question_text) < difference_in_years:
+                            pass_counter += 1
+                            if criterion.radio_group_id is not None:
+                                radio_groups_passed.append(radio_group_id)
+
 
     if pass_counter == number_of_criteria or number_of_criteria == 0:
         return True
