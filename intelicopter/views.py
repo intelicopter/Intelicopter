@@ -110,14 +110,32 @@ def process_answer(request):
 def check_if_triggered(question, data):
     triggers = Trigger.objects.filter(question=question)
 
-    # for every trigger, insert key value pair into list k:[,,,]
-    trigger_list = {}
     for trigger in triggers:
         trigger_question_id = str(trigger.trigger_question.id).encode('UTF-8')
-        if trigger_question_id in data:
-            if trigger.trigger_text.encode('UTF-8') not in data[trigger_question_id]:
-                return False
-
+        if trigger.trigger_range is None:
+            if trigger_question_id in data:
+                if trigger.trigger_text.encode('UTF-8') not in data[trigger_question_id]:
+                    return False
+        else:
+            if trigger_question_id in data:
+                range_type = int(trigger.trigger_range)
+                trigger_value = float(str(trigger.trigger_text))
+                answer = float(str((data[trigger_question_id][0]).encode('utf-8')))
+                if range_type is -2:
+                    if not answer < trigger_value:
+                        return False
+                elif range_type is -1:
+                    if not answer <= trigger_value:
+                        return False
+                elif range_type is 0:
+                    if not answer == trigger_value:
+                        return False
+                elif range_type is 1:
+                    if not answer >= trigger_value:
+                        return False
+                elif range_type is 2:
+                    if not answer > trigger_value:
+                        return False
     return True
     
     
@@ -230,10 +248,15 @@ def refresh_database():
     # trigger
     data = get_csv_data("trigger")
     for row in data:
+        trigger_range_value = row[4]
+        if trigger_range_value is "":
+            trigger_range_value = None
+
         Trigger.objects.create(id=int(row[0]),
                                question=Question.objects.get(id=int(row[1])),
                                trigger_question=Question.objects.get(id=int(row[2])),
-                               trigger_text=row[3])
+                               trigger_text=row[3],
+                               trigger_range=trigger_range_value)
 
     # group
     data = get_csv_data("group")

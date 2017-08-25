@@ -26,6 +26,7 @@ class Trigger(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='main_question_set')
     trigger_question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='trigger_question_set')
     trigger_text = models.CharField(max_length=500)
+    trigger_range = models.IntegerField(default=None, null=True)
 
     class Meta:
         app_label = 'intelicopter'
