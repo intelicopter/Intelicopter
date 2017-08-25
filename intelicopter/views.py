@@ -110,13 +110,25 @@ def process_answer(request):
 def check_if_triggered(question, data):
     triggers = Trigger.objects.filter(question=question)
 
-    # for every trigger, insert key value pair into list k:[,,,]
-    trigger_list = {}
     for trigger in triggers:
         trigger_question_id = str(trigger.trigger_question.id).encode('UTF-8')
-        if trigger_question_id in data:
-            if trigger.trigger_text.encode('UTF-8') not in data[trigger_question_id]:
-                return False
+        if trigger.trigger_range is not None:
+            if trigger_question_id in data:
+                if trigger.trigger_text.encode('UTF-8') not in data[trigger_question_id]:
+                    return False
+        else:
+            if trigger_question_id in data:
+                trigger_value = float(trigger.trigger_text)
+                answer = data[trigger_question_id]
+                if trigger.trigger_range is -2 and not answer < trigger_value:
+                    return False
+                elif trigger.trigger_range is -1 and not answer <= trigger_value:
+                    return False
+                elif trigger.trigger_range is 1 and not answer >= trigger_value:
+                    return False
+                elif trigger.trigger_range is 2 and not answer > trigger_value:
+                    return False
+
 
     return True
     
