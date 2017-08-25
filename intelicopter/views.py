@@ -129,7 +129,7 @@ def check_if_triggered(question, data):
                         return False
                 elif range_type is 1:
                     if not answer >= trigger_value:
-                        return True
+                        return False
                 elif range_type is 2:
                     if not answer > trigger_value:
                         return False
@@ -248,7 +248,8 @@ def refresh_database():
         Trigger.objects.create(id=int(row[0]),
                                question=Question.objects.get(id=int(row[1])),
                                trigger_question=Question.objects.get(id=int(row[2])),
-                               trigger_text=row[3])
+                               trigger_text=row[3],
+                               trigger_range=row[4])
 
     # group
     data = get_csv_data("group")
