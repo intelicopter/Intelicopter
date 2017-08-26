@@ -121,24 +121,25 @@ def check_if_triggered(question, data):
             if trigger_question_id in data:
                 range_type = int(trigger.trigger_range)
                 trigger_value = float(str(trigger.trigger_text))
-                answer = float(str((data[trigger_question_id][0]).encode('utf-8')))
-                if range_type is -2:
-                    if not answer < trigger_value:
-                        return False
-                elif range_type is -1:
-                    if not answer <= trigger_value:
-                        return False
-                elif range_type is 0:
-                    if not answer == trigger_value:
-                        return False
-                elif range_type is 1:
-                    if not answer >= trigger_value:
-                        return False
-                elif range_type is 2:
-                    if not answer > trigger_value:
-                        return False
+                if range_type <= 2:
+                    answer = float(str((data[trigger_question_id][0]).encode('utf-8')))
+                    if range_type is -2:
+                        if not answer < trigger_value:
+                            return False
+                    elif range_type is -1:
+                        if not answer <= trigger_value:
+                            return False
+                    elif range_type is 0:
+                        if not answer == trigger_value:
+                            return False
+                    elif range_type is 1:
+                        if not answer >= trigger_value:
+                            return False
+                    elif range_type is 2:
+                        if not answer > trigger_value:
+                            return False
                 elif range_type > 2:
-                    answer_date = datetime.datetime.strptime(answer, "%Y-%m-%d")
+                    answer_date = datetime.datetime.strptime(str((data[trigger_question_id][0]).encode('utf-8')), "%Y-%m-%d")
                     today_date = datetime.datetime.now()
                     difference_in_years = relativedelta(today_date, answer_date).years
                     if range_type is 3:
