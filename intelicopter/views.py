@@ -137,6 +137,19 @@ def check_if_triggered(question, data):
                 elif range_type is 2:
                     if not answer > trigger_value:
                         return False
+                elif range_type > 2:
+                    answer_date = datetime.datetime.strptime(answer, "%Y-%m-%d")
+                    today_date = datetime.datetime.now()
+                    difference_in_years = relativedelta(today_date, answer_date).years
+                    if range_type is 3:
+                        if not float(answer) < difference_in_years:
+                            return False
+                    if range_type is 4:
+                        if not float(answer) == difference_in_years:
+                            return False
+                    if range_type is 5:
+                        if not float(answer) > difference_in_years:
+                            return False
     return True
     
     
