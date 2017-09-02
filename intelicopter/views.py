@@ -3,11 +3,12 @@ import csv
 from django.shortcuts import render
 from django.db.models import Max
 from models import Question, Option, Trigger, Group, Activity, Criterion
-
+import datetime
+from dateutil.relativedelta import relativedelta
 
 def home(request):
     #create_example_data()
-    refresh_database()
+    #refresh_database()
     return render(request, 'home.html', {})
 
 
@@ -120,22 +121,36 @@ def check_if_triggered(question, data):
             if trigger_question_id in data:
                 range_type = int(trigger.trigger_range)
                 trigger_value = float(str(trigger.trigger_text))
-                answer = float(str((data[trigger_question_id][0]).encode('utf-8')))
-                if range_type is -2:
-                    if not answer < trigger_value:
-                        return False
-                elif range_type is -1:
-                    if not answer <= trigger_value:
-                        return False
-                elif range_type is 0:
-                    if not answer == trigger_value:
-                        return False
-                elif range_type is 1:
-                    if not answer >= trigger_value:
-                        return False
-                elif range_type is 2:
-                    if not answer > trigger_value:
-                        return False
+                if range_type <= 2:
+                    answer = float(str((data[trigger_question_id][0]).encode('utf-8')))
+                    if range_type is -2:
+                        if not answer < trigger_value:
+                            return False
+                    elif range_type is -1:
+                        if not answer <= trigger_value:
+                            return False
+                    elif range_type is 0:
+                        if not answer == trigger_value:
+                            return False
+                    elif range_type is 1:
+                        if not answer >= trigger_value:
+                            return False
+                    elif range_type is 2:
+                        if not answer > trigger_value:
+                            return False
+                elif range_type > 2:
+                    answer_date = datetime.datetime.strptime(str((data[trigger_question_id][0]).encode('utf-8')), "%Y-%m-%d")
+                    today_date = datetime.datetime.now()
+                    difference_in_years = relativedelta(today_date, answer_date).years
+                    if range_type is 3:
+                        if not float(difference_in_years) < trigger_value:
+                            return False
+                    if range_type is 4:
+                        if not float(difference_in_years) == trigger_value:
+                            return False
+                    if range_type is 5:
+                        if not float(difference_in_years) > trigger_value:
+                            return False
     return True
     
     
@@ -204,6 +219,26 @@ def check_activity_relevance(data, activity):
                         pass_counter += 1
                         if criterion.radio_group_id is not None:
                             radio_groups_passed.append(radio_group_id)
+                elif question_range > 2:
+                    answer_date = datetime.datetime.strptime(answer, "%Y-%m-%d")
+                    today_date = datetime.datetime.now()
+                    difference_in_years = relativedelta(today_date, answer_date).years
+                    if question_range == 3:
+                        if float(question_text) > difference_in_years:
+                            pass_counter += 1
+                            if criterion.radio_group_id is not None:
+                                radio_groups_passed.append(radio_group_id)
+                    elif question_range == 4:
+                        if float(question_text) == difference_in_years:
+                            pass_counter += 1
+                            if criterion.radio_group_id is not None:
+                                radio_groups_passed.append(radio_group_id)
+                    elif question_range == 5:
+                        if float(question_text) < difference_in_years:
+                            pass_counter += 1
+                            if criterion.radio_group_id is not None:
+                                radio_groups_passed.append(radio_group_id)
+
 
     if pass_counter == number_of_criteria or number_of_criteria == 0:
         return True

@@ -1,30 +1,329 @@
 <!DOCTYPE html>
 <!— Import bootstrap and Latest compiled and minified CSS —>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Import jquery-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1.0, user-scalable=no"/>
+
+<style>
+
+    html,
+    body {
+        height: 100%;
+        background: #FDFDFD;
+    }
+
+    body {
+        padding-top: 54px;
+    }
+
+    label {
+        display: block;
+        text-align: left;
+    }
+
+    @media only screen and (min-width: 950px) {
+        .container {
+            max-width: 950px;
+            height: 100%;
+            width: auto;
+            display: table;
+        }
+    }
+
+    .img-responsive {
+        -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    }
+
+    .navbar-custom {
+        background: #FFFFFF;
+        width: 100%;
+        border: 0px solid #d1e8e2;
+        -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        margin: 0 auto;
+    }
+
+    .navbar-text {
+        height: 24px;
+        font-size: 24px;
+        font-family: Open Sans, sans-serif;
+        letter-spacing: 2px;
+        text-align: center;
+        display: inline-block;
+        float: none;
+        font-weight: 600;
+    }
+
+    .container {
+        background: #FDFDFD;
+        height: 100%;
+        width: auto;
+        display: table;
+    }
+
+    .green-container {
+        background: #FDFDFD;
+        width: auto;
+        display: block;
+        -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    }
+
+    .black-container {
+        background: #0AABEE;
+        width: auto;
+        display: block;
+        -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    }
+
+    @media only screen and (min-width: 400px) {
+        .btn {
+            width: 80%;
+            max-width: 280px;
+            margin-bottom: 32px;
+            letter-spacing: 1px;
+            font-family: Open Sans, sans-serif;
+        }
+    }
+
+    .btn {
+        width: 80%;
+        margin-bottom: 32px;
+        letter-spacing: 1px;
+        font-family: Open Sans, sans-serif;
+    }
+
+    .reglogButton {
+        background: #0AABEE;
+        height: 50%;
+        border: 1px solid #d1e8e2;
+        color: #FFFFFF;
+        font-size: 20px;
+    }
+
+    .reglogButton:hover {
+        background: #008AC4;
+        height: 50%;
+        border: 1px solid #d1e8e2;
+        color: #FFFFFF;
+        font-size: 20px;
+    }
+
+    .qpButton {
+        background: #2c3531;
+        height: 50%;
+        border: 1px solid #d9b08c;
+        color: #d9b08c;
+        font-size: 24px;
+    }
+
+    .qpButton:hover {
+        background: #d9b08c;
+        height: 50%;
+        border: 1px solid #2c3531;
+        color: #2c3531;
+        font-size: 24px;
+    }
+
+    .header-container {
+        width: 70%;
+        color: #d9b08c;
+        font-size: 20px;
+        letter-spacing: 5px;
+        text-align: center;
+        margin-top: 32px;
+        margin-bottom: 5px;
+    }
+
+    .text-container {
+        width: 80%;
+        color: #4E4E4E;
+        font-family: Helvetica Neue, sans-serif;
+        font-size: 30px;
+        text-align: center;
+        text-justify: distribute;
+        margin-bottom: 17px;
+    }
+
+    .submitButton {
+        background: #116466;
+        height: 52px;
+        border: 1px solid #d1e8e2;
+        color: #d1e8e2;
+        font-size: 12px;
+    }
+
+    .submitButton:hover {
+        background: #d1e8e2;
+        height: 52px;
+        border: 1px solid #116466;
+        color: #116466;
+        font-size: 12px;
+    }
+
+    .left-col {
+        width: 290px;
+        float: left;
+        padding: 5px 15px;
+    }
+
+    .mid-col {
+        width: 290px; /* Account for margins + border values */
+        float: left;
+        padding: 5px 15px;
+        margin: 0px 5px 5px 5px;
+    }
+
+    .right-col {
+        width: 290px;
+        padding: 5px 15px;
+        float: left;
+    }
+
+    /* for 980px or less */
+    @media screen and (max-width: 980px) {
+
+        .left-col {
+            width: 41%;
+            padding: 1% 4%;
+        }
+
+        .mid-col {
+            width: 41%;
+            padding: 1% 4%;
+            margin: 0px 0px 5px 5px;
+            float: right;
+        }
+
+        .right-col {
+            clear: both;
+            padding: 1% 4%;
+            width: auto;
+            float: none;
+        }
+
+    }
+
+    /* for 700px or less */
+    @media screen and (max-width: 600px) {
+
+        .left-col {
+            width: auto;
+            float: none;
+        }
+
+        .mid-col {
+            width: auto;
+            float: none;
+            margin-left: 0px;
+        }
+
+        .right-col {
+            width: auto;
+            float: none;
+        }
+
+    }
+
+</style>
+
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Question</title>
 </head>
 
-<body>
-{#Welcome to Intelicopter!#}
-    <div class="page-header">
-      <h2 align="center">Welcome to Intelicopter!</h2>
-    </div>
+<body style='background-color: #e5e5e5;'>
 
-<br>
-{##}
-{#<a href="/questions/">START</a>#}
 
-<div class="text-center">
-    <h3 align="center"><small>Tap on the button below to begin</small></h3>
-    <a href="/questions/">
-        <button align="center" type="button" class="btn btn-default btn-sm btn-responsive"style="height:100px; width:50%;background-color: white;">
-        <span style="font-size:40px;">START</span></button>
-    </a>
+<div class="container">
+
+    <!-- TOP BAR -->
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div>
+            <a class="navbar-brand navbar-text" href="/"
+               style='padding-top: 3px; padding-bottom: 10px; color: #0AABEE;'>Intelicopter.SG</a>
+        </div>
+    </nav><!-- TOP BAR -->
+
+    <!-- LOG IN/REG -->
+    <div class="row green-container">
+        <!-- HERO IMAGE -->
+        <div>
+            <img class="img-responsive"
+                 src="https://comforcare.com/sites/default/files/styles/hero-slim/public/ThinkstockPhotos-469567497.jpg?itok=ztYZy4pM"
+                 alt="Chania" style="margin: 0 auto; margin-bottom:32px; display: block;">
+        </div><!-- HERO IMAGE -->
+
+        <div class="row center-block text-container">
+            This is an example text. It will be about the qna.
+        </div>
+
+        <a href="/questions/" class="center-block btn btn-primary btn-responsive reglogButton" role="button">Start
+            Questionnaire</a>
+
+    </div> <!-- LOG IN/REG -->
+
+    <!-- INTRO -->
+    <div class="row black-container">
+
+        <br><br>
+
+        <div class="row center-block text-container" style="color: #FFFFFF;">
+            Prefer searching? It's right here.
+        </div>
+
+        <div class="row center-block text-container form-group">
+            <input type="text" class="form-control" id="feedback" placeholder="Click to type"
+                   style='font-family: Open Sans, sans-serif;'>
+
+            <button type="submit" class="center-block btn btn-primary btn-responsive reglogButton"
+                    style="margin-top: 10px; width: 50%;">
+                Search
+            </button>
+        </div>
+
+
+    </div> <!-- INTRO -->
+
+    <!-- FEEDBACK -->
+    <div class="row green-container">
+
+        <div class="row center-block header-container">
+            ABOUT
+        </div>
+
+        <div class="left-col center-block text-container" style="line-height: 200%;">
+            The Team <br>
+        </div>
+
+        <div class="mid-col center-block text-container" style="line-height: 200%;">
+            Our Purpose <br>
+        </div>
+
+        <div class="right-col center-block text-container" style="line-height: 200%;">
+            Supported By <br>
+        </div>
+    </div> <!-- FEEDBACK -->
+
 
 </div>
 
-</body></html>
+</body>
+
+</html>

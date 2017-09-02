@@ -4,7 +4,7 @@ from django.db import models
 class Question(models.Model):
     id = models.IntegerField(primary_key=True)
     text = models.CharField(max_length=500)
-    question_type = models.IntegerField()  # 1 radio, 2 checkbox, 3 textbox, 4 number
+    question_type = models.IntegerField()  # 1 radio, 2 checkbox, 3 textbox, 4 number, 5 dat
 
     def __str__(self):
         return str(self.id) + ") " + self.text
