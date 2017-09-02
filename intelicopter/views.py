@@ -8,7 +8,7 @@ from dateutil.relativedelta import relativedelta
 
 def home(request):
     #create_example_data()
-    refresh_database()
+    #refresh_database()
     return render(request, 'home.html', {})
 
 
