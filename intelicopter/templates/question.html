@@ -8,26 +8,19 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 
-<meta name="viewport" content="width=device-width, initial-scale=0.4, maximum-scale=1.0, user-scalable=no" />
 
 <style>
-
-
-
     html,
     body {
         height: 100%;
     }
-
     body {
         padding-top: 65px;
     }
-
     label {
         display: block;
         text-align: left;
     }
-
     @media only screen and (min-width: 1100px) {
         .container {
             max-width: 950px;
@@ -36,19 +29,11 @@
             width: 100%;
         }
     }
-
     .container {
         background-color: white;
         height: 100%;
         width: 100%;
-        display:table;
     }
-
-    .navbar-custom {
-        background-color: white;
-        width: 100%;
-    }
-
     .btn {
         border-radius: 0 !important;
         height: 140px;
@@ -61,33 +46,27 @@
         border-bottom: #2e9aff 1px solid;
         font-size:40px;
     }
-
     .no-touch .btn:hover {
         border: solid #2e9aff 1px;
         background-color: #b5dcff;
     }
-
     .btn:active {
         border: solid #2e9aff 1px;
         background-color: #478eff;
     }
-
     .btn:checked {
         border: solid #2e9aff 1px;
         background-color: black;
     }
-
     .submit {
         width: 43%;
         border: #2e9aff 1px solid;
         margin-right: 20px;
         padding-left: 0px;
     }
-
     .progress {
         border-radius: 0 !important;
     }
-
 </style>
 
 
@@ -102,8 +81,10 @@
 <div class="container">
 
 
-    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
             <a class="navbar-brand" href="/" style='font-size:40px; padding-top: 25px; padding-bottom: 40px;'>Intelicopter</a>
+        </div>
     </nav>
 
     <div class="row progress">
@@ -118,7 +99,7 @@
         <br><br>
     </div>
 
-    <form action="/questions/" method="post" id="mainForm">
+    <form action="/questions/" method="post">
         {% csrf_token %}
         <p id="Options"></p>
         <input id="data" type="hidden" name="data" value="{{ data_in_string }}">
@@ -137,11 +118,9 @@
 </div>
 
 <script>
-
     var type = {{type|safe}};
     var text = "";
     var noneOfTheAboveButton = "";
-
     if (type < 3) {
         var radiocheckbox = "radio";
         if (type == 2){
@@ -156,28 +135,47 @@
         var options = {{options|safe}};
         var i;
         text += "<div class='row' data-toggle='buttons'>";
-        text += "</div>";
         for (i = 0; i < options.length; i++) {
             text += "<button class='btn btn-default btn-sm btn-responsive'><input type='"+radiocheckbox+"' autocomplete='off' name = 'answers' value='" + options[i] + "'> <span style='font-size:50px;'>" + options[i] + "</span></button>";
         }
+        text += "<div>";
     } else if (type == 3) {
         text += "<div class='row'>";
         text += "<input class='btn btn-default btn-sm btn-responsive' type='text' autocomplete='off' name = 'answers' placeholder='Type/Click Here' value=''></input>";
-        text += "</div>";
+        text += "<div>";
     } else if (type == 4) {
         text += "<div class='row'>";
         text += "<input class='btn btn-default btn-sm btn-responsive' type='number' autocomplete='off' name = 'answers' placeholder='Type/Click Here' value=''></input>";
-        text += "</div>";
+        text += "<div>";
     } else if (type == 5) {
         text += "<div class='row'>";
         text += "<input class='btn btn-default btn-sm btn-responsive' type='date' autocomplete='off' name = 'answers' placeholder='Type/Click Here' value=''></input>";
         text += "</div>";
     }
-
     document.getElementById("Options").innerHTML = text;
     document.getElementById("None of the above").innerHTML = noneOfTheAboveButton;
-
 </script>
+
+{#    <br> {##}
+{##}
+{#    <br>#} {##} {##}
+{#    <form action="/questions/" method="post">{% csrf_token %}#} {##}
+{#      <label for="answers">Choice</label>#} {##}
+{#      <input id="answers2" type="text" name="answers" value="">#} {##}
+{#      <input id="data" type="hidden" name="data" value="{{data_in_string}}">#} {##}
+{#      <input type="submit" value="Submit">#} {##}
+{#    </form>#} {##} {##}
+{#    <br>#} {##} {##}
+{#    <div>#} {# {{ data_in_string| safe }}#} {##}
+{#      <br>#} {#{{ data| safe }}#} {##}
+{#      <br>#} {#{{ answers_in_string|safe }}#} {##}
+{#      <br>#} {#{{ highest_question_number|safe }}#} {##}
+{#      <br>#} {#{{ question|safe }}#} {##}
+{#      <br>#} {#Choose one:#}
+{#      <br>#} {#{{ options|safe }}#}
+{#      <br>#} {##} {# Questions left: {{ questions_left| safe }}#} {##} {##}
+{#    </div>#}
+
 
 </body>
 
