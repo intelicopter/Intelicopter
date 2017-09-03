@@ -9,7 +9,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
 
-<meta name="viewport" content="width=device-width, initial-scale=0.4, maximum-scale=1.0, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
 
 <style>
@@ -70,7 +70,7 @@
         border-bottom: #2e9aff 1px solid;
         border-left: #2e9aff 1px solid;
         border-right: #2e9aff 1px solid;
-        font-size:40px;
+        font-size:24px;
     }
     .no-touch .btn:hover {
         border: solid #2e9aff 1px;
@@ -135,7 +135,7 @@
 
 
     <div class="row" style="padding-left:45px">
-        <span style='font-size:60px;'>{{ question|safe }}</span>
+        <span style='font-size:24px;'>{{ question|safe }}</span>
         <br><br>
     </div>
 
@@ -147,7 +147,7 @@
         <br>
 
         <div class="row">
-            <button type='submit' class='btn btn-default btn-sm btn-responsive pull-right submit' style="text-align: center" name='submit'><span style='font-size:40px;'>Next</span></button>
+            <button type='submit' class='btn btn-default btn-sm btn-responsive pull-right submit' style="text-align: center" name='submit'><span style='font-size:24px;'>Next</span></button>
         </div>
 
     </form>
@@ -169,14 +169,14 @@
                 "{% csrf_token %}" +
                 "<input id='data' type='hidden' name='data' value='{{ data_in_string }}'>" +
                 "<input id='data' type='hidden' name='answers' value='None of the above'>" +
-                "<div class='row'><button type='submit' class='btn btn-default btn-sm btn-responsive pull-right submit' style='text-align: center' name='submit'><spanstyle='font-size:40px;'>None of the above</span></button></div>" +
+                "<div class='row'><button type='submit' class='btn btn-default btn-sm btn-responsive pull-right submit' style='text-align: center' name='submit'><spanstyle='font-size:24px;'>None of the above</span></button></div>" +
                 "</form>"
         }
         var options = {{options|safe}};
         var i;
         text += "<div class='row btn-group-vertical center-block' style='width: 85%;' data-toggle='buttons'>";
         for (i = 0; i < options.length; i++) {
-            text += "<button class='btn btn-default btn-sm btn-responsive'><input type='"+radiocheckbox+"' autocomplete='off' name = 'answers' value='" + options[i] + "'> <span style='font-size:50px;'>" + options[i] + "</span></button>";
+            text += "<button class='btn btn-default btn-sm btn-responsive'><input type='"+radiocheckbox+"' autocomplete='off' name = 'answers' value='" + options[i] + "'> <span style='font-size:24px;'>" + options[i] + "</span></button>";
         }
         text += "</div>";
     } else if (type == 3) {
