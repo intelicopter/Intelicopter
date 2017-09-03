@@ -18,7 +18,7 @@
         height: 100%;
     }
     body {
-        padding-top: 54px;
+        padding-top: 73px;
     }
     label {
         display: block;
@@ -126,14 +126,14 @@
         </div>
     </nav><!-- TOP BAR -->
 
-    <div class="row progress">
+    <div class="row progress navbar-fixed-top" style="margin-top: 54px;">
         <div class="progress-bar" role="progressbar" aria-valuenow="{{ percentage_completed|safe }}" aria-valuemin="0" aria-valuemax="100"
              style="min-width: 2em; width: {{ percentage_completed|safe }}%;">
         </div>
     </div>
 
 
-    <div class="row center-block" style="width: 80%;">
+    <div class="row center-block" style="width: 80%; margin-top: 20px;">
         <span style='font-size:24px;'>{{ question|safe }}</span>
         <br><br>
     </div>
