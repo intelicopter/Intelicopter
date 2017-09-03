@@ -85,10 +85,9 @@
         background-color: black;
     }
     .submit {
-        width: 30%;
+        width: 85%;
         color: #FFFFFF;
         border: #2e9aff 1px solid;
-        margin-right: 9%;
         padding-left: 0px;
         background: #0AABEE;
     }
@@ -146,8 +145,8 @@
 
         <br>
 
-        <div class="row">
-            <button type='submit' class='btn btn-default btn-sm btn-responsive pull-right submit' style="text-align: center" name='submit'><span style='font-size:24px;'>Next</span></button>
+        <div class="row center-block">
+            <button type='submit' class='btn btn-default btn-sm btn-responsive submit center-block' style="text-align: center" name='submit'><span style='font-size:24px;'>Next</span></button>
         </div>
 
     </form>
@@ -169,7 +168,7 @@
                 "{% csrf_token %}" +
                 "<input id='data' type='hidden' name='data' value='{{ data_in_string }}'>" +
                 "<input id='data' type='hidden' name='answers' value='None of the above'>" +
-                "<div class='row' style='margin-top: 5px;'><button type='submit' class='btn btn-default btn-sm btn-responsive pull-right submit' style='text-align: center;' name='submit'><spanstyle='font-size:24px;'>None of the above</span></button></div>" +
+                "<div class='row center-block' style='margin-top: 5px;'><button type='submit' class='btn btn-default btn-sm btn-responsive submit center-block' style='text-align: center;' name='submit'><spanstyle='font-size:24px;'>None of the above</span></button></div>" +
                 "</form>"
         }
         var options = {{options|safe}};
