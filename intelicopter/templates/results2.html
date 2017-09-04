@@ -180,6 +180,7 @@
     <nav class="navbar navbar-fixed-bottom navbar-light center-block footer" style="width:96%;">
         <form id="send_results_email">{% csrf_token %}
         <div class="input-group" style="width: 100%; ">
+            <input id="results" type="hidden" name="data" value="{{relevant_activities}}">
             <input type="text" class="form-control" style=" height: 52px; border-radius: 2px !important;"
                    placeholder="Click here to send results to email." id="email">
             <span class="input-group-btn">
@@ -232,6 +233,7 @@
             url:'/send-results-email/',
             data:{
                 email:$('#email').val(),
+                results:$('#results').val(),
                 csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
             },
             success:function(){
