@@ -170,34 +170,10 @@
         </div>
     </nav><!-- TOP BAR -->
 
-    <div class="panel-group center-block">
+    <div class="panel-group center-block" style="margin-bottom: 65px;">
 
         <p id="Activity"></p>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Mendaki Tuition Fee Grant
-            </div>
-            <div class="panel-body">
-                {{ activity_description | safe }}
-
-
-                <p style="padding-top: 10px;">
-                    <button class="btn btn-primary" type="button"
-                            data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false"
-                            aria-controls="collapseExample">
-                        Apply
-                    </button>
-                </p>
-
-                <div class="collapse role no-transition" id="collapseExample1">
-                    <div class="card card-block text-container apply-container">
-                        {{ activity_apply | safe }}
-                    </div>
-                </div>
-
-            </div>
-        </div>
     </div>
 
     <!-- email button-->
