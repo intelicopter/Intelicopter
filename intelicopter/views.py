@@ -168,7 +168,7 @@ def get_relevant_activities(request, data):
             relevant_activities.append(activity.name)
         activities_checked += 1
 
-    return render(request, 'results.html', {"activities_number": activities_number,
+    return render(request, 'results2.html', {"activities_number": activities_number,
                                             "relevant_activities": relevant_activities})
 
 
