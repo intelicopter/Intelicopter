@@ -71,13 +71,13 @@
         display: table;
     }
 
-    .green-container {
+    .white-container {
         background: #FDFDFD;
         width: auto;
         display: block;
     }
 
-    .black-container {
+    .blue-container {
         background: #005EA5;
         width: auto;
         display: block;
@@ -100,7 +100,7 @@
         font-family: Open Sans, sans-serif;
     }
 
-    .reglogButton {
+    .main-button {
         background: #005EA5;
         height: 50%;
         border: 1px solid #d1e8e2;
@@ -108,38 +108,12 @@
         font-size: 20px;
     }
 
-    .reglogButton:hover {
+    .main-button:hover {
         background: #005EA5;
         height: 50%;
         border: 1px solid #d1e8e2;
         color: #FFFFFF;
         font-size: 20px;
-    }
-
-    .qpButton {
-        background: #2c3531;
-        height: 50%;
-        border: 1px solid #d9b08c;
-        color: #d9b08c;
-        font-size: 24px;
-    }
-
-    .qpButton:hover {
-        background: #d9b08c;
-        height: 50%;
-        border: 1px solid #2c3531;
-        color: #2c3531;
-        font-size: 24px;
-    }
-
-    .header-container {
-        width: 70%;
-        color: #d9b08c;
-        font-size: 20px;
-        letter-spacing: 5px;
-        text-align: center;
-        margin-top: 32px;
-        margin-bottom: 5px;
     }
 
     .text-container {
@@ -150,22 +124,6 @@
         text-align: center;
         text-justify: distribute;
         margin-bottom: 17px;
-    }
-
-    .submitButton {
-        background: #116466;
-        height: 52px;
-        border: 1px solid #d1e8e2;
-        color: #d1e8e2;
-        font-size: 12px;
-    }
-
-    .submitButton:hover {
-        background: #d1e8e2;
-        height: 52px;
-        border: 1px solid #116466;
-        color: #116466;
-        font-size: 12px;
     }
 
     .left-col {
@@ -256,7 +214,7 @@
     </nav><!-- TOP BAR -->
 
     <!-- LOG IN/REG -->
-    <div class="row green-container">
+    <div class="row white-container">
         <!-- HERO IMAGE -->
         <div>
             <img class="img-responsive"
@@ -268,13 +226,13 @@
             This is an example text. It will be about the qna.
         </div>
 
-        <a href="/questions/" class="center-block btn btn-primary btn-responsive reglogButton" role="button">Start
+        <a href="/questions/" class="center-block btn btn-primary btn-responsive main-button" role="button">Start
             Questionnaire</a>
 
     </div> <!-- LOG IN/REG -->
 
     <!-- INTRO -->
-    <div class="row black-container">
+    <div class="row blue-container">
 
         <br><br>
 
@@ -286,7 +244,7 @@
             <input type="text" class="form-control" id="feedback" placeholder="Click to type"
                    style='font-family: Open Sans, sans-serif;'>
 
-            <button type="submit" class="center-block btn btn-primary btn-responsive reglogButton"
+            <button type="submit" class="center-block btn btn-primary btn-responsive main-button"
                     style="margin-top: 10px; width: 50%;">
                 Search
             </button>
@@ -296,21 +254,21 @@
     </div> <!-- INTRO -->
 
     <!-- FEEDBACK -->
-    <div class="row green-container">
+    <div class="row white-container">
 
         <div class="row center-block text-container" style="margin-top: 32px;">
             <b>Get to know us</b>
         </div>
 
-        <div class="left-col center-block text-container" style="line-height: 200%;">
+        <div class="left-col center-block text-container">
             The Team
         </div>
 
-        <div class="mid-col center-block text-container" style="line-height: 200%;">
+        <div class="mid-col center-block text-container">
             Our Purpose
         </div>
 
-        <div class="right-col center-block text-container" style="line-height: 200%;">
+        <div class="right-col center-block text-container">
             Supported By
         </div>
     </div> <!-- FEEDBACK -->
