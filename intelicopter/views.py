@@ -2,6 +2,7 @@ import json, time, os
 import csv
 from django.shortcuts import render
 from django.db.models import Max
+from django.http import HttpResponse
 from models import Question, Option, Trigger, Group, Activity, Criterion
 import datetime
 from dateutil.relativedelta import relativedelta
@@ -256,6 +257,13 @@ def check_activity_relevance(data, activity):
         return True
     else:
         return False
+
+
+def send_results_email(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+
+    return HttpResponse('')
 
 
 def get_csv_data(filename):
