@@ -9,14 +9,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
 
-<meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1.0, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
 <style>
 
     html,
     body {
         height: 100%;
-        background: #FDFDFD;
+        background: #ffffff;
     }
 
     body {
@@ -44,7 +44,7 @@
     }
 
     .navbar-custom {
-        background: #FFFFFF;
+        background: #005EA5;
         width: 100%;
         border: 0px solid #d1e8e2;
         -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -65,28 +65,22 @@
     }
 
     .container {
-        background: #FDFDFD;
+        background: #ffffff;
         height: 100%;
         width: auto;
         display: table;
     }
 
-    .green-container {
+    .white-container {
         background: #FDFDFD;
         width: auto;
         display: block;
-        -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-        -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
     }
 
-    .black-container {
-        background: #0AABEE;
+    .blue-container {
+        background: #005EA5;
         width: auto;
         display: block;
-        -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-        -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
     }
 
     @media only screen and (min-width: 400px) {
@@ -106,46 +100,20 @@
         font-family: Open Sans, sans-serif;
     }
 
-    .reglogButton {
-        background: #0AABEE;
+    .main-button {
+        background: #005EA5;
         height: 50%;
         border: 1px solid #d1e8e2;
         color: #FFFFFF;
         font-size: 20px;
     }
 
-    .reglogButton:hover {
-        background: #008AC4;
+    .main-button:hover {
+        background: #005EA5;
         height: 50%;
         border: 1px solid #d1e8e2;
         color: #FFFFFF;
         font-size: 20px;
-    }
-
-    .qpButton {
-        background: #2c3531;
-        height: 50%;
-        border: 1px solid #d9b08c;
-        color: #d9b08c;
-        font-size: 24px;
-    }
-
-    .qpButton:hover {
-        background: #d9b08c;
-        height: 50%;
-        border: 1px solid #2c3531;
-        color: #2c3531;
-        font-size: 24px;
-    }
-
-    .header-container {
-        width: 70%;
-        color: #d9b08c;
-        font-size: 20px;
-        letter-spacing: 5px;
-        text-align: center;
-        margin-top: 32px;
-        margin-bottom: 5px;
     }
 
     .text-container {
@@ -156,22 +124,6 @@
         text-align: center;
         text-justify: distribute;
         margin-bottom: 17px;
-    }
-
-    .submitButton {
-        background: #116466;
-        height: 52px;
-        border: 1px solid #d1e8e2;
-        color: #d1e8e2;
-        font-size: 12px;
-    }
-
-    .submitButton:hover {
-        background: #d1e8e2;
-        height: 52px;
-        border: 1px solid #116466;
-        color: #116466;
-        font-size: 12px;
     }
 
     .left-col {
@@ -248,7 +200,7 @@
     <title>Question</title>
 </head>
 
-<body style='background-color: #e5e5e5;'>
+<body style='background-color: #ffffff;'>
 
 
 <div class="container">
@@ -257,12 +209,12 @@
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
         <div>
             <a class="navbar-brand navbar-text" href="/"
-               style='padding-top: 3px; padding-bottom: 10px; color: #0AABEE;'>Intelicopter.SG</a>
+               style='padding-top: 3px; padding-bottom: 10px; color: #ffffff;'>Intelicopter.SG</a>
         </div>
     </nav><!-- TOP BAR -->
 
     <!-- LOG IN/REG -->
-    <div class="row green-container">
+    <div class="row white-container">
         <!-- HERO IMAGE -->
         <div>
             <img class="img-responsive"
@@ -274,13 +226,13 @@
             This is an example text. It will be about the qna.
         </div>
 
-        <a href="/questions/" class="center-block btn btn-primary btn-responsive reglogButton" role="button">Start
+        <a href="/questions/" class="center-block btn btn-primary btn-responsive main-button" role="button">Start
             Questionnaire</a>
 
     </div> <!-- LOG IN/REG -->
 
     <!-- INTRO -->
-    <div class="row black-container">
+    <div class="row blue-container">
 
         <br><br>
 
@@ -292,7 +244,7 @@
             <input type="text" class="form-control" id="feedback" placeholder="Click to type"
                    style='font-family: Open Sans, sans-serif;'>
 
-            <button type="submit" class="center-block btn btn-primary btn-responsive reglogButton"
+            <button type="submit" class="center-block btn btn-primary btn-responsive main-button"
                     style="margin-top: 10px; width: 50%;">
                 Search
             </button>
@@ -302,22 +254,22 @@
     </div> <!-- INTRO -->
 
     <!-- FEEDBACK -->
-    <div class="row green-container">
+    <div class="row white-container">
 
-        <div class="row center-block header-container">
-            ABOUT
+        <div class="row center-block text-container" style="margin-top: 32px;">
+            <b>Get to know us</b>
         </div>
 
-        <div class="left-col center-block text-container" style="line-height: 200%;">
-            The Team <br>
+        <div class="left-col center-block text-container">
+            The Team
         </div>
 
-        <div class="mid-col center-block text-container" style="line-height: 200%;">
-            Our Purpose <br>
+        <div class="mid-col center-block text-container">
+            Our Purpose
         </div>
 
-        <div class="right-col center-block text-container" style="line-height: 200%;">
-            Supported By <br>
+        <div class="right-col center-block text-container">
+            Supported By
         </div>
     </div> <!-- FEEDBACK -->
 

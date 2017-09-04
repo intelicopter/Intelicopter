@@ -155,20 +155,32 @@ def check_if_triggered(question, data):
     
     
 def get_relevant_activities(request, data):
-    #to store relevant activities
-    relevant_activities = []
     activities_checked = 0
 
     # get all activity objects
     activities = Activity.objects.all()
     activities_number = Activity.objects.all().count()
 
+    #to store relevant activities
+    relevant_activities = list()
+
     for activity in activities:
         if check_activity_relevance(data, activity):
-            relevant_activities.append(activity.name)
+            activity_details = list()
+            activity_details.append(activity.group.name)
+            activity_details.append(activity.name)
+            activity_details.append(activity.description)
+            activity_details.append(activity.address)
+            activity_details.append(activity.contact_name)
+            activity_details.append(activity.contact_number)
+            activity_details.append(activity.contact_email)
+            activity_details = json.dumps(activity_details)
+            relevant_activities.append(activity_details)
         activities_checked += 1
 
-    return render(request, 'results.html', {"activities_number": activities_number,
+    # relevant_activities = json.dumps(relevant_activities)
+
+    return render(request, 'results2.html', {"activities_number": activities_number,
                                             "relevant_activities": relevant_activities})
 
 
