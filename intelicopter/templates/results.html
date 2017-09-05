@@ -171,9 +171,9 @@
     </nav><!-- TOP BAR -->
 
     <form id="print-results-form" action="/print-results/" method="post">{% csrf_token %}
-        <div class="row center-block">
+        <div class="row center-block" style="margin-top: 10px;">
             <input id="print-results" type="hidden" name="print-results" value="{{relevant_activities}}">
-            <button type='submit' class='btn btn-default btn-sm btn-responsive submit center-block' style="text-align: center" name='submit'><span style='font-size:24px;'>Print Results</span></button>
+            <button type='submit' class='btn btn-default btn-sm btn-responsive submit center-block' style="text-align: center" name='submit'><span style='font-size:18px;'>Print Results</span></button>
         </div>
     </form>
 

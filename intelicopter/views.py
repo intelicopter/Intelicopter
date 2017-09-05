@@ -283,7 +283,7 @@ def change_results_to_string(results_list):
         result = ast.literal_eval(result)
         result_string += (
             "<b>" + result[1] + "</b><br>" +
-            "Administered by: " + result[0] + "<br>" +
+            "Administered by: " + result[0] + "<br><br>" +
             result[2] + "<br><br>" +
             "Apply via:" + "<br>" +
             result[4] + "<br>" +
