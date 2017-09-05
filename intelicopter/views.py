@@ -9,6 +9,7 @@ from models import Question, Option, Trigger, Group, Activity, Criterion
 import datetime
 from dateutil.relativedelta import relativedelta
 
+
 def home(request):
     #create_example_data()
     #refresh_database()
@@ -20,17 +21,6 @@ def question(request):
 
 
 def process_answer(request):
-
-    # "data" will be stored in JSON format in this way:
-    # {
-    #     "1": {
-    #         "1": "yes"
-    #     },
-    #     "2": {
-    #         "1": "Leg",
-    #         "2": "Hand"
-    #     }
-    # }
 
     try:
         # get data from templates
@@ -183,7 +173,7 @@ def get_relevant_activities(request, data):
 
     # relevant_activities = json.dumps(relevant_activities)
 
-    return render(request, 'results2.html', {"activities_number": activities_number,
+    return render(request, 'results.html', {"activities_number": activities_number,
                                             "relevant_activities": relevant_activities})
 
 
@@ -254,7 +244,6 @@ def check_activity_relevance(data, activity):
                             if criterion.radio_group_id is not None:
                                 radio_groups_passed.append(radio_group_id)
 
-
     if pass_counter == number_of_criteria or number_of_criteria == 0:
         return True
     else:
@@ -266,19 +255,7 @@ def send_results_email(request):
         email = request.POST['email']
         results_in_string = request.POST['results']
         results = ast.literal_eval(str(results_in_string.encode('utf-8')))
-        email_content = ""
-
-        for result in results:
-            email_content += (
-                result[1] + "\n" +
-                "Administered by: " + result[0] + "\n" +
-                result[2] + "\n" +
-                "Apply via:" + "\n" +
-                result[4] + "\n" +
-                result[5] + "\n" +
-                result[6] + "\n" +
-                result[3] + "\n\n"
-            )
+        email_content = change_results_to_string(results)
 
         send_mail(
             'Your Intelicopter results',
@@ -289,6 +266,33 @@ def send_results_email(request):
         )
 
     return HttpResponse('')
+
+
+def print_results(request):
+    results_in_string = request.POST['print-results']
+    results = ast.literal_eval(str(results_in_string.encode('utf-8')))
+    print_content = change_results_to_string(results)
+
+    return render(request, 'print-results.html', {"print_content": print_content})
+
+
+def change_results_to_string(results_list):
+    result_string = ""
+
+    for result in results_list:
+        result = ast.literal_eval(result)
+        result_string += (
+            "<b>" + result[1] + "</b><br>" +
+            "Administered by: " + result[0] + "<br><br>" +
+            result[2] + "<br><br>" +
+            "Apply via:" + "<br>" +
+            result[4] + "<br>" +
+            result[5] + "<br>" +
+            result[6] + "<br>" +
+            result[3] + "<br><br><br>"
+        )
+
+    return result_string
 
 
 def get_csv_data(filename):

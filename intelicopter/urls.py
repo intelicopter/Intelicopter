@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^questions/', views.process_answer, name='questions'),
     url(r'^results/', views.get_relevant_activities, name='results'),
-    url(r'^send-results-email/', views.send_results_email, name='results')
+    url(r'^send-results-email/', views.send_results_email, name='results'),
+    url(r'^print-results/', views.print_results, name='print_results')
 ]
