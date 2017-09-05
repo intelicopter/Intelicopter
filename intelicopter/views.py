@@ -1,7 +1,10 @@
 import json, time, os
 import csv
+import ast
 from django.shortcuts import render
 from django.db.models import Max
+from django.http import HttpResponse
+from django.core.mail import send_mail
 from models import Question, Option, Trigger, Group, Activity, Criterion
 import datetime
 from dateutil.relativedelta import relativedelta
@@ -256,6 +259,36 @@ def check_activity_relevance(data, activity):
         return True
     else:
         return False
+
+
+def send_results_email(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        results_in_string = request.POST['results']
+        results = ast.literal_eval(str(results_in_string.encode('utf-8')))
+        email_content = ""
+
+        for result in results:
+            email_content += (
+                result[1] + "\n" +
+                "Administered by: " + result[0] + "\n" +
+                result[2] + "\n" +
+                "Apply via:" + "\n" +
+                result[4] + "\n" +
+                result[5] + "\n" +
+                result[6] + "\n" +
+                result[3] + "\n\n"
+            )
+
+        send_mail(
+            'Your Intelicopter results',
+            email_content,
+            'intelicopter@gmail.com',
+            [email],
+            fail_silently=False,
+        )
+
+    return HttpResponse('')
 
 
 def get_csv_data(filename):

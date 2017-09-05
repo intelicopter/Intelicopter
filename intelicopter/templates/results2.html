@@ -178,15 +178,18 @@
 
     <!-- email button-->
     <nav class="navbar navbar-fixed-bottom navbar-light center-block footer" style="width:96%;">
+        <form id="send_results_email">{% csrf_token %}
         <div class="input-group" style="width: 100%; ">
+            <input id="results" type="hidden" name="data" value="{{relevant_activities}}">
             <input type="text" class="form-control" style=" height: 52px; border-radius: 2px !important;"
-                   placeholder="Click here to send results to email.">
+                   placeholder="Click here to send results to email." id="email">
             <span class="input-group-btn">
         <button class="btn btn-secondary"
                 style=" height: 52px; width: 100%; color: #ffffff; border-radius: 2px !important;"
-                type="button">Email</button>
+                type="submit">Email</button>
       </span>
         </div>
+            </form>
     </nav>
 
 </div>
@@ -219,6 +222,27 @@
     }
 
     document.getElementById("Activity").innerHTML = text;
+
+
+
+    $(document).on('submit','#send_results_email',function(e){
+        e.preventDefault();
+
+        $.ajax({
+            type:'POST',
+            url:'/send-results-email/',
+            data:{
+                email:$('#email').val(),
+                results:$('#results').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(){
+                alert("Email sent to " + $('#email').val() + ".");
+            }
+        });
+
+    });
+
 </script>
 
 
