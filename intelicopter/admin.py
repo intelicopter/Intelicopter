@@ -1,6 +1,9 @@
 from django.contrib import admin
 from django.forms import models
+from import_export import resources
 from models import Question, Option, Log
+from import_export.admin import ImportExportMixin, ImportMixin, ExportActionModelAdmin
+
 
 
 class MyInline(models.BaseInlineFormSet):
@@ -23,7 +26,13 @@ class QuestionAdmin(admin.ModelAdmin):
 admin.site.register(Question, QuestionAdmin)
 
 
-class LogAdmin(admin.ModelAdmin):
+class LogResource(resources.ModelResource):
+    class Meta:
+        model = Log
+
+
+class LogAdmin(ExportActionModelAdmin):
     pass
+
 
 admin.site.register(Log, LogAdmin)
