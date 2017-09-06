@@ -1,12 +1,15 @@
 import json, time, os
 import csv
 import ast
+from copy import deepcopy
 from django.shortcuts import render
 from django.db.models import Max
+from django.db import transaction
 from django.http import HttpResponse
 from django.core.mail import send_mail
-from models import Question, Option, Trigger, Group, Activity, Criterion
+from models import Question, Option, Trigger, Group, Activity, Criterion, Log
 import datetime
+from datetime import timedelta
 from dateutil.relativedelta import relativedelta
 
 
@@ -61,6 +64,7 @@ def process_answer(request):
         latest_question = Question.objects.get(id=highest_question_number+next_question_tracker)
     except:
         # means there are no more questions
+        log_data(data)
         return get_relevant_activities(request, data)
 
     # if not triggered, go to the next question
@@ -72,6 +76,7 @@ def process_answer(request):
             latest_question = Question.objects.get(id=highest_question_number + next_question_tracker)
         except:
             # means there are no more questions
+            log_data(data)
             return get_relevant_activities(request, data)
 
     latest_question_text = latest_question.text
@@ -293,6 +298,34 @@ def change_results_to_string(results_list):
         )
 
     return result_string
+
+
+def log_data(data):
+    # data is: {u'1': [u'Islam'], u'0': None, u'3': [u'123123'], u'2': [u'Cancer', u'Parkinson'], u'4': [u'555']}
+
+    data_copy = deepcopy(data)
+    skip = "skip"
+
+    with transaction.atomic():
+
+        try:
+            user_id = Log.objects.all().aggregate(Max('user_id')) + 1
+        except:
+            user_id = 0
+
+        for key, value in data_copy.iteritems():
+            question_number = key.encode('utf-8')
+            if value is not None:
+                for item in value:
+                    answer = item.encode('utf-8')
+                    if answer is not skip:
+                        datetime_now = datetime.datetime.now()
+                        Log.objects.create(user_id=user_id,
+                                           question_number=question_number,
+                                           answer=answer,
+                                           datetime=datetime_now)
+
+    return True
 
 
 def get_csv_data(filename):

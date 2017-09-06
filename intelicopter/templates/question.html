@@ -175,7 +175,7 @@
         var i;
         text += "<div class='row btn-group-vertical center-block' style='width: 85%;' data-toggle='buttons'>";
         for (i = 0; i < options.length; i++) {
-            text += "<button class='btn btn-default btn-sm btn-responsive'><input type='"+radiocheckbox+"' autocomplete='off' name = 'answers' value='" + options[i] + "'> <span style='font-size:24px;'>" + options[i] + "</span></button>";
+            text += "<label class='btn btn-default btn-sm btn-responsive'><input type='"+radiocheckbox+"' autocomplete='off' name = 'answers' value='" + options[i] + "'> <span style='font-size:24px;'>" + options[i] + "</span></label>";
         }
         text += "</div>";
     } else if (type == 3) {

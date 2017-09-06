@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.forms import models
-from models import Question, Option
+from models import Question, Option, Log
 
 
 class MyInline(models.BaseInlineFormSet):
@@ -8,14 +8,22 @@ class MyInline(models.BaseInlineFormSet):
         super(MyInline, self).__init__(*args, **kwargs)
         self.can_delete = False
 
+
 class OptionAdminInline(admin.TabularInline):
     model = Option
     exclude = ['id']
     readonly_fields = ('option_text',)
     formset = MyInline
 
+
 class QuestionAdmin(admin.ModelAdmin):
     fields = ('text', 'question_type')
     inlines = (OptionAdminInline, )
 
 admin.site.register(Question, QuestionAdmin)
+
+
+class LogAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Log, LogAdmin)

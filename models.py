@@ -74,3 +74,14 @@ class Criterion(models.Model):
 
     class Meta:
         app_label = 'intelicopter'
+
+
+class Log(models.Model):
+    id = models.AutoField(primary_key=True)
+    user_id = models.IntegerField(default=None, null=True)
+    question_number = models.IntegerField(default=None, null=True)
+    answer = models.CharField(max_length=100, default=None, null=True)
+    datetime = models.DateTimeField()
+
+    class Meta:
+        app_label = 'intelicopter'
