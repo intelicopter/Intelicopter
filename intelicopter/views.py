@@ -304,6 +304,7 @@ def log_data(data):
     # data is: {u'1': [u'Islam'], u'0': None, u'3': [u'123123'], u'2': [u'Cancer', u'Parkinson'], u'4': [u'555']}
 
     data_copy = deepcopy(data)
+    skip = "skip"
 
     with transaction.atomic():
 
@@ -317,11 +318,12 @@ def log_data(data):
             if value is not None:
                 for item in value:
                     answer = item.encode('utf-8')
-                    datetime_now = datetime.datetime.now()
-                    Log.objects.create(user_id=user_id,
-                                       question_number=question_number,
-                                       answer=answer,
-                                       datetime=datetime_now)
+                    if answer is not skip:
+                        datetime_now = datetime.datetime.now()
+                        Log.objects.create(user_id=user_id,
+                                           question_number=question_number,
+                                           answer=answer,
+                                           datetime=datetime_now)
 
     return True
 
