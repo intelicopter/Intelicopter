@@ -128,22 +128,22 @@
         }
     }
 
-    .panel-group{
+    .panel-group {
         margin-top: 10px;
         width: 95%;
     }
 
-    .panel-heading{
+    .panel-heading {
         font-size: 20px;
         font-weight: 600;
         letter-spacing: 1px;
     }
 
-    .panel-body{
+    .panel-body {
         font-size: 17px;
     }
 
-    .apply-container{
+    .apply-container {
         margin: 10px;
         font-size: 16px;
         text-align: left;
@@ -172,8 +172,9 @@
 
     <form id="print-results-form" action="/print-results/" method="post">{% csrf_token %}
         <div class="row center-block" style="margin-top: 10px;">
-            <input id="print-results" type="hidden" name="print-results" value="{{relevant_activities}}">
-            <button type='submit' class='btn btn-default btn-sm btn-responsive submit center-block' style="text-align: center" name='submit'><span style='font-size:18px;'>Print Results</span></button>
+            <input id="print-results" type="hidden" name="print-results" value="{{ relevant_activities }}">
+            <button type='submit' class='btn btn-default btn-sm btn-responsive submit center-block'
+                    style="text-align: center" name='submit'><span style='font-size:18px;'>Print Results</span></button>
         </div>
     </form>
 
@@ -186,17 +187,18 @@
     <!-- email button-->
     <nav class="navbar navbar-fixed-bottom navbar-light center-block footer" style="width:96%;">
         <form id="send_results_email">{% csrf_token %}
-        <div class="input-group" style="width: 100%; ">
-            <input id="results" type="hidden" name="data" value="{{relevant_activities}}">
-            <input type="text" class="form-control" style=" height: 52px; border-radius: 2px !important;"
-                   placeholder="Click here to send results to email." id="email">
-            <span class="input-group-btn">
+            <div class="input-group" style="width: 100%; ">
+                <input id="results" type="hidden" name="data" value="{{ relevant_activities }}">
+                <input type="text" class="form-control" style=" height: 52px; border-radius: 2px !important;"
+                       placeholder="Click here to send results to email." id="email">
+                <span class="input-group-btn">
         <button class="btn btn-secondary"
                 style=" height: 52px; width: 100%; color: #ffffff; border-radius: 2px !important;"
-                type="submit">Email</button>
+                type="submit">Email
+        </button>
       </span>
-        </div>
-            </form>
+            </div>
+        </form>
     </nav>
 
 </div>
@@ -219,8 +221,8 @@
         text += activityName;
         text += "</div><div class='panel-body'>";
         text += description;
-        text += "<p style='padding-top: 10px;'><button class='btn btn-primary' type='button' data-toggle='collapse' data-target='#"+i+"' aria-expanded='false' aria-controls='collapseExample'>";
-        text += "Apply </button></p><div class='collapse role no-transition' id='"+i+"'><div class='card card-block text-container apply-container'>";
+        text += "<p style='padding-top: 10px;'><button class='btn btn-primary' type='button' data-toggle='collapse' data-target='#" + i + "' aria-expanded='false' aria-controls='collapseExample'>";
+        text += "Apply </button></p><div class='collapse role no-transition' id='" + i + "'><div class='card card-block text-container apply-container'>";
         text += contactName + "<br>";
         text += contactNumber + "<br>";
         text += contactEmail + "<br>";
@@ -231,19 +233,18 @@
     document.getElementById("Activity").innerHTML = text;
 
 
-
-    $(document).on('submit','#send_results_email',function(e){
+    $(document).on('submit', '#send_results_email', function (e) {
         e.preventDefault();
 
         $.ajax({
-            type:'POST',
-            url:'/send-results-email/',
-            data:{
-                email:$('#email').val(),
-                results:$('#results').val(),
-                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            type: 'POST',
+            url: '/send-results-email/',
+            data: {
+                email: $('#email').val(),
+                results: $('#results').val(),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
             },
-            success:function(){
+            success: function () {
                 alert("Email sent to " + $('#email').val() + ".");
             }
         });
